@@ -41,8 +41,8 @@
     cursor: pointer;
     transition: 0.3s all;
     @media (max-width: 767px) {
-      min-width: 50px;
-      min-height: 50px;
+      min-width: 60px;
+      min-height: 60px;
     }
     &:active {
       transform: scale(1.1);

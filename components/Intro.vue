@@ -67,6 +67,9 @@
       bottom: 10%;
       left: 10%;
     }
+    @media (max-width: 479px) {
+      left: 14%;
+    }
   }
   .mobile-button-circle-white {
     @media (max-width: 767px) {
@@ -160,8 +163,14 @@
       }
       @media (max-width: 767px) {
         margin: 0 auto;
-        max-width: 200px;
-        max-height: 200px;
+        width: 170px;
+        height: 170px;
+      }
+      @media (max-width: 479px) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
 
@@ -181,6 +190,13 @@
       bottom: 8%;
       left: 50%;
       transform: translateX(-50%);
+      @media (max-width: 756px) {
+        max-width: 200px;
+      }
+      @media (max-width: 479px) {
+        bottom: 22%;
+        max-width: 170px;
+      }
     }
 
     &__title-block-box-wrapper {
@@ -190,6 +206,9 @@
     &__title-block-box {
       display: flex;
       align-items: center;
+      @media (max-width: 767px) {
+        width: 100%;
+      }
     }
 
     &__title-block-box2 {
@@ -210,6 +229,13 @@
       line-height: 19px;
       font-weight: 700;
       text-transform: uppercase;
+      @media (max-width: 767px) {
+        font-size: 12px;
+        line-height: 15px;
+      }
+      @media (max-width: 767px) {
+        font-size: 10px;
+      }
     }
   }
   .circle-cursor {
@@ -223,13 +249,13 @@
   .button-arrow-title {
     position: absolute;
     bottom: -80px;
-    right: -170%;
+    right: -150%;
     display: flex;
     align-items: flex-end;
     gap: 12px;
     z-index: 1;
     @media (max-width: 767px) {
-      left: -180%;
+      left: -150%;
       bottom: -60px;
     }
     .black-arrow {
@@ -247,7 +273,7 @@
     &.left {
       right: 56%;
       @media (max-width: 767px) {
-        left: -100%;
+        left: -80%;
         right: auto;
         &:deep() {
           span {
@@ -274,8 +300,11 @@
   .representative {
     position: absolute;
     bottom: 2.6%;
-    right: 1.8%;
+    right: 2.8%;
     z-index: 1;
+    @media (max-width: 479px) {
+      right: 3%;
+    }
     &__title {
       color: #000;
       font-size: 16px;
@@ -283,8 +312,11 @@
       line-height: 100%;
       text-transform: capitalize;
       margin-bottom: 5px;
-      @media (max-width: 767px) {
-        font-size: 12px;
+      @media (max-width: 479px) {
+        font-size: 10px;
+        max-width: 100px;
+        text-align: center;
+        margin-bottom: 20px;
       }
     }
 
@@ -294,14 +326,14 @@
       gap: 30px;
       @media (max-width: 767px) {
         flex-direction: column;
-        gap: 10px;
+        gap: 16px;
       }
     }
 
     &__item {
       cursor: pointer;
       img {
-        width: 100%;
+        max-width: 100%;
         object-fit: contain;
         filter: grayscale(100%);
       }
