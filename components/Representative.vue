@@ -152,6 +152,7 @@
         width: 100%;
         filter: grayscale(100%);
         object-fit: contain;
+        transition: all 0.3s;
       }
       &:hover {
         img {

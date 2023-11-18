@@ -1,7 +1,7 @@
 <template>
   <div :class="classes">
     <div v-swiper:mySwiper="options" class="swiper-block__swiper swiper">
-      <h1 class="swiper-block__title">News</h1>
+      <h1 class="swiper-block__title" v-if="title">News</h1>
       <div class="swiper-block__circle" :style="`width: ${circle}; height: ${circle}; background-color: ${circleBg}; top: ${circleTop}`"></div>
       <div class="swiper-block__box" :style="`width: ${box}; height: ${box}; background-color: ${boxBg}; top: ${boxTop}`"></div>
       <div class="swiper-block__wrapper swiper-wrapper">
@@ -36,6 +36,10 @@
       box: '',
       boxBg: '',
       boxTop: '',
+      title: {
+        type: String,
+        default: () => ''
+      },
       projects: {
         type: Boolean,
         default: () => null

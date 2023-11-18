@@ -37,8 +37,13 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    z-index: 10;
     cursor: pointer;
     transition: 0.3s all;
+    @media (max-width: 767px) {
+      min-width: 50px;
+      min-height: 50px;
+    }
     &:active {
       transform: scale(1.1);
     }
@@ -65,21 +70,34 @@
       animation-name: circleSecond;
       opacity: 0;
     }
+
     @keyframes circle {
       0% {
         width: 70px;
         height: 70px;
         opacity: 0;
+        @media (max-width: 767px) {
+          width: 50px;
+          height: 50px;
+        }
       }
       50% {
         width: 120px;
         height: 120px;
         opacity: 1;
+        @media (max-width: 767px) {
+          width: 100px;
+          height: 100px;
+        }
       }
       100% {
         width: 70px;
         height: 70px;
         opacity: 0;
+        @media (max-width: 767px) {
+          width: 50px;
+          height: 50px;
+        }
       }
     }
 
@@ -88,18 +106,30 @@
         width: 100px;
         height: 100px;
         opacity: 0;
+        @media (max-width: 767px) {
+          width: 80px;
+          height: 80px;
+        }
       }
 
       50% {
         width: 160px;
         height: 160px;
         opacity: 1;
+        @media (max-width: 767px) {
+          width: 50px;
+          height: 50px;
+        }
       }
 
       100% {
         width: 100px;
         height: 100px;
         opacity: 0;
+        @media (max-width: 767px) {
+          width: 80px;
+          height: 80px;
+        }
       }
     }
 
@@ -109,6 +139,9 @@
       font-size: 16px;
       font-weight: 500;
       text-transform: capitalize;
+      @media (max-width: 767px) {
+        font-size: 12px;
+      }
     }
 
     &--primary {

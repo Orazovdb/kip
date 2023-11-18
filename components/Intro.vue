@@ -6,7 +6,7 @@
       Siziň Üstünligiňiz!
     </h1>
     <div class="intro__center-items">
-      <div class="relative">
+      <div class="relative mobile-button-circle-primary">
         <base-button-circle>Contact</base-button-circle>
         <div class="button-arrow-title left">
           <h2 class="button-arrow-title__text white">see our work</h2>
@@ -16,17 +16,18 @@
       <div class="intro__logo">
         <img src="@/assets/img/kip-logo.svg" alt="logo" />
       </div>
-      <div class="relative">
+      <div class="relative mobile-button-circle-white">
         <base-button-circle primary>Work</base-button-circle>
         <base-icon icon="circleCursor" class="circle-cursor" />
         <div class="button-arrow-title">
-          <base-icon icon="workBlackArrow" />
+          <base-icon icon="workBlackArrow" class="black-arrow" />
           <h2 class="button-arrow-title__text">see our work</h2>
+          <base-icon icon="workBlackArrowMini" class="black-arrow-mini" />
         </div>
       </div>
     </div>
     <div class="intro__swiper">
-      <swiper-item></swiper-item>
+      <swiper-item title="news"> </swiper-item>
     </div>
     <div class="intro__title-block">
       <div class="intro__title-block-box-wrapper">
@@ -60,6 +61,20 @@
 <script></script>
 
 <style lang="scss" scoped>
+  .mobile-button-circle-primary {
+    @media (max-width: 767px) {
+      position: absolute !important;
+      bottom: 10%;
+      left: 10%;
+    }
+  }
+  .mobile-button-circle-white {
+    @media (max-width: 767px) {
+      position: absolute;
+      top: 20%;
+      right: 10%;
+    }
+  }
   .intro {
     width: 100%;
     height: 100vh;
@@ -95,7 +110,7 @@
         filter: blur(80px);
         width: 240px;
         height: 240px;
-        z-index: 1;
+        z-index: -1;
       }
     }
     &__title {
@@ -105,18 +120,34 @@
       font-size: 34px;
       font-weight: 700;
       line-height: 120%;
+      @media (max-width: 767px) {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 120%;
+        max-width: 150px;
+        margin-left: 30px;
+      }
+      @media (max-width: 767px) {
+        margin-left: 20px;
+        font-size: 22px;
+      }
     }
 
     &__center-items {
-      position: absolute;
       top: 50%;
       left: 0;
       transform: translateY(-50%);
       width: calc(100% - 280px);
       display: flex;
+      position: absolute;
       align-items: center;
       justify-content: space-between;
       margin: 0 140px;
+      @media (max-width: 767px) {
+        transform: none;
+        position: static;
+      }
     }
 
     &__logo {
@@ -127,6 +158,11 @@
         height: 100%;
         object-fit: contain;
       }
+      @media (max-width: 767px) {
+        margin: 0 auto;
+        max-width: 200px;
+        max-height: 200px;
+      }
     }
 
     &__swiper {
@@ -135,6 +171,9 @@
       left: 40px;
       z-index: 10;
       width: 250px;
+      @media (max-width: 767px) {
+        display: none;
+      }
     }
 
     &__title-block {
@@ -177,6 +216,9 @@
     position: absolute;
     top: -70px;
     right: -57px;
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
   .button-arrow-title {
     position: absolute;
@@ -185,10 +227,36 @@
     display: flex;
     align-items: flex-end;
     gap: 12px;
+    z-index: 1;
+    @media (max-width: 767px) {
+      left: -180%;
+      bottom: -60px;
+    }
+    .black-arrow {
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+    .black-arrow-mini {
+      display: none;
+      @media (max-width: 767px) {
+        display: block;
+      }
+    }
 
     &.left {
-      right: auto;
       right: 56%;
+      @media (max-width: 767px) {
+        left: -100%;
+        right: auto;
+        &:deep() {
+          span {
+            svg {
+              width: 32px;
+            }
+          }
+        }
+      }
     }
     &__text {
       white-space: nowrap;
@@ -198,12 +266,16 @@
       &.white {
         color: #fff;
       }
+      @media (max-width: 767px) {
+        font-size: 12px;
+      }
     }
   }
   .representative {
     position: absolute;
     bottom: 2.6%;
     right: 1.8%;
+    z-index: 1;
     &__title {
       color: #000;
       font-size: 16px;
@@ -211,12 +283,19 @@
       line-height: 100%;
       text-transform: capitalize;
       margin-bottom: 5px;
+      @media (max-width: 767px) {
+        font-size: 12px;
+      }
     }
 
     &__items {
       display: flex;
       align-items: center;
       gap: 30px;
+      @media (max-width: 767px) {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
 
     &__item {
@@ -230,6 +309,9 @@
         img {
           filter: grayscale(0%);
         }
+      }
+      @media (max-width: 479px) {
+        max-width: 60px;
       }
     }
   }

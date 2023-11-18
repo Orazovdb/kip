@@ -4,29 +4,9 @@
       <h1 class="projects__title">Projects</h1>
     </div>
     <div class="projects__row">
-      <div class="projects__swiper">
-        <swiper-item
-          imgHeight="305px"
-          circle="60px"
-          circleBg="#183A60"
-          box="70px"
-          boxBg="white"
-          projects
-          circleTop="50px"
-          boxTop="50px"
-        ></swiper-item>
-      </div>
-      <div class="projects__swiper">
-        <swiper-item
-          imgHeight="305px"
-          circle="60px"
-          circleBg="#183A60"
-          box="70px"
-          boxBg="white"
-          projects
-          circleTop="50px"
-          boxTop="50px"
-        ></swiper-item>
+      <div class="projects__swiper" v-for="(item, index) in 2" :key="index">
+        <h1 class="swiper-block__title" @click="$router.push(localeLocation(`/projects/${index + 1}`))">News</h1>
+        <swiper-item imgHeight="305px" circle="60px" circleBg="#183A60" box="70px" boxBg="white" projects circleTop="0" boxTop="0"></swiper-item>
       </div>
     </div>
   </div>
@@ -37,6 +17,18 @@
 </script>
 
 <style lang="scss" scoped>
+  .swiper-block {
+    &__title {
+      color: var(--red);
+      font-size: 34px;
+      font-weight: 500;
+      line-height: normal;
+      margin-bottom: 20px;
+      transition: 0.3s;
+      &:hover {
+      }
+    }
+  }
   .projects {
     width: 100vw;
     height: 100vh;
@@ -105,6 +97,9 @@
     &__swiper {
       width: 500px;
       height: 305px;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
     }
   }
 </style>

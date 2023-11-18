@@ -6,6 +6,7 @@
     <Projects />
     <Gallery />
     <Representative />
+    <Vacancy />
   </div>
 </template>
 
