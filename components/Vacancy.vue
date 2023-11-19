@@ -5,12 +5,13 @@
         <img src="@/assets/img/kip-logo.svg" alt="" />
       </div>
       <div class="vacancy__form-wrapper">
-        <h1 class="vacancy__title">Vacancy</h1>
+        <h1 class="vacancy__title">Careers</h1>
         <form class="vacancy__form">
           <base-input placeholder="Your name" />
           <base-input placeholder="Your email" />
           <base-input placeholder="File" />
           <base-textarea placeholder="About us" />
+          <button class="vacancy__button"><span class="vacancy__title-form">Send</span></button>
         </form>
       </div>
     </div>
@@ -87,6 +88,51 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+    }
+
+    &__button {
+      display: flex;
+      width: 143px;
+      height: 45px;
+      padding-bottom: 0px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      background: #e24339;
+      margin: 0 0 0 auto;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: 0.1s;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -100%;
+        top: -10%;
+        width: 100%;
+        height: 100%;
+        transition: 0.1s;
+        overflow: hidden;
+      }
+      &:active {
+        transform: scale(1.04);
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: #af4b44;
+        }
+      }
+    }
+
+    &__title-form {
+      position: relative;
+      z-index: 2;
     }
   }
 </style>

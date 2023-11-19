@@ -26,7 +26,7 @@
           <div class="menu__body">
             <ul class="menu__list">
               <li class="menu__item" v-for="link in links" :key="link.id">
-                <nuxt-link :to="localeLocation(link.url)" class="menu__link"> {{ link.name }}</nuxt-link>
+                <a :href="link.url" :class="['menu__link', { active: link.id === link.url }]">{{ link.name }}</a>
               </li>
             </ul>
           </div>
@@ -43,8 +43,8 @@
     <nav :class="['mobile-menu', { active: openMobileMenu }]" @click.stop="closeBody">
       <div class="mobile-menu__body" @click.stop>
         <ul class="mobile-menu__list">
-          <li class="mobile-menu__item" v-for="link in links" :key="link.id">
-            <a href="#" @click.stop.prevent="goPage(link)" :class="['mobile-menu__link', { active: $route.path === link.url }]"> {{ link.name }}</a>
+          <li class="menu__item" v-for="link in links" :key="link.id">
+            <a :href="link.url" :class="['mobile-menu__link', { active: link.id === link.url }]">{{ link.name }}</a>
           </li>
         </ul>
         <div class="mobile-languages">
@@ -64,48 +64,18 @@
 
 <script>
   export default {
+    props: {
+      links: {
+        type: Array,
+        default: () => null
+      }
+    },
     data() {
       return {
         linkActive: null,
         openLanguages: false,
-        openMobileMenu: false,
-        links: [
-          {
-            id: 1,
-            name: 'Home',
-            url: '/'
-          },
-          {
-            id: 2,
-            name: 'About us',
-            url: '/about-us'
-          },
-          {
-            id: 3,
-            name: 'News',
-            url: '/news'
-          },
-          {
-            id: 4,
-            name: 'Projects',
-            url: '/projects'
-          },
-          {
-            id: 5,
-            name: 'Partner',
-            url: '/partner'
-          },
-          {
-            id: 6,
-            name: 'Gallery',
-            url: '/gallery'
-          },
-          {
-            id: 7,
-            name: 'Vacancy',
-            url: '/vacancy'
-          }
-        ]
+        openMobileMenu: false
+		  
       }
     },
     computed: {
@@ -117,15 +87,7 @@
       toggleLanguages() {
         this.openLanguages = !this.openLanguages
       },
-      goPage(path) {
-        this.linkActive = path.id
-        //   this.$cookie.set('activeId', path.id)
-        this.openMobileMenu = false
-        this.$router.push(this.localeLocation(path.url))
-        if (document.querySelector('.wrapper').classList.contains('_lock')) {
-          document.querySelector('.wrapper').classList.remove('_lock')
-        }
-      },
+		
       showBody() {
         if (document.querySelector('.wrapper').classList.contains('_lock')) {
           document.querySelector('.wrapper').classList.remove('_lock')

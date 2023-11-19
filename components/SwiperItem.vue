@@ -10,7 +10,7 @@
             <img src="@/assets/img/news.png" />
           </div>
           <div class="swiper-block__title-wrapper">
-            <h1 class="swiper-block__slide-title">Title name</h1>
+            <h1 class="swiper-block__slide-title">A New Manufacturing Plant</h1>
           </div>
         </div>
       </div>
@@ -156,7 +156,7 @@
 
     &__slide-title {
       color: #fff;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       line-height: normal;
       position: relative;
@@ -185,7 +185,7 @@
       z-index: 10;
       &:deep() {
         .swiper-button-disabled {
-          transition: 0.2s all;
+          transition: 0.1s all;
           background-color: transparent !important;
           cursor: auto;
           &:active {
@@ -193,18 +193,16 @@
           }
           svg {
             color: #fff !important;
-            transition: 0.2s all;
             cursor: auto;
           }
         }
         .swiper-button-prev,
         .swiper-button-next {
           background-color: #fff;
-          transition: 0.2s all;
+          transition: 0.1s all;
           cursor: pointer;
           svg {
             color: #000;
-            transition: 0.2s all;
           }
         }
       }
@@ -218,7 +216,7 @@
       height: 25px;
       border: 1px solid #fff;
       border-radius: 50%;
-      transition: 0.2s all;
+
       &:active {
         transform: scale(1.2);
       }
@@ -232,7 +230,7 @@
       height: 25px;
       border: 1px solid #fff;
       border-radius: 50%;
-      transition: 0.2s all;
+
       &:active {
         transform: scale(1.2);
       }

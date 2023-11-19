@@ -4,6 +4,10 @@
       primary: {
         type: Boolean,
         default: () => null
+      },
+      url: {
+        type: String,
+        default: () => ''
       }
     },
     computed: {
@@ -21,7 +25,12 @@
 
 <template>
   <div>
-    <div :class="classes" @click="$emit('clicked')">
+    <a :class="classes" :href="url" v-if="url">
+      <h2 class="animated-button__title">
+        <slot></slot>
+      </h2>
+    </a>
+    <div v-else :class="classes">
       <h2 class="animated-button__title"><slot></slot></h2>
     </div>
   </div>
@@ -136,11 +145,11 @@
     &__title {
       color: var(--primary);
       text-align: center;
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 500;
       text-transform: capitalize;
       @media (max-width: 767px) {
-        font-size: 12px;
+        font-size: 10px;
       }
     }
 

@@ -1,15 +1,12 @@
 <template>
   <div class="intro">
     <div class="intro__left-bg" />
-    <h1 class="intro__title">
-      Biziň Zähmetimiz – <br />
-      Siziň Üstünligiňiz!
-    </h1>
+    <h1 class="intro__title">Quality matters.</h1>
     <div class="intro__center-items">
       <div class="relative mobile-button-circle-primary">
         <base-button-circle>Contact</base-button-circle>
         <div class="button-arrow-title left">
-          <h2 class="button-arrow-title__text white">see our work</h2>
+          <h2 class="button-arrow-title__text white">Contact us</h2>
           <base-icon icon="contactWhiteArrow" />
         </div>
       </div>
@@ -17,26 +14,26 @@
         <img src="@/assets/img/kip-logo.svg" alt="logo" />
       </div>
       <div class="relative mobile-button-circle-white">
-        <base-button-circle primary>Work</base-button-circle>
+        <base-button-circle :url="url" v-if="url" primary>Projects</base-button-circle>
         <base-icon icon="circleCursor" class="circle-cursor" />
         <div class="button-arrow-title">
           <base-icon icon="workBlackArrow" class="black-arrow" />
-          <h2 class="button-arrow-title__text">see our work</h2>
+          <h2 class="button-arrow-title__text">see our projects</h2>
           <base-icon icon="workBlackArrowMini" class="black-arrow-mini" />
         </div>
       </div>
     </div>
     <div class="intro__swiper">
-      <swiper-item title="news"> </swiper-item>
+      <swiper-item title="News"> </swiper-item>
     </div>
     <div class="intro__title-block">
       <div class="intro__title-block-box-wrapper">
         <img src="@/assets/img/intro-title-wrapper.png" class="intro__title-block-box" alt="" />
-        <h3 class="intro__title-block-name">HJ “Köpugurly Inženerçilik Paýhaslary”</h3>
+        <h3 class="intro__title-block-name">ES ‘’Kopugurly inzhenerchilik payhaslary”</h3>
       </div>
     </div>
     <div class="representative">
-      <h2 class="representative__title">Официальное представительство</h2>
+      <h2 class="representative__title">DEALERSHIP</h2>
       <div class="representative__items">
         <div class="representative__item">
           <img src="@/assets/img/zebra.svg" alt="" />
@@ -58,7 +55,16 @@
   </div>
 </template>
 
-<script></script>
+<script>
+  export default {
+    props: {
+      url: {
+        type: String,
+        default: () => ''
+      }
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
   .mobile-button-circle-primary {

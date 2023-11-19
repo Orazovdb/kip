@@ -3,14 +3,53 @@
     <div class="news__row">
       <div class="news__left">
         <div class="news__left-items">
-          <div class="news__left-item" v-for="item in 4" :key="item">
+          <div class="news__left-item">
+            <div class="news__left-item-image">
+              <img src="@/assets/img/news_1.png" alt="news" />
+            </div>
+            <div class="news__left-item-content">
+              <h1 class="news__left-item-title">A Contract With Ashgabat International Airport</h1>
+              <p class="news__left-item-description">
+                KIP Engineering signed a contract with Ashgabat International Airport about IT system design work: correcting errors in AMOS system
+              </p>
+              <p class="news__left-item-date">06.11.2023</p>
+            </div>
+          </div>
+          <div class="news__left-item">
+            <div class="news__left-item-image">
+              <img src="@/assets/img/news_2.png" alt="news" />
+            </div>
+            <div class="news__left-item-content">
+              <h1 class="news__left-item-title">A New Manufacturing Plant</h1>
+              <p class="news__left-item-description">
+                We are in the process of building of own factory which at the beginning will consist of facility for recycling of PET, facility of PSF
+                production.
+              </p>
+              <p class="news__left-item-date">06.11.2023</p>
+            </div>
+          </div>
+          <div class="news__left-item">
             <div class="news__left-item-image">
               <img src="@/assets/img/news.png" alt="news" />
             </div>
             <div class="news__left-item-content">
-              <h1 class="news__left-item-title">New company</h1>
+              <h1 class="news__left-item-title">A New Manufacturing Plant</h1>
               <p class="news__left-item-description">
-                KIP Engineering – молодая и амбициозная компания выполняющая полный комплекс работ инжиниринга.
+                We are in the process of building of own factory which at the beginning will consist of facility for recycling of PET, facility of PSF
+                production.
+              </p>
+              <p class="news__left-item-date">06.11.2023</p>
+            </div>
+          </div>
+          <div class="news__left-item">
+            <div class="news__left-item-image">
+              <img src="@/assets/img/news.png" alt="news" />
+            </div>
+            <div class="news__left-item-content">
+              <h1 class="news__left-item-title">A New Manufacturing Plant</h1>
+              <p class="news__left-item-description">
+                We are in the process of building of own factory which at the beginning will consist of facility for recycling of PET, facility of PSF
+                production.
               </p>
               <p class="news__left-item-date">06.11.2023</p>
             </div>
@@ -19,19 +58,22 @@
       </div>
       <div class="news__center">
         <div class="news__center-image">
-          <img src="@/assets/img/news.png" alt="" />
+          <img src="@/assets/img/news_center.png" alt="" />
         </div>
         <div class="news__center-content">
-          <h1 class="news__center-title">New company</h1>
+          <!-- <h1 class="news__center-title">New company</h1> -->
           <p class="news__center-description">
-            KIP Engineering – молодая и амбициозная компания выполняющая полный комплекс работ промышленного инжиниринга.
+            KIP Engineering has been awarded the status оf Registered Reseller of Zebra company. Zebra Technologies, Inc. offers enterprise mobility
+            solutions that combine industry-leading, world-class data collection products (barcode scanners and data collection terminals), RFID
+            technology others. Mobility products and solutions of Zebra Technologies, Inc. increase productivity, reduce operating costs and increase
+            productivity, creating a competitive advantage for businesses of all sizes.
           </p>
           <p class="news__center-date">06.11.2023</p>
         </div>
       </div>
       <div class="news__right">
         <h1 class="news__right-title">News</h1>
-        <h2 class="news__right-subtitle">Karhananyn icerki tazelikleri</h2>
+        <h2 class="news__right-subtitle">News of the company</h2>
         <div class="news__right-button">
           <div class="relative">
             <base-button-circle primary><base-icon icon="playIcon" /></base-button-circle>
@@ -41,7 +83,7 @@
             </div>
           </div>
         </div>
-        <button class="news__watch-button">Hemmesini gormek</button>
+        <button class="news__watch-button">See all</button>
       </div>
     </div>
   </div>
@@ -63,6 +105,12 @@
       align-items: center;
       margin: 0 40px;
       padding: 90px 0;
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin: 0 15px;
+        padding: 90px 0 30px 0;
+      }
     }
 
     &__left {
@@ -76,6 +124,15 @@
         height: 85vh;
         width: 1px;
         background-color: rgba(223, 222, 222, 0.24);
+      }
+      @media (max-width: 767px) {
+        order: 3;
+        overflow-y: auto;
+        height: 100%;
+        margin-top: 10px;
+        &::after {
+          display: none;
+        }
       }
     }
 
@@ -107,7 +164,7 @@
 
     &__left-item-title {
       color: var(--text2);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
       line-height: 120%;
       letter-spacing: 0.21px;
@@ -132,6 +189,9 @@
     }
 
     &__center {
+      @media (max-width: 767px) {
+        order: 2;
+      }
     }
 
     &__center-image {
@@ -161,7 +221,7 @@
 
     &__center-description {
       color: var(--text3);
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 500;
       line-height: normal;
       margin-bottom: 4px;
@@ -188,6 +248,10 @@
         width: 1px;
         background-color: rgba(223, 222, 222, 0.24);
       }
+      @media (max-width: 767px) {
+        order: 1;
+        margin-bottom: 30px;
+      }
     }
 
     &__right-title {
@@ -201,7 +265,7 @@
       position: relative;
       margin-bottom: 30px;
       display: flex;
-
+      display: inline-block;
       &::after {
         content: '';
         width: 100%;
@@ -211,6 +275,14 @@
         left: 0;
         bottom: 0;
       }
+
+      @media (max-width: 767px) {
+        font-size: 24px;
+        margin-bottom: 10px;
+        &::after {
+          width: 130%;
+        }
+      }
     }
 
     &__right-subtitle {
@@ -218,12 +290,21 @@
       font-size: 34px;
       font-weight: 400;
       line-height: 120%;
+      @media (max-width: 767px) {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
     }
 
     &__right-button {
       position: absolute;
       top: 50%;
       left: 13%;
+      @media (max-width: 767px) {
+        top: -30%;
+        right: 10%;
+        left: auto;
+      }
     }
 
     &__watch-button {
@@ -240,6 +321,11 @@
       &:hover {
         transform: scale(1.05);
       }
+      @media (max-width: 767px) {
+        position: relative;
+        right: auto;
+        bottom: auto;
+      }
     }
   }
   .button-arrow-title {
@@ -249,6 +335,16 @@
     display: flex;
     align-items: flex-end;
     gap: 12px;
+    @media (max-width: 767px) {
+      right: -80%;
+      span {
+        &:deep() {
+          svg {
+            width: 32px;
+          }
+        }
+      }
+    }
 
     &.left {
       right: auto;
@@ -261,6 +357,9 @@
       text-transform: capitalize;
       &.white {
         color: #fff;
+      }
+      @media (max-width: 767px) {
+        font-size: 10px;
       }
     }
   }

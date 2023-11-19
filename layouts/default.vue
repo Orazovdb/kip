@@ -1,9 +1,6 @@
 <template>
   <div class="wrapper">
-    <Header />
-    <main class="main">
-      <nuxt />
-    </main>
+    <nuxt />
     <client-only>
       <Footer />
     </client-only>
@@ -58,6 +55,7 @@
     flex-direction: column;
     height: 100vh;
     overflow-x: hidden;
+    scroll-behavior: smooth !important;
 
     &._lock {
       overflow: hidden;
