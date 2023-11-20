@@ -6,16 +6,16 @@
       </div>
       <div class="gallery__images">
         <div class="gallery__image">
-          <img src="@/assets/img/news.png" alt="gallery" />
+          <img src="@/assets/img/gallery_1.jpg" alt="gallery" />
         </div>
         <div class="gallery__image">
-          <img src="@/assets/img/news.png" alt="gallery" />
+          <img src="@/assets/img/gallery_2.jpg" alt="gallery" />
         </div>
         <div class="gallery__image">
-          <img src="@/assets/img/news.png" alt="gallery" />
+          <img src="@/assets/img/gallery_3.jpg" alt="gallery" />
         </div>
         <div class="gallery__image">
-          <img src="@/assets/img/news.png" alt="gallery" />
+          <img src="@/assets/img/gallery_4.jpg" alt="gallery" />
         </div>
       </div>
     </div>
@@ -33,13 +33,17 @@
     &__title-wrapper {
       margin: 110px 0 40px 0;
       flex: 1 1 auto;
+      @media (max-width: 767px) {
+        margin: 90px 0 50px;
+        flex: 0 0 0%;
+      }
     }
 
     &__title {
       position: relative;
       padding-bottom: 7px;
       color: var(--text2);
-      font-size: 22px;
+      font-size: 30px;
       font-style: normal;
       font-weight: 400;
       line-height: 120%;
@@ -54,6 +58,9 @@
         background-color: var(--red);
         position: absolute;
       }
+      @media (max-width: 767px) {
+        font-size: 24px;
+      }
     }
 
     &__row {
@@ -66,15 +73,21 @@
 
     &__images {
       display: grid;
-      grid-template-columns: 1fr 1fr 280px;
+      grid-template-columns: 1fr 1fr 400px;
       gap: 20px;
-      margin: 0 150px 50px;
+      margin: 0 100px 100px;
+      @media (max-width: 767px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 0 20px 15px;
+        gap: 14px;
+      }
     }
 
     &__image {
       height: 230px;
       &:first-child {
-        height: 200px;
+        height: 220px;
         grid-column: 1 / span 2;
       }
       &:nth-child(2) {
@@ -91,6 +104,33 @@
       img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+		  object-position: center;
+      }
+      @media (max-width: 767px) {
+        height: 230px !important;
+
+        &:first-child {
+          grid-column: 1 / span 2;
+        }
+        &:nth-child(2) {
+          grid-column: span 1;
+          grid-row: span 1;
+          height: 100%;
+          img {
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+        &:nth-child(3) {
+          grid-column: span 1;
+        }
+        &:nth-child(4) {
+          grid-column: span 2;
+        }
+      }
+      @media (max-width: 479px) {
+        height: 180px !important;
       }
     }
   }

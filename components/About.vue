@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="about__left" />
-    <div class="about__row">
+    <div class="about__row" @click.stop="closeDropdown">
       <div class="about__logo">
         <img src="@/assets/img/kip-logo.svg" alt="" />
       </div>
@@ -27,12 +27,12 @@
         </p>
 
         <div class="about__button-wrapper">
-          <button @click="isFullText = !isFullText" class="about__button">DOWAMYNY GOR</button>
+          <button @click="isFullText = !isFullText" class="about__button">Read more</button>
         </div>
       </div>
-      <div class="about__information-button">
+      <div class="about__information-button" @click.stop>
         <div class="relative">
-          <div :class="['information-button-dropdown', { open: isVisible }]">
+          <div @click.stop :class="['information-button-dropdown', { open: isVisible }]">
             <div class="information-button-dropdown__items">
               <div class="information-button-dropdown__item">
                 <div class="information-button-dropdown__icon">
@@ -93,6 +93,11 @@
       return {
         isVisible: false,
         isFullText: false
+      }
+    },
+    methods: {
+      closeDropdown() {
+        this.isVisible = false
       }
     }
   }
@@ -170,6 +175,7 @@
     &__content {
       margin-bottom: 30%;
       max-width: 627px;
+
       @media (max-width: 767px) {
         max-width: 100%;
         margin: 0 10px;
@@ -225,10 +231,21 @@
       line-clamp: 10;
       -webkit-box-orient: vertical;
       margin-bottom: 12px;
+      &::-webkit-scrollbar-track {
+        background-color: #d5d5d5;
+        transition: 0.3s all;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        transition: 0.3s all;
+      }
 
       @media (max-width: 767px) {
         font-size: 16px;
         margin-bottom: 20px;
+        -webkit-line-clamp: 14;
+        line-clamp: 14;
       }
     }
 
@@ -257,6 +274,7 @@
       @media (max-width: 767px) {
         top: 30%;
         right: 20%;
+        height: 60px;
       }
     }
   }

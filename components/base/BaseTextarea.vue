@@ -75,6 +75,9 @@
         color: var(--border);
         font-weight: 400;
       }
+      @media (max-width: 479px) {
+        font-size: 12px;
+      }
     }
   }
 </style>

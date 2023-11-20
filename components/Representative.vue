@@ -2,10 +2,10 @@
   <div class="representative">
     <div class="representative__columns">
       <div class="representative__title-wrapper">
-        <h1 class="representative__title">Project</h1>
+        <h1 class="representative__title">Partners</h1>
       </div>
       <div class="representative__column">
-        <div class="representative__subtitle">Официальное представительство</div>
+        <div class="representative__subtitle">DEALERSHIP</div>
         <div class="representative__images">
           <div class="representative__image">
             <img src="@/assets/img/zebra.svg" alt="" />
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="representative__column">
-        <div class="representative__subtitle">Наши клиенты</div>
+        <div class="representative__subtitle">Our clients</div>
         <div class="representative__images">
           <div class="representative__image">
             <img src="@/assets/img/zebra.svg" alt="" />
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="representative__column">
-        <div class="representative__subtitle">Наши проекты</div>
+        <div class="representative__subtitle">Our projects</div>
         <div class="representative__images">
           <div class="representative__image">
             <img src="@/assets/img/zebra.svg" alt="" />
@@ -85,11 +85,18 @@
   .representative {
     width: 100%;
     height: 100vh;
+    @media (max-width: 767px) {
+      height: 100%;
+    }
     &__title-wrapper {
       flex: 1 1 auto;
       margin-top: 150px;
       display: inline-block;
       text-align: center;
+      @media (max-width: 767pc) {
+        margin-top: 100px;
+        flex: 0 0 0%;
+      }
     }
 
     &__title {
@@ -103,6 +110,9 @@
       position: relative;
       display: inline-block;
       text-align: center;
+      @media (max-width: 767px) {
+        font-size: 22px;
+      }
 
       &::before {
         content: '';
@@ -123,9 +133,20 @@
       padding-bottom: 80px;
       justify-content: center;
       height: 100%;
+      @media (max-width: 767px) {
+        margin: 0 100px;
+      }
     }
 
     &__column {
+      @media (max-width: 767px) {
+        &:nth-child(2) {
+          display: none;
+        }
+        &:last-child {
+          display: none;
+        }
+      }
     }
 
     &__subtitle {
@@ -143,6 +164,11 @@
       align-items: center;
       grid-template-columns: repeat(6, 1fr);
       gap: 70px;
+      @media (max-width: 479px) {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin: 0 30px;
+      }
     }
 
     &__image {

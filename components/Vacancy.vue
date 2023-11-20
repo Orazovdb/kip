@@ -44,6 +44,9 @@
       gap: 30px;
       max-width: 1440px;
       height: 100%;
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+      }
     }
 
     &__logo {
@@ -55,10 +58,21 @@
         width: 100%;
         height: 100%;
       }
+      @media (max-width: 767px) {
+        max-width: 180px;
+        height: 180px;
+        margin-left: calc(9% - 20px);
+		  margin-top: 100px;
+      }
     }
 
     &__form-wrapper {
       margin-right: calc(25% - 20px);
+      @media (max-width: 767px) {
+        margin: 0 20px;
+        background: #fbfbfb;
+        padding: 10px;
+      }
     }
 
     &__title {
@@ -82,12 +96,19 @@
         height: 1px;
         background-color: var(--red);
       }
+      @media (max-width: 767px) {
+        font-size: 24px;
+        text-align: center;
+      }
     }
 
     &__form {
       display: flex;
       flex-direction: column;
       gap: 20px;
+      @media (max-width: 767px) {
+        gap: 10px;
+      }
     }
 
     &__button {
@@ -127,6 +148,11 @@
           left: 0;
           background: #af4b44;
         }
+      }
+      @media (max-width: 479px) {
+        width: 120px;
+        height: 35px;
+        font-size: 16px;
       }
     }
 

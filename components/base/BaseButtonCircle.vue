@@ -30,7 +30,7 @@
         <slot></slot>
       </h2>
     </a>
-    <div v-else :class="classes">
+    <div v-else :class="classes" @click="$emit('clicked')">
       <h2 class="animated-button__title"><slot></slot></h2>
     </div>
   </div>
@@ -52,6 +52,7 @@
     @media (max-width: 767px) {
       min-width: 60px;
       min-height: 60px;
+      cursor: none;
     }
     &:active {
       transform: scale(1.1);

@@ -115,8 +115,9 @@
       font-weight: 400;
     }
 
-    @media (max-width: 767px) {
-      height: 44px;
+    @media (max-width: 479px) {
+      font-size: 12px;
+      height: 40px;
     }
   }
 </style>

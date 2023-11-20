@@ -129,7 +129,16 @@
         order: 3;
         overflow-y: auto;
         height: 100%;
-        margin-top: 10px;
+        margin-top: 30px;
+        &::-webkit-scrollbar-track {
+          background-color: #d5d5d5;
+          transition: 0.3s all;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: var(--primary);
+          transition: 0.3s all;
+        }
         &::after {
           display: none;
         }
@@ -225,6 +234,12 @@
       font-weight: 500;
       line-height: normal;
       margin-bottom: 4px;
+      @media (max-width: 767px) {
+        max-height: 100px;
+        overflow-y: auto;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
     }
 
     &__center-date {
@@ -233,6 +248,9 @@
       font-weight: 500;
       line-height: normal;
       text-align: right;
+      @media (max-width: 767px) {
+			font-size: 16px;
+      }
     }
 
     &__right {

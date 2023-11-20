@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header__container">
       <div class="header__body">
-        <div :class="['burger-wrapper', { open: openLanguages }]">
+        <!-- <div :class="['burger-wrapper', { open: openLanguages }]">
           <div class="burger" @click="toggleLanguages">
             <span></span>
             <span></span>
@@ -21,7 +21,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <nav class="menu">
           <div class="menu__body">
             <ul class="menu__list">

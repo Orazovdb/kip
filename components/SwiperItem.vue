@@ -2,11 +2,11 @@
   <div :class="classes">
     <div v-swiper:mySwiper="options" class="swiper-block__swiper swiper">
       <h1 class="swiper-block__title" v-if="title">News</h1>
-      <div class="swiper-block__circle" :style="`width: ${circle}; height: ${circle}; background-color: ${circleBg}; top: ${circleTop}`"></div>
-      <div class="swiper-block__box" :style="`width: ${box}; height: ${box}; background-color: ${boxBg}; top: ${boxTop}`"></div>
+      <div class="swiper-block__circle"></div>
+      <div class="swiper-block__box"></div>
       <div class="swiper-block__wrapper swiper-wrapper">
         <div class="swiper-block__slide swiper-slide" v-for="slider in 3" :key="slider">
-          <div class="swiper-block__image" :style="`height: ${imgHeight}`">
+          <div class="swiper-block__image">
             <img src="@/assets/img/news.png" />
           </div>
           <div class="swiper-block__title-wrapper">
@@ -29,13 +29,6 @@
 <script>
   export default {
     props: {
-      imgHeight: '',
-      circle: '',
-      circleBg: '',
-      circleTop: '',
-      box: '',
-      boxBg: '',
-      boxTop: '',
       title: {
         type: String,
         default: () => ''
@@ -239,6 +232,34 @@
     &--projects {
       .swiper-block__title {
         font-size: 36px;
+      }
+      .swiper-block__image {
+        height: 400px;
+        @media (max-width: 767px) {
+          height: 250px;
+        }
+      }
+      .swiper-block__circle {
+        width: 60px;
+        height: 60px;
+        background-color: var(--primary);
+        top: 5px;
+        left: 5px;
+        @media (max-width: 767px) {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .swiper-block__box {
+        width: 70px;
+        height: 70px;
+        background-color: #fff;
+        top: 0;
+        @media (max-width: 767px) {
+          width: 50px;
+          height: 50px;
+        }
       }
       .swiper-block__navigations {
         padding: 6px 12px;

@@ -1,10 +1,36 @@
 <template>
   <div class="intro">
+    <div :class="['contact-modal', { active: openContact }]" @click.stop="openContact = false">
+      <div class="contact-modal__wrapper">
+        <div class="contact-modal__box">
+          <h1 class="contact-modal__title">Contact us</h1>
+          <li class="contact-modal__item">
+            <p>Office</p>
+            <p>45 17 77</p>
+          </li>
+          <li class="contact-modal__item">
+            <p>Mobile</p>
+            <p>+993 62 99 12 12</p>
+          </li>
+          <li class="contact-modal__item">
+            <p>Email</p>
+            <p>info@kip.tm</p>
+          </li>
+          <li class="contact-modal__item">
+            <p>kipengineringtm</p>
+          </li>
+          <li class="contact-modal__item">
+            <p>Address</p>
+            <p>Nurmuhammet Andalyp 1B, Ashgabat, Turkmenistan 744000</p>
+          </li>
+        </div>
+      </div>
+    </div>
     <div class="intro__left-bg" />
     <h1 class="intro__title">Quality matters.</h1>
     <div class="intro__center-items">
       <div class="relative mobile-button-circle-primary">
-        <base-button-circle>Contact</base-button-circle>
+        <base-button-circle @clicked="openContact = !openContact">Contact</base-button-circle>
         <div class="button-arrow-title left">
           <h2 class="button-arrow-title__text white">Contact us</h2>
           <base-icon icon="contactWhiteArrow" />
@@ -61,6 +87,11 @@
       url: {
         type: String,
         default: () => ''
+      }
+    },
+    data() {
+      return {
+        openContact: false
       }
     }
   }
@@ -248,6 +279,7 @@
     position: absolute;
     top: -70px;
     right: -57px;
+    cursor: fill !important;
     @media (max-width: 767px) {
       display: none;
     }
@@ -350,6 +382,92 @@
       }
       @media (max-width: 479px) {
         max-width: 60px;
+      }
+    }
+  }
+  .contact-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(14px);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+      .contact-modal__box {
+        transform: scale(1);
+      }
+    }
+    &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__title {
+      font-size: 24px;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 7px;
+      display: inline-block;
+      margin-bottom: 10px;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 70%;
+        height: 2px;
+        background-color: var(--red);
+      }
+    }
+
+    &__box {
+      max-width: 400px;
+      margin: 0 20px;
+      padding: 14px;
+      border-radius: 10px;
+      background-color: #fff;
+      transition: all 0.3s;
+      transform: scale(-0.4);
+    }
+
+    &__item {
+      position: relative;
+      padding-left: 16px;
+      list-style: none;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--primary);
+      }
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 16px;
+        &:first-child {
+          font-weight: 600 !important;
+          margin-bottom: 2px;
+        }
+        &:last-child {
+          font-size: 13px;
+          font-weight: 300;
+        }
       }
     }
   }

@@ -10,25 +10,38 @@
         </div>
         <div class="projects-id__project-content">
           <p class="projects-id__project-text">
-            <span>Date:</span>
-            <span>12.10.2023</span>
+            <span>Location:</span>
+            <span>Industrial Area in north side of Ashgabat</span>
           </p>
           <p class="projects-id__project-text">
-            <span>Company name:</span>
-            <span>Mennan makina</span>
+            <span>Status:</span>
+            <span>Active production</span>
           </p>
           <p class="projects-id__project-text">
-            <span class="projects-id__project-span">Project:</span>
-            <span>Engineering</span>
+            <span class="projects-id__project-span">Engineering Period:</span>
+            <span>March 2022 - August 2022 </span>
+          </p>
+          <p class="projects-id__project-text">
+            <span class="projects-id__project-span">Product:</span>
+            <span>PP yarns </span>
           </p>
         </div>
       </div>
       <div class="projects-id__description-wrapper">
-        <h1 class="projects-id__description-title">Discription</h1>
+        <h1 class="projects-id__description-title">Description</h1>
         <p class="projects-id__description-description">
-          KIP Engineering – молодая и амбициозная компания выполняющая полный комплекс работ промышленного инжиниринга. Основные деятельности KIP
-          направлены на эффективное и своевременное выполнение интересов заказчика, выполнение нестандартных и трудных задач, использование самых
-          современных и высокотехнологических инженерных решений. Наш ключ к успеху — это профессионалы, преданные своему делу.
+          Our company had coped with the huge challenge on recovering of CF / BCF machine of Rieter. Detailed on data on what kind of jobs we had
+          performed on this project you can nd on the page 26 of current document. Now production line of lament yarns is fully functioning. <br />
+
+          Together with partner - producer of plastic products we have joint <br />
+          production of multi lament PP yarns in Ashgabat.<br />
+          The plant is equipped with equipment from the world famous Austrian company «Rieter».<br />
+          Сontinuous lament yarns are used for a large number of applications, such as big-bag sewing yarns, nets, ropes or belts. Additional to this
+          CF yarns used for weaving fabrics for furniture apartments. This production <br />
+          site produces СF yarn of various numbers and colors. The range of produced yarn consists of the following numbers: <br />
+          2124 dtex; <br />
+          2290 dtex; <br />
+          4000 dtex.
         </p>
       </div>
       <div class="projects-id__images-wrapper">
@@ -50,6 +63,9 @@
 <style lang="scss" scoped>
   .projects-id {
     padding: 120px 0;
+    @media (max-width: 767px) {
+      padding: 30px 0;
+    }
     &__container {
       max-width: 1165px;
       padding: 0 20px;
@@ -98,6 +114,7 @@
         object-fit: contain;
         object-position: center;
       }
+      display: none;
     }
 
     &__project-content {
@@ -141,6 +158,9 @@
         height: 1px;
         background-color: var(--red);
       }
+      @media (max-width: 767px) {
+        font-size: 22px;
+      }
     }
 
     &__description-description {
@@ -148,6 +168,9 @@
       font-size: 17px;
       font-weight: 500;
       line-height: normal;
+      @media (max-width: 767px) {
+        font-size: 15px;
+      }
     }
 
     &__images-wrapper {
@@ -172,6 +195,10 @@
         height: 1px;
         background-color: var(--red);
       }
+      @media (max-width: 767px) {
+        font-size: 22px;
+        margin-bottom: 14px;
+      }
     }
 
     &__images-row {
@@ -180,6 +207,9 @@
       overflow-x: auto;
       max-width: 100%;
       padding-bottom: 10px;
+      @media (max-width: 479px) {
+        gap: 16px;
+      }
     }
 
     &__images-img {
@@ -191,6 +221,10 @@
         object-fit: cover;
         object-position: center;
         border-radius: 4px;
+      }
+      @media (max-width: 479px) {
+        flex: 0 0 50%;
+        height: 130px;
       }
     }
   }
