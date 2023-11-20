@@ -83,7 +83,7 @@
             </div>
           </div>
         </div>
-        <button class="news__watch-button">See all</button>
+        <button @click="$router.push('/news')" class="news__watch-button">See all</button>
       </div>
     </div>
   </div>
@@ -160,6 +160,7 @@
     &__left-item-image {
       min-width: 158px;
       height: 98px;
+      background-color: #183a6079;
       img {
         width: 100%;
         height: 100%;
@@ -234,9 +235,13 @@
       font-weight: 500;
       line-height: normal;
       margin-bottom: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
       @media (max-width: 767px) {
-        max-height: 100px;
-        overflow-y: auto;
         font-size: 16px;
         margin-bottom: 10px;
       }
@@ -249,7 +254,7 @@
       line-height: normal;
       text-align: right;
       @media (max-width: 767px) {
-			font-size: 16px;
+        font-size: 16px;
       }
     }
 

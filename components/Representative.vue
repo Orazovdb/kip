@@ -8,13 +8,13 @@
         <div class="representative__subtitle">DEALERSHIP</div>
         <div class="representative__images">
           <div class="representative__image">
-            <img src="@/assets/img/zebra.svg" alt="" />
+            <img src="@/assets/img/bosch.svg" alt="" />
           </div>
           <div class="representative__image">
             <img src="@/assets/img/mennan.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/hollysos.svg" alt="" />
+            <img src="@/assets/img/zebra.svg" alt="" />
           </div>
           <div class="representative__image">
             <img src="@/assets/img/interflon.svg" alt="" />
@@ -31,22 +31,25 @@
         <div class="representative__subtitle">Our clients</div>
         <div class="representative__images">
           <div class="representative__image">
-            <img src="@/assets/img/zebra.svg" alt="" />
+            <img src="@/assets/img/airlines.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/mennan.svg" alt="" />
+            <img src="@/assets/img/arcalyk.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/hollysos.svg" alt="" />
+            <img src="@/assets/img/tach.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/interflon.svg" alt="" />
+            <img src="@/assets/img/smthng.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/airpol.svg" alt="" />
+            <img src="@/assets/img/tdm.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/hollysos.svg" alt="" />
+            <img src="@/assets/img/mebel.svg" alt="" />
+          </div>
+          <div class="representative__image">
+            <img src="@/assets/img/bereket.svg" alt="" />
           </div>
         </div>
       </div>
@@ -54,22 +57,28 @@
         <div class="representative__subtitle">Our projects</div>
         <div class="representative__images">
           <div class="representative__image">
-            <img src="@/assets/img/zebra.svg" alt="" />
+            <img src="@/assets/img/ozmak.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/mennan.svg" alt="" />
+            <img src="@/assets/img/oerlikon.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/hollysos.svg" alt="" />
+            <img src="@/assets/img/oerlikon_2.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/interflon.svg" alt="" />
+            <img src="@/assets/img/oerlikon_3.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/airpol.svg" alt="" />
+            <img src="@/assets/img/gea.svg" alt="" />
           </div>
           <div class="representative__image">
-            <img src="@/assets/img/hollysos.svg" alt="" />
+            <img src="@/assets/img/imgo.svg" alt="" />
+          </div>
+          <div class="representative__image">
+            <img src="@/assets/img/ektam.svg" alt="" />
+          </div>
+          <div class="representative__image">
+            <img src="@/assets/img/krones.svg" alt="" />
           </div>
         </div>
       </div>
@@ -84,7 +93,7 @@
 <style lang="scss" scoped>
   .representative {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     @media (max-width: 767px) {
       height: 100%;
     }
@@ -163,19 +172,23 @@
       display: grid;
       align-items: center;
       grid-template-columns: repeat(6, 1fr);
-      gap: 70px;
+      column-gap: 80px;
+      row-gap: 40px;
+      overflow-x: auto;
       @media (max-width: 479px) {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
         margin: 0 30px;
       }
     }
 
     &__image {
       width: 100%;
+      height: 70px;
       cursor: pointer;
       img {
         width: 100%;
+        height: 100%;
         filter: grayscale(100%);
         object-fit: contain;
         transition: all 0.3s;

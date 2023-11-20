@@ -193,6 +193,34 @@
     &__logo {
       max-width: 250px;
       max-height: 250px;
+      border-radius: 50%;
+      position: relative;
+      &::before {
+        content: '';
+        width: 200px;
+        height: 200px;
+        background-color: #183a6079;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: -1;
+      }
+      @media (max-width: 767px) {
+        &::before {
+          content: '';
+          width: 135px;
+          height: 135px;
+          background-color: #183a6079;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          z-index: -1;
+        }
+      }
       img {
         width: 100%;
         height: 100%;

@@ -2,8 +2,8 @@
   <div :class="classes">
     <div v-swiper:mySwiper="options" class="swiper-block__swiper swiper">
       <h1 class="swiper-block__title" v-if="title">News</h1>
-      <div class="swiper-block__circle"></div>
-      <div class="swiper-block__box"></div>
+      <!-- <div class="swiper-block__circle"></div>
+      <div class="swiper-block__box"></div> -->
       <div class="swiper-block__wrapper swiper-wrapper">
         <div class="swiper-block__slide swiper-slide" v-for="slider in 3" :key="slider">
           <div class="swiper-block__image">
@@ -62,7 +62,7 @@
             prevEl: '.swiper-block__prev-navigation'
           },
           breakpoints: {
-            479: {
+            320: {
               speed: 1000
             }
           }
@@ -236,7 +236,7 @@
       .swiper-block__image {
         height: 400px;
         @media (max-width: 767px) {
-          height: 250px;
+          height: 220px;
         }
       }
       .swiper-block__circle {

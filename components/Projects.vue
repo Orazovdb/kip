@@ -43,6 +43,10 @@
     position: relative;
     z-index: 2;
     padding-top: 40px;
+    @media (max-width: 767px) {
+      padding-top: 80px;
+      height: 100%;
+    }
     &::before {
       content: '';
       position: absolute;
@@ -108,6 +112,7 @@
       }
       @media (max-width: 767px) {
         font-size: 20px;
+        margin-bottom: 14px;
       }
     }
 
@@ -126,6 +131,7 @@
         gap: 40px;
         margin: 0 20px;
         overflow: hidden;
+        height: auto;
       }
     }
 
@@ -137,7 +143,7 @@
       z-index: 10;
       @media (max-width: 767px) {
         width: calc(100% - 40px);
-        height: auto;
+        height: 100%;
       }
     }
   }

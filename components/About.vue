@@ -5,7 +5,7 @@
       <div class="about__logo">
         <img src="@/assets/img/kip-logo.svg" alt="" />
       </div>
-      <div :class="['about__content', { active: isFullText }]">
+      <div class="about__content">
         <h1 class="about__title">About us</h1>
         <p class="about__description">
           Our company was founded in 2020. KIP Engineering holds a distinct position in its ndustry and is a con dent business that is expanding
@@ -27,7 +27,7 @@
         </p>
 
         <div class="about__button-wrapper">
-          <button @click="isFullText = !isFullText" class="about__button">Read more</button>
+          <button @click="$router.push(localeLocation('/about'))" class="about__button">Read more</button>
         </div>
       </div>
       <div class="about__information-button" @click.stop>
@@ -182,16 +182,16 @@
         padding: 10px 20px;
         background-color: #fff;
       }
-      &.active {
-        .about__description {
-          overflow: auto;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: auto;
-          line-clamp: auto;
-          -webkit-box-orient: vertical;
-        }
-      }
+      // &.active {
+      //   .about__description {
+      //     overflow: auto;
+      //     text-overflow: ellipsis;
+      //     display: -webkit-box;
+      //     -webkit-line-clamp: auto;
+      //     line-clamp: auto;
+      //     -webkit-box-orient: vertical;
+      //   }
+      // }
     }
 
     &__title {
@@ -227,8 +227,8 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 10;
-      line-clamp: 10;
+      -webkit-line-clamp: 7;
+      line-clamp: 7;
       -webkit-box-orient: vertical;
       margin-bottom: 12px;
       &::-webkit-scrollbar-track {
@@ -244,8 +244,8 @@
       @media (max-width: 767px) {
         font-size: 16px;
         margin-bottom: 20px;
-        -webkit-line-clamp: 14;
-        line-clamp: 14;
+        -webkit-line-clamp: 12;
+        line-clamp: 12;
       }
     }
 

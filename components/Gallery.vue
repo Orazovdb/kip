@@ -18,6 +18,9 @@
           <img src="@/assets/img/gallery_4.jpg" alt="gallery" />
         </div>
       </div>
+      <div class="gallery__button-wrapper">
+        <button @click="$router.push('/gallery')" class="gallery__button">See all</button>
+      </div>
     </div>
   </div>
 </template>
@@ -30,11 +33,14 @@
   .gallery {
     width: 100%;
     height: 100vh;
+    @media (max-width: 767px) {
+      height: 100%;
+    }
     &__title-wrapper {
-      margin: 110px 0 40px 0;
+      margin: 90px 0 40px 0;
       flex: 1 1 auto;
       @media (max-width: 767px) {
-        margin: 90px 0 50px;
+        margin: 90px 0 40px;
         flex: 0 0 0%;
       }
     }
@@ -75,7 +81,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 400px;
       gap: 20px;
-      margin: 0 100px 100px;
+      margin: 0 100px 20px;
       @media (max-width: 767px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -85,7 +91,7 @@
     }
 
     &__image {
-      height: 230px;
+      height: 180px;
       &:first-child {
         height: 220px;
         grid-column: 1 / span 2;
@@ -105,7 +111,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-		  object-position: center;
+        object-position: center;
       }
       @media (max-width: 767px) {
         height: 230px !important;
@@ -131,6 +137,36 @@
       }
       @media (max-width: 479px) {
         height: 180px !important;
+      }
+    }
+    &__button-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 100px 20px;
+      width: calc(100% - 370px);
+      @media (max-width: 767px) {
+        margin: 0 20px 15px;
+        width: calc(100% - 20px);
+      }
+    }
+
+    &__button {
+      text-align: right;
+      padding: 10px;
+      border-radius: 6px;
+      color: var(--red);
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      background-color: transparent;
+      transition: 0.2s all;
+      cursor: pointer;
+      @media (max-width: 767px) {
+        cursor: none;
+      }
+      &:hover {
+        transform: scale(1.04);
       }
     }
   }
