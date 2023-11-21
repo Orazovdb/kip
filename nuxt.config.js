@@ -92,7 +92,7 @@ export default {
       { code: 'en', lang: 'EN', name: 'ENG', iso: 'en-EN', file: 'en' },
       { code: 'ru', lang: 'RU', name: 'RUS', iso: 'ru-RU', file: 'ru' }
     ],
-    defaultLocale: 'tm',
+    defaultLocale: 'en',
     seo: true
     //  vueI18n: {
     //    fallbackLocale: 'tm',

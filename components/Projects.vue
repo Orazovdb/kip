@@ -5,7 +5,7 @@
     </div>
     <div class="projects__row">
       <div class="projects__swiper">
-        <h1 class="swiper-block__title" @click="$router.push(localeLocation(`/projects/`))">Engineering</h1>
+        <h1 class="swiper-block__title" @click="$router.push(localeLocation(`/projects/${id}`))">Engineering</h1>
         <swiper-item
           imgHeight="305px"
           circle="60px"
@@ -19,7 +19,7 @@
         ></swiper-item>
       </div>
       <div class="projects__swiper">
-        <h1 class="swiper-block__title" @click="$router.push(localeLocation(`/projects/`))">IT and Telecommunications</h1>
+        <h1 class="swiper-block__title" @click="$router.push(localeLocation(`/projects/${id + 1}`))">IT and Telecommunications</h1>
         <swiper-item
           imgHeight="305px"
           circle="60px"
@@ -33,6 +33,9 @@
         ></swiper-item>
       </div>
     </div>
+    <div class="projects__button-wrapper">
+      <button class="projects__button" @click="$router.push('/projects')">See all</button>
+    </div>
   </div>
 </template>
 
@@ -40,6 +43,7 @@
   export default {
     data() {
       return {
+        id: 1,
         sliders: [
           {
             image: 'engineering_1.jpg',
@@ -52,7 +56,7 @@
         ],
         telecom: [
           {
-            image: 'projects_1.jpg',
+            image: 'telecom_2.png',
             title: 'СF / BCF YARNS'
           },
           {
@@ -190,6 +194,27 @@
         width: calc(100% - 40px);
         height: 100%;
       }
+    }
+
+    &__button-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &__button {
+      text-align: right;
+      padding: 10px;
+      border-radius: 6px;
+      color: var(--red);
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      background-color: transparent;
+      transition: 0.2s all;
+      cursor: pointer;
     }
   }
 </style>

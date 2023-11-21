@@ -3,7 +3,7 @@
     <div class="news__row">
       <div class="news__left">
         <div class="news__left-items">
-          <div class="news__left-item" @click="$router.push(`/news/${id}`)">
+          <div class="news__left-item">
             <div class="news__left-item-image">
               <img src="@/assets/img/news_1.png" alt="news" />
             </div>
@@ -15,7 +15,7 @@
               <p class="news__left-item-date">06.11.2023</p>
             </div>
           </div>
-          <div class="news__left-item" @click="$router.push(`/news/${id}`)">
+          <div class="news__left-item">
             <div class="news__left-item-image">
               <img src="@/assets/img/news_2.png" alt="news" />
             </div>
@@ -28,7 +28,7 @@
               <p class="news__left-item-date">06.11.2023</p>
             </div>
           </div>
-          <div class="news__left-item" @click="$router.push(`/news/${id}`)">
+          <div class="news__left-item">
             <div class="news__left-item-image">
               <img src="@/assets/img/news.png" alt="news" />
             </div>
@@ -41,7 +41,7 @@
               <p class="news__left-item-date">06.11.2023</p>
             </div>
           </div>
-          <div class="news__left-item" @click="$router.push(`/news/${id}`)">
+          <div class="news__left-item">
             <div class="news__left-item-image">
               <img src="@/assets/img/news.png" alt="news" />
             </div>
@@ -58,7 +58,7 @@
       </div>
       <div class="news__center">
         <div class="news__center-image">
-          <img src="@/assets/img/news_center.png" alt="" />
+          <img src="@/assets/img/news-new.png" alt="" />
         </div>
         <div class="news__center-content">
           <!-- <h1 class="news__center-title">New company</h1> -->
@@ -88,7 +88,7 @@
             </div>
           </div>
         </div>
-        <button @click="$router.push('/news')" class="news__watch-button">See all</button>
+        <!-- <button @click="$router.push('/news')" class="news__watch-button">See all</button> -->
       </div>
     </div>
   </div>
@@ -116,7 +116,7 @@
       grid-template-columns: minmax(250px, 328px) 1fr minmax(250px, 328px);
       gap: 50px;
       height: 100%;
-      align-items: center;
+      align-items: flex-start;
       margin: 0 40px;
       padding: 90px 0;
       @media (max-width: 767px) {
@@ -169,10 +169,6 @@
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      transition: 0.2s;
-      &:hover {
-        transform: scale(1.04);
-      }
     }
 
     &__left-item-image {
@@ -220,8 +216,10 @@
     }
 
     &__center {
+      margin-top: 40px;
       @media (max-width: 767px) {
         order: 2;
+        margin-top: 0;
       }
     }
 
@@ -259,12 +257,14 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 4;
-      line-clamp: 4;
+      -webkit-line-clamp: 8;
+      line-clamp: 8;
       -webkit-box-orient: vertical;
       @media (max-width: 767px) {
         font-size: 16px;
         margin-bottom: 10px;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
       }
     }
 

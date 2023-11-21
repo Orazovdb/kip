@@ -47,7 +47,19 @@
       <div class="projects-id__images-wrapper">
         <h1 class="projects-id__images-title">Photo</h1>
         <div class="projects-id__images-row">
-          <div class="projects-id__images-img" v-for="(item, index) in 7" :key="index">
+          <div class="projects-id__images-img">
+            <img src="@/assets/img/engineering_1.jpg" alt="" />
+          </div>
+          <div class="projects-id__images-img">
+            <img src="@/assets/img/engineering_2.jpg" alt="" />
+          </div>
+          <div class="projects-id__images-img">
+            <img src="@/assets/img/engineering_1.jpg" alt="" />
+          </div>
+          <div class="projects-id__images-img">
+            <img src="@/assets/img/engineering_2.jpg" alt="" />
+          </div>
+          <div class="projects-id__images-img">
             <img src="@/assets/img/engineering_1.jpg" alt="" />
           </div>
         </div>
