@@ -30,8 +30,13 @@
       <div class="projects-id__description-wrapper">
         <h1 class="projects-id__description-title">Description</h1>
         <p class="projects-id__description-description">
-          Our company had coped with the huge challenge on recovering of CF / BCF machine of Rieter. Detailed on data on what kind of jobs we had
-          performed on this project you can nd on the page 26 of current document. Now production line of lament yarns is fully functioning. <br />
+          Our company was founded in 2021. KIP Engineering holds a distinct position in its industry and is a confident business that is expanding
+          quickly. We successfully oversee projects from the outset, through the phases of planning, execution, and commissioning, and all the way
+          through to the project's completion. The company holds a prominent position in the services industry, providing cutting-edge technological
+          solutions and services to its partners and clients that keep up with the times. The goals, needs, and preferences of the client form the
+          foundation of the business. Our goals revolve around our capacity to deliver to clients the best possible solutions in terms of scope,
+          effectiveness, and suitability under the pertinent circumstances in the shortest amount of time, along with post-purchase guarantees that
+          include free technical support and consulting.<br />
 
           Together with partner - producer of plastic products we have joint <br />
           production of multi lament PP yarns in Ashgabat.<br />

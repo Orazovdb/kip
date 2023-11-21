@@ -9,7 +9,7 @@
         <form class="vacancy__form">
           <base-input placeholder="Your name" />
           <base-input placeholder="Your email" />
-          <base-input placeholder="File" />
+          <file-input fakePlaceholder="File" type="file" appendIcon="file" />
           <base-textarea placeholder="About us" />
           <button class="vacancy__button"><span class="vacancy__title-form">Send</span></button>
         </form>
@@ -62,7 +62,7 @@
         max-width: 180px;
         height: 180px;
         margin-left: calc(9% - 20px);
-		  margin-top: 100px;
+        margin-top: 100px;
       }
     }
 

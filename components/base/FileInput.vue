@@ -3,6 +3,7 @@
     <h4 class="base-input__label" v-if="label">
       {{ label }}
     </h4>
+    <h2 class="base-input__fake-placeholder" v-if="fakePlaceholder">{{ fakePlaceholder }}</h2>
     <input
       :type="type"
       class="input"
@@ -11,7 +12,7 @@
       @input="(e) => $emit('updateValue', type === 'number' ? Number(e.target.value) : e.target.value)"
       :value="value"
     />
-    <base-icon icon="file" v-if="appendIcon" class="base-input__icon" />
+    <base-icon icon="file" v-if="appendIcon" class="base-input__icon cp" />
   </div>
 </template>
 
@@ -30,6 +31,10 @@
         type: String,
         default: () => ''
       },
+      fakePlaceholder: {
+        type: String,
+        default: () => ''
+      },
       height: {
         type: String,
         default: () => ''
@@ -38,17 +43,35 @@
         type: String | Number
       },
       appendIcon: {
-        type: Boolean,
-        default: () => null
+        type: String,
+        default: () => ''
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  .cp {
+    cursor: pointer;
+  }
   .base-input {
     width: 100%;
     position: relative;
+    border: 1px solid var(--border) !important;
+    border-radius: 4px;
+    color: var(--border);
+    font-size: 16px;
+    width: 100%;
+    height: 42px;
+    transition: 0.3s ease 0s;
+    background: #fff;
+    position: relative;
+    cursor: pointer;
+
+    @media (max-width: 479px) {
+      font-size: 12px;
+      height: 40px;
+    }
 
     &__label {
       font-weight: 700;
@@ -62,6 +85,15 @@
         margin-bottom: 6px;
         font-size: 14px;
       }
+    }
+
+    &__fake-placeholder {
+      color: var(--border);
+      font-weight: 400;
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     &__icon {
@@ -96,29 +128,15 @@
     }
   }
 
-  input[type='file']::file-selector-button {
-    border: 2px solid #6c5ce7;
-    padding: 0.2em 0.4em;
-    border-radius: 0.2em;
-    background-color: #a29bfe;
-    transition: 1s;
-  }
-
   input[type='file'] {
     opacity: 0;
   }
 
   .input {
-    border: 1px solid var(--border) !important;
-    border-radius: 4px;
-    color: var(--border);
-    font-size: 16px;
     width: 100%;
-    height: 42px;
-    transition: 0.3s ease 0s;
-    padding: 10px 17px 10px 10px;
-    background: #fff;
-    position: relative;
+    height: 100%;
+    cursor: pointer;
+
     &::placeholder {
       border-radius: 16px;
       color: var(--border);
@@ -127,11 +145,6 @@
 
     &::-webkit-file-upload-button {
       visibility: hidden;
-    }
-
-    @media (max-width: 479px) {
-      font-size: 12px;
-      height: 40px;
     }
   }
 </style>

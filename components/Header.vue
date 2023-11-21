@@ -43,7 +43,7 @@
     <nav :class="['mobile-menu', { active: openMobileMenu }]" @click.stop="closeBody">
       <div class="mobile-menu__body" @click.stop>
         <ul class="mobile-menu__list">
-          <li class="menu__item" v-for="link in links" :key="link.id">
+          <li class="menu__item" v-for="link in links" :key="link.id" @click.stop="closeBody">
             <a :href="link.url" :class="['mobile-menu__link', { active: link.id === link.url }]">{{ link.name }}</a>
           </li>
         </ul>
@@ -75,7 +75,6 @@
         linkActive: null,
         openLanguages: false,
         openMobileMenu: false
-		  
       }
     },
     computed: {
@@ -87,7 +86,7 @@
       toggleLanguages() {
         this.openLanguages = !this.openLanguages
       },
-		
+
       showBody() {
         if (document.querySelector('.wrapper').classList.contains('_lock')) {
           document.querySelector('.wrapper').classList.remove('_lock')
