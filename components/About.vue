@@ -40,34 +40,34 @@
                 </div>
                 <div class="information-button-dropdown__content">
                   <p class="information-button-dropdown__number">3</p>
-                  <h2 class="information-button-dropdown__title">country</h2>
+                  <h2 class="information-button-dropdown__title">Countries</h2>
                 </div>
               </div>
               <div class="information-button-dropdown__item">
                 <div class="information-button-dropdown__icon">
-                  <base-icon icon="flag" />
+                  <base-icon icon="twoGuy" />
                 </div>
                 <div class="information-button-dropdown__content">
-                  <p class="information-button-dropdown__number">3</p>
-                  <h2 class="information-button-dropdown__title">country</h2>
+                  <p class="information-button-dropdown__number">30</p>
+                  <h2 class="information-button-dropdown__title">Employees</h2>
                 </div>
               </div>
               <div class="information-button-dropdown__item">
                 <div class="information-button-dropdown__icon">
-                  <base-icon icon="flag" />
+                  <base-icon icon="guy" />
                 </div>
                 <div class="information-button-dropdown__content">
-                  <p class="information-button-dropdown__number">3</p>
-                  <h2 class="information-button-dropdown__title">country</h2>
+                  <p class="information-button-dropdown__number">25</p>
+                  <h2 class="information-button-dropdown__title">Clients</h2>
                 </div>
               </div>
               <div class="information-button-dropdown__item">
                 <div class="information-button-dropdown__icon">
-                  <base-icon icon="flag" />
+                  <base-icon icon="projects" />
                 </div>
                 <div class="information-button-dropdown__content">
-                  <p class="information-button-dropdown__number">3</p>
-                  <h2 class="information-button-dropdown__title">country</h2>
+                  <p class="information-button-dropdown__number">45</p>
+                  <h2 class="information-button-dropdown__title">Projects</h2>
                 </div>
               </div>
             </div>

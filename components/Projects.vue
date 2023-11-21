@@ -6,18 +6,63 @@
     <div class="projects__row">
       <div class="projects__swiper">
         <h1 class="swiper-block__title" @click="$router.push(localeLocation(`/projects/`))">Engineering</h1>
-        <swiper-item imgHeight="305px" circle="60px" circleBg="#183A60" box="70px" boxBg="white" projects circleTop="0" boxTop="0"></swiper-item>
+        <swiper-item
+          imgHeight="305px"
+          circle="60px"
+          circleBg="#183A60"
+          box="70px"
+          boxBg="white"
+          projects
+          circleTop="0"
+          boxTop="0"
+          :sliders="sliders"
+        ></swiper-item>
       </div>
       <div class="projects__swiper">
         <h1 class="swiper-block__title" @click="$router.push(localeLocation(`/projects/`))">IT and Telecommunications</h1>
-        <swiper-item imgHeight="305px" circle="60px" circleBg="#183A60" box="70px" boxBg="white" projects circleTop="0" boxTop="0"></swiper-item>
+        <swiper-item
+          imgHeight="305px"
+          circle="60px"
+          circleBg="#183A60"
+          box="70px"
+          boxBg="white"
+          projects
+          circleTop="0"
+          boxTop="0"
+          :telecom="telecom"
+        ></swiper-item>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {}
+  export default {
+    data() {
+      return {
+        sliders: [
+          {
+            image: 'engineering_1.jpg',
+            title: 'СF / BCF YARNS'
+          },
+          {
+            image: 'engineering_2.jpg',
+            title: 'СF / BCF YARNS'
+          }
+        ],
+        telecom: [
+          {
+            image: 'projects_1.jpg',
+            title: 'СF / BCF YARNS'
+          },
+          {
+            image: 'projects_1.jpg',
+            title: 'СF / BCF YARNS'
+          }
+        ]
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

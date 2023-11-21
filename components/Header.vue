@@ -47,7 +47,7 @@
             <a :href="link.url" :class="['mobile-menu__link', { active: link.id === link.url }]">{{ link.name }}</a>
           </li>
         </ul>
-        <div class="mobile-languages">
+        <!-- <div class="mobile-languages">
           <div class="mobile-languages__block">
             <h2 class="mobile-languages__title">Language</h2>
             <div class="mobile-languages__link-wrapper">
@@ -56,7 +56,7 @@
               </nuxt-link>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </nav>
   </header>

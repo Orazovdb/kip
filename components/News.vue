@@ -3,7 +3,7 @@
     <div class="news__row">
       <div class="news__left">
         <div class="news__left-items">
-          <div class="news__left-item">
+          <div class="news__left-item" @click="$router.push(`/news/${id}`)">
             <div class="news__left-item-image">
               <img src="@/assets/img/news_1.png" alt="news" />
             </div>
@@ -15,7 +15,7 @@
               <p class="news__left-item-date">06.11.2023</p>
             </div>
           </div>
-          <div class="news__left-item">
+          <div class="news__left-item" @click="$router.push(`/news/${id}`)">
             <div class="news__left-item-image">
               <img src="@/assets/img/news_2.png" alt="news" />
             </div>
@@ -28,7 +28,7 @@
               <p class="news__left-item-date">06.11.2023</p>
             </div>
           </div>
-          <div class="news__left-item">
+          <div class="news__left-item" @click="$router.push(`/news/${id}`)">
             <div class="news__left-item-image">
               <img src="@/assets/img/news.png" alt="news" />
             </div>
@@ -41,7 +41,7 @@
               <p class="news__left-item-date">06.11.2023</p>
             </div>
           </div>
-          <div class="news__left-item">
+          <div class="news__left-item" @click="$router.push(`/news/${id}`)">
             <div class="news__left-item-image">
               <img src="@/assets/img/news.png" alt="news" />
             </div>
@@ -74,9 +74,14 @@
       <div class="news__right">
         <h1 class="news__right-title">News</h1>
         <h2 class="news__right-subtitle">News of the company</h2>
-        <div class="news__right-button">
+        <div :class="['news__right-button', { active: openVideo }]">
           <div class="relative">
-            <base-button-circle primary><base-icon icon="playIcon" /></base-button-circle>
+            <base-button-circle primary @clicked="openVideo = !openVideo">
+              <base-icon icon="playIcon" />
+              <!-- <div class="video-wrapper" @click="openVideo = false">
+                <video src="" @click.stop></video>
+              </div> -->
+            </base-button-circle>
             <div class="button-arrow-title">
               <base-icon icon="workBlackArrow" />
               <h2 class="button-arrow-title__text">More video</h2>
@@ -90,13 +95,22 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    data() {
+      return {
+        openVideo: false
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
   .news {
     width: 100%;
     height: 100vh;
+    @media (max-width: 767px) {
+      height: 100%;
+    }
     &__row {
       display: grid;
       grid-template-columns: minmax(250px, 328px) 1fr minmax(250px, 328px);
@@ -109,7 +123,7 @@
         grid-template-columns: 1fr;
         gap: 0;
         margin: 0 15px;
-        padding: 90px 0 30px 0;
+        padding: 90px 0 0 0;
       }
     }
 
@@ -127,7 +141,6 @@
       }
       @media (max-width: 767px) {
         order: 3;
-        overflow-y: auto;
         height: 100%;
         margin-top: 30px;
         &::-webkit-scrollbar-track {
@@ -155,17 +168,25 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover {
+        transform: scale(1.04);
+      }
     }
 
     &__left-item-image {
       min-width: 158px;
       height: 98px;
       background-color: #183a6079;
+      border-radius: 5px;
+
       img {
         width: 100%;
         height: 100%;
         object-position: center;
         object-fit: cover;
+        border-radius: 5px;
       }
     }
 
@@ -175,7 +196,7 @@
     &__left-item-title {
       color: var(--text2);
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       line-height: 120%;
       letter-spacing: 0.21px;
       text-transform: capitalize;
@@ -323,6 +344,40 @@
       position: absolute;
       top: 50%;
       left: 13%;
+      &.active {
+        .video-wrapper {
+          opacity: 1;
+          pointer-events: auto;
+          transition: 0.3s;
+          video {
+            transform: scale(1);
+            transition: 0.3s;
+          }
+        }
+      }
+      .video-wrapper {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        z-index: 320;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+        video {
+          width: 600px;
+          height: 400px;
+          background: rgba(0, 0, 0, 0.7);
+          transform: scale(-0.4);
+          transition: 0.3s;
+        }
+      }
       @media (max-width: 767px) {
         top: -30%;
         right: 10%;

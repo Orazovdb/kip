@@ -1,6 +1,52 @@
 <template>
   <div :class="classes">
-    <div v-swiper:mySwiper="options" class="swiper-block__swiper swiper">
+    <div v-swiper:mySwiper="options" class="swiper-block__swiper swiper" v-if="sliders">
+      <h1 class="swiper-block__title" v-if="title">News</h1>
+      <!-- <div class="swiper-block__circle"></div>
+      <div class="swiper-block__box"></div> -->
+      <div class="swiper-block__wrapper swiper-wrapper">
+        <div class="swiper-block__slide swiper-slide" v-for="(slider, index) in sliders" :key="index">
+          <div class="swiper-block__image">
+            <img :src="require(`@/assets/img/${slider.image}`)" />
+          </div>
+          <div class="swiper-block__title-wrapper">
+            <h1 class="swiper-block__slide-title">{{ slider.title }}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-block__navigations">
+        <div class="swiper-block__prev-navigation swiper-button-prev">
+          <base-icon icon="prevNavigation" />
+        </div>
+        <div class="swiper-block__next-navigation swiper-button-next">
+          <base-icon icon="nextNavigation" />
+        </div>
+      </div>
+    </div>
+    <div v-swiper:mySwiper="options" class="swiper-block__swiper swiper" v-else-if="telecom">
+      <h1 class="swiper-block__title" v-if="title">News</h1>
+      <!-- <div class="swiper-block__circle"></div>
+      <div class="swiper-block__box"></div> -->
+      <div class="swiper-block__wrapper swiper-wrapper">
+        <div class="swiper-block__slide swiper-slide" v-for="(slider, index) in telecom" :key="index">
+          <div class="swiper-block__image">
+            <img :src="require(`@/assets/img/${slider.image}`)" />
+          </div>
+          <div class="swiper-block__title-wrapper">
+            <h1 class="swiper-block__slide-title">{{ slider.title }}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-block__navigations">
+        <div class="swiper-block__prev-navigation swiper-button-prev">
+          <base-icon icon="prevNavigation" />
+        </div>
+        <div class="swiper-block__next-navigation swiper-button-next">
+          <base-icon icon="nextNavigation" />
+        </div>
+      </div>
+    </div>
+    <div v-else v-swiper:mySwiper="options" class="swiper-block__swiper swiper">
       <h1 class="swiper-block__title" v-if="title">News</h1>
       <!-- <div class="swiper-block__circle"></div>
       <div class="swiper-block__box"></div> -->
@@ -35,6 +81,18 @@
       },
       projects: {
         type: Boolean,
+        default: () => null
+      },
+      image: {
+        type: String,
+        default: () => ''
+      },
+      sliders: {
+        type: Array,
+        default: () => null
+      },
+      telecom: {
+        type: Array,
         default: () => null
       }
     },

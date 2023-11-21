@@ -6,15 +6,12 @@
       </div>
       <div class="news-id__box">
         <div class="news-id__image">
-          <img src="@/assets/img/news.png" alt="" />
+          <img src="@/assets/img/news_1.png" alt="" />
         </div>
-        <h1 class="news-id__title">New company</h1>
+        <h1 class="news-id__title">A Contract With Ashgabat International Airport</h1>
         <p class="news-id__description">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five
-          centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-          of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-          versions of Lorem Ipsum.
+          KIP Engineering signed a contract with Ashgabat International Airport about IT system design work: correcting errors in AMOS system. KIP
+          Engineering signed a contract with Ashgabat International Airport about IT system design work: correcting errors in AMOS system
         </p>
         <p class="news-id__date">06.11.2023</p>
       </div>

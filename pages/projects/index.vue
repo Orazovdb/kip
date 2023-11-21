@@ -3,17 +3,17 @@
     <div class="projects__container">
       <div class="projects__top">
         <base-icon icon="arrowLeft" class="projects__icon" @clicked="$router.push(localeLocation('/'))" />
-        <h1 class="projects__title">Projects</h1>
+        <h1 class="projects__title">Engineering</h1>
       </div>
       <div class="projects__items">
         <div class="projects-item" v-for="(item, index) in 9" :key="index" @click="$router.push(localeLocation(`/projects/${index + 1}`))">
           <div class="projects-item__image">
-            <img src="@/assets/img/news.png" alt="" />
+            <img src="@/assets/img/engineering_1.jpg" alt="" />
           </div>
           <div class="projects-item__bottom">
-            <div class="projects-item__profile">
+            <!-- <div class="projects-item__profile">
               <img src="" alt="" />
-            </div>
+            </div> -->
             <div class="projects-item__content">
               <h1 class="projects-item__title">KIP Engineering – молодая и амбициозная</h1>
             </div>

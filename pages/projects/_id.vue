@@ -48,7 +48,7 @@
         <h1 class="projects-id__images-title">Photo</h1>
         <div class="projects-id__images-row">
           <div class="projects-id__images-img" v-for="(item, index) in 7" :key="index">
-            <img src="@/assets/img/news.png" alt="" />
+            <img src="@/assets/img/engineering_1.jpg" alt="" />
           </div>
         </div>
       </div>

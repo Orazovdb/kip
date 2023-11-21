@@ -79,7 +79,7 @@
 
     &__images {
       display: grid;
-      grid-template-columns: 1fr 1fr 400px;
+      grid-template-columns: 1fr 1fr 450px;
       gap: 20px;
       margin: 0 100px 20px;
       @media (max-width: 767px) {
@@ -100,8 +100,7 @@
         grid-row: span 2;
         height: 100%;
         img {
-          object-fit: cover;
-          object-position: center;
+          height: 100%;
         }
       }
       &:nth-child(3) {

@@ -2,25 +2,25 @@
   <div class="intro">
     <div :class="['contact-modal', { active: openContact }]" @click.stop="openContact = false">
       <div class="contact-modal__wrapper">
-        <div class="contact-modal__box">
+        <div class="contact-modal__box" @click.stop>
           <h1 class="contact-modal__title">Contact us</h1>
           <li class="contact-modal__item">
-            <p>Office</p>
-            <p>45 17 77</p>
+            <base-icon icon="call" />
+            <div class="contact-modal__content">
+              <p>(+993 62) 99 12 12</p>
+              <p>45 17 77</p>
+            </div>
           </li>
           <li class="contact-modal__item">
-            <p>Mobile</p>
-            <p>+993 62 99 12 12</p>
-          </li>
-          <li class="contact-modal__item">
-            <p>Email</p>
-            <p>info@kip.tm</p>
-          </li>
-          <li class="contact-modal__item">
+            <base-icon icon="insta" />
             <p>kipengineringtm</p>
           </li>
           <li class="contact-modal__item">
-            <p>Address</p>
+            <base-icon icon="email" />
+            <p>kipengineringtm</p>
+          </li>
+          <li class="contact-modal__item">
+            <base-icon icon="location" />
             <p>Nurmuhammet Andalyp 1B, Ashgabat, Turkmenistan 744000</p>
           </li>
         </div>
@@ -41,7 +41,7 @@
       </div>
       <div class="relative mobile-button-circle-white">
         <base-button-circle :url="url" v-if="url" primary>Projects</base-button-circle>
-        <base-icon icon="circleCursor" class="circle-cursor" />
+        <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
         <div class="button-arrow-title">
           <base-icon icon="workBlackArrow" class="black-arrow" />
           <h2 class="button-arrow-title__text">see our projects</h2>
@@ -470,31 +470,21 @@
 
     &__item {
       position: relative;
-      padding-left: 16px;
       list-style: none;
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0px;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: var(--primary);
-      }
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
       &:not(:last-child) {
         margin-bottom: 10px;
       }
       p {
-        font-size: 16px;
+        font-weight: 300;
+        font-size: 14px;
         &:first-child {
-          font-weight: 600 !important;
           margin-bottom: 2px;
         }
         &:last-child {
-          font-size: 13px;
-          font-weight: 300;
         }
       }
     }
