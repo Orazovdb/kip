@@ -27,6 +27,9 @@
     width: 100%;
     height: 100vh;
     position: relative;
+    @media (max-width: 767px) {
+      height: 100%;
+    }
     &::after {
       content: '';
       position: absolute;
@@ -46,6 +49,7 @@
       height: 100%;
       @media (max-width: 767px) {
         grid-template-columns: 1fr;
+        padding-bottom: 30px;
       }
     }
 

@@ -40,11 +40,11 @@
         <span></span>
       </div>
     </div>
-    <nav :class="['mobile-menu', { active: openMobileMenu }]" @click.stop="closeBody">
+    <nav :class="['mobile-menu', { active: openMobileMenu }]" @click="closeBody">
       <div class="mobile-menu__body" @click.stop>
         <ul class="mobile-menu__list">
-          <li class="menu__item" v-for="link in links" :key="link.id" @click.stop="closeBody">
-            <a :href="link.url" :class="['mobile-menu__link', { active: link.id === link.url }]">{{ link.name }}</a>
+          <li class="menu__item" v-for="link in links" :key="link.id">
+            <a :href="link.url" @click="closeBody" :class="['mobile-menu__link', { active: link.id === link.url }]">{{ link.name }}</a>
           </li>
         </ul>
         <!-- <div class="mobile-languages">
@@ -81,6 +81,16 @@
       selectedLocale() {
         return this.$i18n.locales
       }
+    },
+    watch: {
+      $route(to, from) {
+        setTimeout(() => {
+          this.closeBody()
+        }, 100)
+      }
+    },
+    mounted() {
+      this.$router.replace({ name: this.$route.name, hash: '#home' })
     },
     methods: {
       toggleLanguages() {
@@ -216,6 +226,9 @@
     }
   }
   .menu {
+    @media (max-width: 767px) {
+      display: none;
+    }
     &__body {
     }
 

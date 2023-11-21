@@ -28,32 +28,6 @@
               <p class="news__left-item-date">06.11.2023</p>
             </div>
           </div>
-          <div class="news__left-item">
-            <div class="news__left-item-image">
-              <img src="@/assets/img/news.png" alt="news" />
-            </div>
-            <div class="news__left-item-content">
-              <h1 class="news__left-item-title">A New Manufacturing Plant</h1>
-              <p class="news__left-item-description">
-                We are in the process of building of own factory which at the beginning will consist of facility for recycling of PET, facility of PSF
-                production.
-              </p>
-              <p class="news__left-item-date">06.11.2023</p>
-            </div>
-          </div>
-          <div class="news__left-item">
-            <div class="news__left-item-image">
-              <img src="@/assets/img/news.png" alt="news" />
-            </div>
-            <div class="news__left-item-content">
-              <h1 class="news__left-item-title">A New Manufacturing Plant</h1>
-              <p class="news__left-item-description">
-                We are in the process of building of own factory which at the beginning will consist of facility for recycling of PET, facility of PSF
-                production.
-              </p>
-              <p class="news__left-item-date">06.11.2023</p>
-            </div>
-          </div>
         </div>
       </div>
       <div class="news__center">
@@ -116,7 +90,7 @@
       grid-template-columns: minmax(250px, 328px) 1fr minmax(250px, 328px);
       gap: 50px;
       height: 100%;
-      align-items: flex-start;
+      align-items: center;
       margin: 0 40px;
       padding: 90px 0;
       @media (max-width: 767px) {
@@ -216,7 +190,6 @@
     }
 
     &__center {
-      margin-top: 40px;
       @media (max-width: 767px) {
         order: 2;
         margin-top: 0;

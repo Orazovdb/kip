@@ -21,7 +21,7 @@
           {
             id: 1,
             name: 'Home',
-            url: '#home'
+            url: '/#home'
           },
           {
             id: 2,
@@ -56,7 +56,6 @@
           }
         ]
       }
-    },
-    methods: {}
+    }
   }
 </script>
