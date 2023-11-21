@@ -17,7 +17,7 @@
           </li>
           <li class="contact-modal__item">
             <base-icon icon="email" />
-            <p>kipengineringtm</p>
+            <p>info@kip.tm</p>
           </li>
           <li class="contact-modal__item">
             <base-icon icon="location" />
