@@ -51,7 +51,7 @@
 
           {
             id: 7,
-            name: 'Careers',
+            name: 'Contact us',
             url: '#careers'
           }
         ]
