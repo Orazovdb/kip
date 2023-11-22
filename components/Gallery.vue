@@ -81,7 +81,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 450px;
       gap: 20px;
-      margin: 0 100px 20px;
+      margin: 0 100px 40px;
       @media (max-width: 767px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -141,7 +141,7 @@
     &__button-wrapper {
       display: flex;
       justify-content: flex-end;
-      margin: 0 100px 20px;
+      margin: 0 100px 80px;
       width: calc(100% - 370px);
       @media (max-width: 767px) {
         margin: 0 20px 15px;

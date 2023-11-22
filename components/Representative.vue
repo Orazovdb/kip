@@ -144,7 +144,8 @@
               slidesPerView: 2
             },
             767: {
-              speed: 1000
+              speed: 1000,
+              slidesPerView: 6
             }
           }
         }

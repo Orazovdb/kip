@@ -62,8 +62,8 @@
         <!-- <button @click="$router.push('/news')" class="news__watch-button">See all</button> -->
       </div>
     </div>
-    <div class="video-wrapper" @click="openVideo = false">
-      <video @click.stop controls>
+    <div class="video-wrapper" @click="pauseVid">
+      <video @click.stop controls ref="myVideo">
         <source src="/video.mp4" type="video/mp4" />
       </video>
     </div>
@@ -76,6 +76,18 @@
       return {
         openVideo: false
       }
+    },
+    methods: {
+      playVideo() {
+        const vid = this.$refs.myVideo
+        vid.play()
+      },
+
+      pauseVid() {
+        const vid = this.$refs.myVideo
+        vid.pause()
+        this.openVideo = false
+      }
     }
   }
 </script>
@@ -83,7 +95,6 @@
 <style lang="scss" scoped>
   .news {
     width: 100%;
-    height: 100vh;
     &.active {
       .video-wrapper {
         opacity: 1;
@@ -92,13 +103,6 @@
         video {
           transform: scale(1);
           transition: 0.3s;
-          width: 70%;
-          height: 60%;
-        }
-        @media (max-width: 767px) {
-          video {
-            height: 40%;
-          }
         }
       }
     }
@@ -118,16 +122,20 @@
       pointer-events: none;
       transition: 0.3s;
       video {
-        width: 600px;
-        height: 400px;
+        width: 80%;
+        height: 70%;
         background: rgba(0, 0, 0, 0.7);
         transform: scale(-0.4);
         transition: 0.3s;
       }
+      @media (max-width: 767px) {
+        video {
+          width: 90%;
+          height: 50%;
+        }
+      }
     }
-    @media (max-width: 767px) {
-      height: 100%;
-    }
+
     &__row {
       display: grid;
       grid-template-columns: minmax(250px, 328px) 1fr minmax(250px, 328px);
