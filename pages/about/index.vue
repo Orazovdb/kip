@@ -8,21 +8,36 @@
         <div class="about-page__content">
           <h1 class="about-page__title">About us</h1>
           <p class="about-page__description">
-            Our company was founded in 2020. KIP Engineering holds a distinct position in its ndustry and is a con dent business that is expanding
+            Our company was founded in 2020. KIP Engineering holds a distinct position in its industry and is a confident business that is expanding
             quickly. We successfully oversee projects from the outset, through the phases of planning, execution, and commissioning, and all the way
             through to the project's completion. The company holds a prominent position in the services industry, providing cutting-edge technological
             solutions and services to its partners and clients that keep up with the times. The goals, needs, and preferences of the client form the
             foundation of the business. Our goals revolve around our capacity to deliver to clients the best possible solutions in terms of scope,
-            eﬀectiveness, and suitability under the pertinent circumstances in the shortest amount of time, along with post-purchase guarantees that
-            include free technical support and consulting. Our team of highly skilled specialists and engineers enables us to conduct in-depth
-            analyses of markets and procedures within the industries we work in. Public sector representatives and private industrial organizations
-            are among our company's clientele. KIP Engineering has established itself in a wide range of industries. We deal with IT technologies,
-            oﬀering our own in-house developed products along with the option of integrating them with those of our international and domestic
-            partners. Our work is presented in the textile, food, agricultural, and household chemical industries. We undertake projects in the
-            industrial sector. Our determination to create a highly productive process and solve complicated problems lead us to continuously grow and
-            explore new frontiers, enhancing our skills and making devoted partners and friends. Our Mission Elevating possibilities through
-            engineering and IT mastery. Our mission is to lead with creativity, integrity, and a commitment to client success, shaping a future where
-            technology empowers and connects us all.
+            effectiveness, and suitability under the pertinent circumstances in the shortest amount of time, along with post-purchase guarantees that
+            include free technical support and consulting.
+            <br />
+
+            Our team of highly skilled specialists and engineers enables us to conduct in-depth analyses of markets and procedures within the
+            industries we work in. Public sector representatives and private industrial organizations are among our company's clientele.
+            <br />
+
+            KIP Engineering has established itself in a wide range of industries.
+            <br />
+
+            We deal with IT technologies, oﬀering our own in-house developed products along with the option of integrating them with those of our
+            international and domestic partners. Our work is presented in the textile, food, agricultural, and household chemical industries. We
+            undertake projects in the industrial sector.
+            <br />
+
+            Our determination to create a highly productive process and solve complicated problems lead us to continuously grow and explore new
+            frontiers, enhancing our skills and making devoted partners and friends.
+            <br />
+            <br />
+            Our Mission
+            <br />
+
+            Elevating possibilities through engineering and IT mastery. Our mission is to lead with creativity, integrity, and a commitment to client
+            success, shaping a future where technology empowers and connects us all.
           </p>
         </div>
       </div>
