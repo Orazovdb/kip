@@ -1,5 +1,5 @@
 <template>
-  <div class="news">
+  <div :class="['news', { active: openVideo }]">
     <div class="news__row">
       <div class="news__left">
         <div class="news__left-items">
@@ -48,13 +48,10 @@
       <div class="news__right">
         <h1 class="news__right-title">News</h1>
         <h2 class="news__right-subtitle">News of the company</h2>
-        <div :class="['news__right-button', { active: openVideo }]">
+        <div class="news__right-button">
           <div class="relative">
             <base-button-circle primary @clicked="openVideo = !openVideo">
               <base-icon icon="playIcon" />
-              <!-- <div class="video-wrapper" @click="openVideo = false">
-                <video src="" @click.stop></video>
-              </div> -->
             </base-button-circle>
             <div class="button-arrow-title">
               <base-icon icon="workBlackArrow" />
@@ -64,6 +61,11 @@
         </div>
         <!-- <button @click="$router.push('/news')" class="news__watch-button">See all</button> -->
       </div>
+    </div>
+    <div class="video-wrapper" @click="openVideo = false">
+      <video @click.stop controls>
+        <source src="/video.mp4" type="video/mp4" />
+      </video>
     </div>
   </div>
 </template>
@@ -82,6 +84,47 @@
   .news {
     width: 100%;
     height: 100vh;
+    &.active {
+      .video-wrapper {
+        opacity: 1;
+        pointer-events: auto;
+        transition: 0.3s;
+        video {
+          transform: scale(1);
+          transition: 0.3s;
+          width: 70%;
+          height: 60%;
+        }
+        @media (max-width: 767px) {
+          video {
+            height: 40%;
+          }
+        }
+      }
+    }
+    .video-wrapper {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      z-index: 320;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+      video {
+        width: 600px;
+        height: 400px;
+        background: rgba(0, 0, 0, 0.7);
+        transform: scale(-0.4);
+        transition: 0.3s;
+      }
+    }
     @media (max-width: 767px) {
       height: 100%;
     }
@@ -317,40 +360,7 @@
       position: absolute;
       top: 50%;
       left: 13%;
-      &.active {
-        .video-wrapper {
-          opacity: 1;
-          pointer-events: auto;
-          transition: 0.3s;
-          video {
-            transform: scale(1);
-            transition: 0.3s;
-          }
-        }
-      }
-      .video-wrapper {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
-        z-index: 320;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.3s;
-        video {
-          width: 600px;
-          height: 400px;
-          background: rgba(0, 0, 0, 0.7);
-          transform: scale(-0.4);
-          transition: 0.3s;
-        }
-      }
+
       @media (max-width: 767px) {
         top: -30%;
         right: 10%;
