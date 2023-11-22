@@ -5,7 +5,7 @@
         <img src="@/assets/img/kip-logo.svg" alt="" />
       </div>
       <div class="vacancy__form-wrapper">
-        <h1 class="vacancy__title">Careers</h1>
+        <h1 class="vacancy__title">Contact us</h1>
         <form class="vacancy__form">
           <base-input placeholder="Your name" />
           <base-input placeholder="Your email" />
