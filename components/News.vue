@@ -22,8 +22,20 @@
             <div class="news__left-item-content">
               <h1 class="news__left-item-title">A New Manufacturing Plant</h1>
               <p class="news__left-item-description">
-                We are in the process of building of own factory which at the beginning will consist of facility for recycling of PET, facility of PSF
-                production.
+                The plant located in Ashgabat is equipped with equipment from the world famous Austrian company «Rieter». Сontinuous ﬁlament yarns are used for a large number of 
+                applications, such as big-bag sewing yarns, nets, ropes or belts.
+              </p>
+              <p class="news__left-item-date">06.11.2023</p>
+            </div>
+          </div>
+          <div class="news__left-item">
+            <div class="news__left-item-image">
+              <img src="@/assets/img/news_3.png" alt="news" />
+            </div>
+            <div class="news__left-item-content">
+              <h1 class="news__left-item-title">Memorandum of Understanding Between “Kopugurly Injenerchilik Payhaslary” Economic Society and Textima Export Import GmbH</h1>
+              <p class="news__left-item-description">
+                This Memorandum of Understanding (MOU) sets for the terms and understanding between the “Kopugurly Injenerchilik Payhaslary” Economic Society and the Textima Export Import GmbH to collaborate.
               </p>
               <p class="news__left-item-date">06.11.2023</p>
             </div>

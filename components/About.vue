@@ -14,7 +14,7 @@
           solutions and services to its partners and clients that keep up with the times. The goals, needs, and preferences of the client form the
           foundation of the business. Our goals revolve around our capacity to deliver to clients the best possible solutions in terms of scope,
           eﬀectiveness, and suitability under the pertinent circumstances in the shortest amount of time, along with post-purchase guarantees that
-          include free technical support and consulting. Our team of highly skilled specialists and engineers enables us to conduct in-depth analyses
+          include free technical support and consulting. <br /> Our team of highly skilled specialists and engineers enables us to conduct in-depth analyses
           of markets and procedures within the industries we work in. Public sector representatives and private industrial organizations are among our
           company's clientele. KIP Engineering has established itself in a wide range of industries. We deal with IT technologies, oﬀering our own
           in-house developed products along with the option of integrating them with those of our international and domestic partners. Our work is
