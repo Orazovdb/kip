@@ -14,74 +14,84 @@
 </template>
 
 <script>
-export default {
-  props: {
-    activeLang: {
-      type: String,
-      default: () => "tm",
+  export default {
+    props: {
+      activeLang: {
+        type: String,
+        default: () => 'tm'
+      }
     },
-  },
-  data() {
-    return {
-      languages: [
-        {
-          key: "tm",
-          name: "TKM",
-        },
-        {
-          key: "ru",
-          name: "RUS",
-        },
-        {
-          key: "en",
-          name: "ENG",
-        },
-      ],
-    };
-  },
-};
+    data() {
+      return {
+        languages: [
+          {
+            key: 'tm',
+            name: 'Turkmen'
+          },
+          {
+            key: 'ru',
+            name: 'Russia'
+          },
+          {
+            key: 'en',
+            name: 'English'
+          }
+        ]
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
-.languages {
-  margin-bottom: 20px;
-  &__row {
-    display: flex;
-    gap: 15px;
-  }
+  .languages {
+    margin: 0 30px 50px;
+    width: 100%;
+    padding: 10px 10px 0px;
+    border-bottom: 1px solid var(--gray-light);
 
-  &__language {
-    width: 50px;
-    height: 30px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: 0.3s;
-
-    p {
-      font-weight: 600;
-      font-size: 12px;
-      line-height: 120%;
-      padding-top: 4px;
-      color: #969494;
+    &__row {
+      display: flex;
+      gap: 10px;
     }
 
-    &:hover {
-      border: 1px solid #344051;
+    &__language {
+      position: relative;
+      border-radius: 8px;
+      transition: 0.3s;
+      cursor: pointer;
+      padding: 10px 0;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: -30px;
+        width: 100%;
+        height: 1px;
+        background-color: var(--red);
+        opacity: 0;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+      &.active {
+        &::after {
+          left: 0;
+          opacity: 1;
+        }
+        p {
+          color: var(--red);
+        }
+        &:hover {
+          background-color: transparent;
+        }
+      }
       p {
-        color: #344051;
+        color: var(--text4);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: normal;
+        padding: 0 10px;
       }
     }
-
-    &.active {
-      background-color: #f4f4f4;
-      p {
-        color: #344051;
-      }
-    }
   }
-}
 </style>

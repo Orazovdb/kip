@@ -40,28 +40,32 @@
 
 <style lang="scss" scoped>
   .button {
-    min-width: 150px;
-    height: 40px;
-    padding: 6.5px;
+    width: 100%;
+    height: 34px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--primary);
     color: #fff;
     border: 1px solid transparent;
-    font-weight: 500;
-    font-size: 16px;
-    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 4px;
     gap: 14px;
     white-space: nowrap;
     text-transform: uppercase;
     cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+      background-color: #1b3d62da;
+    }
     &:active {
       transform: scale(1.04);
     }
     @media (max-width: 767px) {
       width: 100px;
-      height: 35px;
+      height: 30px;
       font-size: 12px;
       cursor: none;
     }

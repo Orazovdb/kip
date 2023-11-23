@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    middleware: ['auth-admin']
+    //  middleware: ['auth-admin']
   }
 </script>
 
@@ -23,7 +23,7 @@
     overflow: hidden;
     &__row {
       display: grid;
-      grid-template-columns: 290px 1fr;
+      grid-template-columns: 300px 1fr;
       height: 100%;
     }
 

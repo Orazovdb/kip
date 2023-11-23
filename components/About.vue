@@ -295,7 +295,7 @@
     }
     @media (max-width: 767px) {
       bottom: auto;
-      top: -60px;
+      top: -40px;
       right: -130%;
       .arrow {
         display: none;

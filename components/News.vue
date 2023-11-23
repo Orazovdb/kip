@@ -121,6 +121,7 @@
       opacity: 0;
       pointer-events: none;
       transition: 0.3s;
+		cursor: auto;
       video {
         width: 80%;
         height: 70%;

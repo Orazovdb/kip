@@ -56,6 +56,7 @@
     height: 100vh;
     overflow-x: hidden;
     scroll-behavior: smooth !important;
+    cursor: url('../assets/img/cursor-circle.svg') 20 20, pointer;
 
     &._lock {
       overflow: hidden;

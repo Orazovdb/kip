@@ -120,6 +120,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
+    cursor: auto;
     @media (max-width: 767px) {
       left: 0;
       top: 0;

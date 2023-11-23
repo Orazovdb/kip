@@ -237,6 +237,26 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
+      &:hover {
+        animation: logoAnimate 3s linear infinite;
+      }
+      @keyframes logoAnimate {
+        0% {
+          transform: skewX(0deg) skewY(0);
+        }
+        25% {
+          transform: skewX(10deg);
+        }
+        50% {
+          transform: skewX(0deg) skewY(10deg);
+        }
+        75% {
+          transform: skewX(-10deg);
+        }
+        100% {
+          transform: skewX(0deg) skewY(0);
+        }
+      }
     }
 
     &__swiper {
