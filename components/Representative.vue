@@ -28,10 +28,14 @@
             </div>
           </div>
           <div class="representative__swiper-navigations">
-            <div class="representative__swiper-prev-navigation swiper-button-prev">
+            <div
+              class="representative__swiper-prev-navigation swiper-button-prev"
+            >
               <base-icon icon="prevNavigation" />
             </div>
-            <div class="representative__swiper-next-navigation swiper-button-next">
+            <div
+              class="representative__swiper-next-navigation swiper-button-next"
+            >
               <base-icon icon="nextNavigation" />
             </div>
           </div>
@@ -64,10 +68,14 @@
             </div>
           </div>
           <div class="representative__swiper-navigations">
-            <div class="representative__swiper-prev-navigation swiper-button-prev">
+            <div
+              class="representative__swiper-prev-navigation swiper-button-prev"
+            >
               <base-icon icon="prevNavigation" />
             </div>
-            <div class="representative__swiper-next-navigation swiper-button-next">
+            <div
+              class="representative__swiper-next-navigation swiper-button-next"
+            >
               <base-icon icon="nextNavigation" />
             </div>
           </div>
@@ -103,10 +111,14 @@
             </div>
           </div>
           <div class="representative__swiper-navigations">
-            <div class="representative__swiper-prev-navigation swiper-button-prev">
+            <div
+              class="representative__swiper-prev-navigation swiper-button-prev"
+            >
               <base-icon icon="prevNavigation" />
             </div>
-            <div class="representative__swiper-next-navigation swiper-button-next">
+            <div
+              class="representative__swiper-next-navigation swiper-button-next"
+            >
               <base-icon icon="nextNavigation" />
             </div>
           </div>
@@ -117,180 +129,180 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        options: {
-          slidesPerView: 6,
-          speed: 1100,
-          spaceBetween: 40,
-          loop: true,
-          //  autoplay: {
-          //    delay: 4,
-          //    disableOnInteraction: false,
-          //    speed: 1000
-          //  },
-          navigation: {
-            nextEl: '.representative__swiper-next-navigation',
-            prevEl: '.representative__swiper-prev-navigation'
+export default {
+  data() {
+    return {
+      options: {
+        slidesPerView: 6,
+        speed: 1100,
+        spaceBetween: 40,
+        loop: true,
+        //  autoplay: {
+        //    delay: 4,
+        //    disableOnInteraction: false,
+        //    speed: 1000
+        //  },
+        navigation: {
+          nextEl: ".representative__swiper-next-navigation",
+          prevEl: ".representative__swiper-prev-navigation",
+        },
+        breakpoints: {
+          320: {
+            speed: 1500,
+            slidesPerView: 2,
           },
-          breakpoints: {
-            320: {
-              speed: 1500,
-              slidesPerView: 2
-            },
-            479: {
-              speed: 1500,
-              slidesPerView: 2
-            },
-            767: {
-              speed: 1000,
-              slidesPerView: 6
-            }
-          }
-        }
-      }
-    }
-  }
+          479: {
+            speed: 1500,
+            slidesPerView: 2,
+          },
+          767: {
+            speed: 1000,
+            slidesPerView: 6,
+          },
+        },
+      },
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  //   .swiper-wrapper {
-  //     transition-timing-function: linear !important;
-  //   }
-  .representative {
-    width: 100%;
+//   .swiper-wrapper {
+//     transition-timing-function: linear !important;
+//   }
+.representative {
+  width: 100%;
+  height: 100%;
+  &__title-wrapper {
+    flex: 1 1 auto;
+    margin-top: 150px;
+    display: inline-block;
+    text-align: center;
+    @media (max-width: 767pc) {
+      margin-top: 60px;
+      flex: 0 0 0%;
+    }
+  }
+
+  &__title {
+    color: var(--text2);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: 0.45px;
+    text-transform: capitalize;
+    padding-bottom: 7px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    @media (max-width: 767px) {
+      font-size: 22px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 80%;
+      height: 1px;
+      background-color: var(--red);
+    }
+  }
+
+  &__columns {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 0 150px;
+    padding-bottom: 80px;
+    justify-content: center;
     height: 100%;
-    &__title-wrapper {
-      flex: 1 1 auto;
-      margin-top: 150px;
-      display: inline-block;
-      text-align: center;
-      @media (max-width: 767pc) {
-        margin-top: 60px;
-        flex: 0 0 0%;
-      }
+    @media (max-width: 767px) {
+      margin: 0 50px;
+    }
+  }
+
+  &__column {
+    @media (max-width: 767px) {
+    }
+  }
+
+  &__subtitle {
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  &__swiper {
+    width: 100%;
+    position: relative;
+    padding: 0 40px;
+    overflow: hidden;
+
+    &-navigations {
     }
 
-    &__title {
-      color: var(--text2);
-      font-size: 30px;
-      font-weight: 400;
-      line-height: 120%;
-      letter-spacing: 0.45px;
-      text-transform: capitalize;
-      padding-bottom: 7px;
-      position: relative;
-      display: inline-block;
-      text-align: center;
-      @media (max-width: 767px) {
-        font-size: 22px;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 80%;
-        height: 1px;
-        background-color: var(--red);
-      }
-    }
-
-    &__columns {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      margin: 0 150px;
-      padding-bottom: 80px;
-      justify-content: center;
+    &-prev-navigation {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
       height: 100%;
-      @media (max-width: 767px) {
-        margin: 0 50px;
-      }
-    }
-
-    &__column {
-      @media (max-width: 767px) {
-      }
-    }
-
-    &__subtitle {
-      color: #000;
-      font-size: 20px;
-      text-align: center;
-      font-weight: 500;
-      line-height: normal;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    &__swiper {
-      width: 100%;
-      position: relative;
-      padding: 0 40px;
-      overflow: hidden;
-
-      &-navigations {
-      }
-
-      &-prev-navigation {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-        height: 100%;
-        display: flex;
-        align-items: center;
-        background-color: #fff;
-        &:deep() {
-          svg {
-            width: 25px;
-            height: 25px;
-          }
-        }
-      }
-
-      &-next-navigation {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        height: 100%;
-        display: flex;
-        align-items: center;
-        background-color: #fff;
-        &:deep() {
-          svg {
-            width: 25px;
-            height: 25px;
-          }
-        }
-      }
-    }
-
-    &__images {
       display: flex;
-      width: fit-content;
+      align-items: center;
+      background-color: #fff;
+      &:deep() {
+        svg {
+          width: 25px;
+          height: 25px;
+        }
+      }
     }
 
-    &__image {
-      width: 100%;
-      height: 70px;
-      cursor: pointer;
-      img {
-        width: 100%;
-        height: 100%;
-        filter: grayscale(100%);
-        object-fit: contain;
-        transition: all 0.3s;
-      }
-      &:hover {
-        img {
-          filter: grayscale(0%);
+    &-next-navigation {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      &:deep() {
+        svg {
+          width: 25px;
+          height: 25px;
         }
       }
     }
   }
+
+  &__images {
+    display: flex;
+    width: fit-content;
+  }
+
+  &__image {
+    width: 100%;
+    height: 70px;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
+      filter: grayscale(100%);
+      object-fit: contain;
+      transition: all 0.3s;
+    }
+    &:hover {
+      img {
+        filter: grayscale(0%);
+      }
+    }
+  }
+}
 </style>
