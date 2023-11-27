@@ -1,9 +1,11 @@
 <template>
-  <nuxt></nuxt>
+  <nuxt clas></nuxt>
 </template>
 
 <script>
 export default {}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

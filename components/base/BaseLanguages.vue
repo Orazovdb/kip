@@ -74,7 +74,12 @@ export default {
     &:hover {
       background-color: rgba(0, 0, 0, 0.04);
     }
+    &:active {
+      transform: scale(1.05);
+    }
     &.active {
+      transform: scale(1.05);
+
       &::after {
         left: 0;
         opacity: 1;
