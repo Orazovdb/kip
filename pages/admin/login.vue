@@ -7,10 +7,21 @@
         </div>
         <h1 class="login__title">Welcome</h1>
         <p class="login__description">Hoş geldiň sapa geldiňiz!</p>
-        <form class="login__form">
-          <base-input style="margin-bottom: 17px" label="Login" />
-          <base-input class="mb-4" type="password" label="Password" />
-          <base-button>Save</base-button>
+        <form class="login__form" @submit.prevent="login">
+          <base-input
+            @updateValue="(val) => (form.username = val)"
+            :value="form.username"
+            style="margin-bottom: 17px"
+            label="Login"
+          />
+          <base-input
+            @updateValue="(val) => (form.password = val)"
+            :value="form.password"
+            class="mb-4"
+            type="password"
+            label="Password"
+          />
+          <base-button @clickedButton="login">Save</base-button>
         </form>
       </div>
     </div>
@@ -18,7 +29,36 @@
 </template>
 
 <script>
-export default {};
+import { LOGIN } from "@/api/admin.api.js";
+export default {
+  middleware: ["auth-admin"],
+  data() {
+    return {
+      form: { username: "kip-admin", password: "P@ssword123" },
+    };
+  },
+
+  methods: {
+    async login() {
+      if (!this.form.username || !this.form.password) {
+        alert("Meydanlary dolduryn");
+      } else {
+        try {
+          const { data, statusCode } = await LOGIN({ data: this.form });
+          if (statusCode) {
+            this.$cookies.set("Authorization", `Bearer ${data.token}`);
+            localStorage.setItem("Authorization", `Bearer ${data.token}`);
+            this.$router.push(`/admin/1`);
+          } else {
+            this.$router.push("/admin/login");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

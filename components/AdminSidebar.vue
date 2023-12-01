@@ -45,14 +45,8 @@ export default {
     return {
       links: [
         {
-          id: 1,
-          url: "",
-          icon: "home",
-          name: "Home",
-        },
-        {
           id: 2,
-          url: "/about",
+          url: `/1`,
           icon: "folder",
           name: "About us",
         },

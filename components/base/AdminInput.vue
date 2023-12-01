@@ -17,7 +17,7 @@
       "
       :value="value"
     />
-    <base-icon icon="file" v-if="appendIcon" class="base-input__icon" />
+    <base-icon :icon="appendIcon" v-if="appendIcon" class="base-input__icon" />
   </div>
 </template>
 
@@ -44,8 +44,8 @@ export default {
       type: String | Number,
     },
     appendIcon: {
-      type: Boolean,
-      default: () => null,
+      type: String,
+      default: () => "",
     },
   },
 };
@@ -55,10 +55,11 @@ export default {
 .base-input {
   width: 100%;
   position: relative;
+  z-index: 2;
 
   &__label {
     color: var(--primary);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     line-height: normal;
     text-transform: uppercase;
@@ -74,10 +75,9 @@ export default {
     position: absolute;
     right: 2px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-25%);
     width: 42px;
     height: 38px;
-    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,7 +91,7 @@ export default {
     position: absolute;
     right: 4px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-25%);
     width: 42px;
     height: 42px;
     background-color: #fff;
@@ -102,7 +102,7 @@ export default {
   }
 }
 
-input[type="file"]::file-selector-button {
+input[type="date"]::date-selector-button {
   border: 2px solid #6c5ce7;
   padding: 0.2em 0.4em;
   border-radius: 0.2em;
@@ -110,12 +110,21 @@ input[type="file"]::file-selector-button {
   transition: 1s;
 }
 
-input[type="file"] {
+input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
   opacity: 0;
+  z-index: 10;
 }
 
 .input {
-  border: 1px solid var(--border) !important;
+  border: 1px solid #f3f3f3 !important;
   border-radius: 4px;
   color: var(--border);
   font-size: 16px;
@@ -123,11 +132,11 @@ input[type="file"] {
   height: 42px;
   transition: 0.3s ease 0s;
   padding: 10px 17px 10px 10px;
-  background: #fff;
+  background: #f3f3f3;
   position: relative;
   &::placeholder {
     border-radius: 16px;
-    color: var(--border);
+    color: var(--text4);
     font-weight: 400;
   }
 

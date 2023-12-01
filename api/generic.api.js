@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = process.env.baseURL;
+const baseURL = process.env.BASE_API;
 export const request = async ({
   url,
   method = "post",
@@ -38,6 +38,7 @@ export const request = async ({
         "Content-Type, X-Auth-Token, Origin, Authorization";
     }
   }
+
   const response = await axios({
     url: `${baseURL}${url}`,
     method,

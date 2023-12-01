@@ -18,22 +18,22 @@ export default {
   props: {
     activeLang: {
       type: String,
-      default: () => "tm",
+      default: () => "Tm",
     },
   },
   data() {
     return {
       languages: [
         {
-          key: "tm",
+          key: "Tm",
           name: "Turkmen",
         },
         {
-          key: "ru",
+          key: "Ru",
           name: "Russia",
         },
         {
-          key: "en",
+          key: "En",
           name: "English",
         },
       ],
@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .languages {
-  margin: 0 30px 50px;
+  margin: 0 30px 30px;
   width: 100%;
   padding: 10px 10px 0px;
   border-bottom: 1px solid var(--gray-light);
@@ -64,12 +64,12 @@ export default {
       content: "";
       position: absolute;
       bottom: 0;
-      left: -30px;
+      left: -10px;
       width: 100%;
       height: 1px;
       background-color: var(--red);
       opacity: 0;
-      transition: 0.5s all;
+      transition: 0.5s left;
     }
     &:hover {
       background-color: rgba(0, 0, 0, 0.04);
@@ -83,7 +83,7 @@ export default {
       &::after {
         left: 0;
         opacity: 1;
-        transition: 0.5s all;
+        transition: 0.5s left;
       }
       p {
         color: var(--red);
