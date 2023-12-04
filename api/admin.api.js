@@ -12,5 +12,10 @@ export const ADD_ABOUT_INFO = ({ data }) =>
 export const GET_ABOUT_INFO = () =>
   request({ url: `/information`, method: "get" });
 
+export const ADD_ABOUT_CONTACT = ({ data }) =>
+  request({ url: `contact/upsert`, data, method: "post" });
+export const GET_ABOUT_CONTACT = () =>
+  request({ url: `/contact`, method: "get" });
+
 export const DELETE_SLIDER = ({ data }) =>
   request({ url: `/admin/slider/delete`, data, method: "post" });

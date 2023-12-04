@@ -14,7 +14,7 @@ export default {};
 .table {
   width: 100%;
   overflow-y: auto;
-  height: 80vh;
+  height: 75vh;
   table {
     width: 100%;
     border-collapse: collapse;
@@ -57,10 +57,36 @@ export default {};
           &:first-child {
             text-align: center;
           }
-          img {
-            width: 75px;
-            height: 46px;
+          &.star {
+            width: 170px;
           }
+          &.date {
+            text-align: center;
+          }
+          img {
+            width: 90px;
+            height: 61px;
+          }
+          &:last-child {
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
+  .controller {
+    display: flex;
+    gap: 10px;
+    span {
+      padding: 10px;
+      border-radius: 50%;
+      transition: 0.2s;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.07);
+      }
+      &:first-child {
+        &:hover {
+          background-color: rgba(255, 0, 0, 0.1);
         }
       }
     }

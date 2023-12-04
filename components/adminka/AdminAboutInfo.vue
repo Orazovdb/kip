@@ -136,7 +136,7 @@ export default {
           this.main = data;
         }
       } catch (error) {
-        console.error(error, "NO INTERNET");
+        console.error(error, "NO INTERNET or I DON'T KNOW");
       }
     },
 

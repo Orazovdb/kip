@@ -89,13 +89,13 @@ export default {
 <style lang="scss" scoped>
 .sidebar {
   width: 100%;
-  border-right: 1px solid var(--gray-light);
+  border-right: 1px solid var(--gray-light2);
   &__header {
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--gray-light);
+    border-bottom: 1px solid var(--gray-light2);
   }
 
   &__header-title {
@@ -133,7 +133,7 @@ export default {
       width: 100%;
       left: 0;
       height: 1px;
-      background-color: var(--gray-light);
+      background-color: var(--gray-light2);
     }
   }
 

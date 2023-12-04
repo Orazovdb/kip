@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="admin-form">
     <base-languages @selectLanguage="toggleLanguage" :activeLang="activeLang" />
-    <form class="admin-form" @submit.prevent>
+    <form @submit.prevent>
       <admin-input
         @updateValue="(val) => (main[`title${activeLang}`] = val)"
         :value="main[`title${activeLang}`]"
@@ -63,7 +63,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["isPopup", "imgURL"]),
+    ...mapGetters(["isPopup"]),
   },
 
   async mounted() {

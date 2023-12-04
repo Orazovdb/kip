@@ -7,11 +7,18 @@
       </div>
       <img v-else :src="imgPath" alt="" />
     </label>
+    <base-icon v-if="imgUpload" icon="imgUpload" class="file-input__icon" />
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    imgUpload: {
+      type: Boolean,
+      default: () => null,
+    },
+  },
   data() {
     return {
       imgPath: null,
@@ -42,8 +49,8 @@ export default {
       position: absolute;
       top: 0;
       left: 0;
-      width: 130px;
-      height: 130px;
+      width: 100%;
+      height: 100%;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -77,6 +84,16 @@ export default {
       line-height: 17px;
       color: #969494;
     }
+  }
+
+  &__icon {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 111;
+    padding: 6px;
+    border-radius: 6px;
+    background-color: #fff;
   }
 }
 </style>

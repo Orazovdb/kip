@@ -44,10 +44,10 @@ export default {
 
 <style lang="scss" scoped>
 .languages {
-  margin: 0 30px 30px;
+  margin-bottom: 30px;
   width: 100%;
   padding: 10px 10px 0px;
-  border-bottom: 1px solid var(--gray-light);
+  border-bottom: 1px solid var(--gray-light2);
 
   &__row {
     display: flex;

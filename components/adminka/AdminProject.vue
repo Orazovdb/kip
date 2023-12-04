@@ -51,7 +51,10 @@
         </base-button>
       </div>
     </form>
-    <base-file-input style="width: 290px; height: 216px"></base-file-input>
+    <base-file-input imgUpload style="width: 290px; height: 216px" />
+    <div class="admin-project-page__images">
+      <base-uploaded-file v-for="item in 6" :key="item"></base-uploaded-file>
+    </div>
     <popup-error :errorPupUp="errorPupUp"></popup-error>
     <popup-success :activePupUp="activePupUp"></popup-success>
   </div>
@@ -80,19 +83,7 @@ export default {
   methods: {
     async addAbout() {
       try {
-        const { data, statusCode } = await ADD_ABOUT({
-          // data: {
-          //   titleTm: this.main.titleTm,
-          //   contentTm: this.main.contentTm,
-          //   titleRu: this.main.titleRu,
-          //   contentRu: this.main.contentRu,
-          //   titleEn: this.main.titleEn,
-          //   contentEn: this.main.contentEn,
-          //   taglineTm: this.main.taglineTm,
-          //   taglineRu: this.main.taglineRu,
-          //   taglineEn: this.main.taglineEn,
-          // },
-        });
+        const { data, statusCode } = await ADD_ABOUT({ data: this.main });
         this.activePupUp = true;
         setTimeout(() => {
           this.activePupUp = false;
@@ -112,8 +103,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.admin-project-page {
+  padding: 0 36px 30px;
+  &__images {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
 .admin-form {
-  padding: 0 36px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;

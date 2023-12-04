@@ -18,9 +18,14 @@
             <img src="@/assets/img/zebra.png" alt="" />
           </td>
           <td>Mennan makina</td>
-          <td>Date</td>
-          <td>Pablsih main page</td>
-          <td>Edit</td>
+          <td class="date">01.01.2024</td>
+          <td class="star"><base-icon icon="starIcon" /></td>
+          <td>
+            <div class="controller">
+              <base-icon icon="adminCrash" />
+              <base-icon icon="editIcon" />
+            </div>
+          </td>
         </tr>
       </tbody>
     </base-table>
