@@ -9,20 +9,15 @@
         class="mb-2"
         placeholder="..."
       />
-      <text-editor></text-editor>
       <admin-textarea
-        @updateValue="(val) => (main[`content${activeLang}`] = val)"
-        :value="main[`content${activeLang}`]"
+        v-model="main[`content${activeLang}`]"
         label="Content"
         class="mb-2"
-        placeholder="..."
       />
       <admin-textarea
-        @updateValue="(val) => (main[`tagline${activeLang}`] = val)"
-        :value="main[`tagline${activeLang}`]"
+        v-model="main[`tagline${activeLang}`]"
         label="Tagline #home"
         class="mb-2"
-        placeholder="..."
       />
       <div class="flex flex-x-end">
         <base-button
