@@ -38,7 +38,7 @@ body {
 body {
   line-height: 1;
   font-size: 0.875rem;
-  font-family: 'Karla';
+  font-family: "Karla";
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -54,7 +54,7 @@ body._lock {
 input,
 button,
 textarea {
-  font-family: 'Karla';
+  font-family: "Karla";
 }
 
 input::-ms-clear {
@@ -62,7 +62,7 @@ input::-ms-clear {
 }
 
 button {
-  cursor: 'pointer' !important;
+  cursor: "pointer" !important;
 }
 
 button::-moz-focus-inner {
@@ -70,9 +70,9 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-a {
+/* a {
   color: inherit;
-}
+} */
 
 @media (max-width: 767px) {
   a {
@@ -103,7 +103,7 @@ img {
   vertical-align: top;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
@@ -111,7 +111,7 @@ h5,
 h6 {
   font-weight: inherit;
   font-size: inherit;
-}
+} */
 
 body ::-moz-selection {
   color: #fff;
@@ -123,7 +123,7 @@ body ::selection {
   background-color: var(--primary);
 }
 
-[class*='_container'] {
+[class*="_container"] {
   max-width: 1200px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -134,100 +134,100 @@ body ::selection {
   width: 100%;
 }
 @font-face {
-  font-family: 'Karla';
+  font-family: "Karla";
   font-display: swap;
-  src: url('../fonts/Karla-ExtraLight.ttf');
+  src: url("../fonts/Karla-ExtraLight.ttf");
   font-weight: 200;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Karla';
+  font-family: "Karla";
   font-display: swap;
-  src: url('../fonts/Karla-Light.ttf');
+  src: url("../fonts/Karla-Light.ttf");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Karla';
+  font-family: "Karla";
   font-display: swap;
-  src: url('../fonts/Karla-Medium.ttf');
+  src: url("../fonts/Karla-Medium.ttf");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Karla';
+  font-family: "Karla";
   font-display: swap;
-  src: url('../fonts/Karla-Regular.ttf');
+  src: url("../fonts/Karla-Regular.ttf");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Karla';
+  font-family: "Karla";
   font-display: swap;
-  src: url('../fonts/Karla-SemiBold.ttf');
+  src: url("../fonts/Karla-SemiBold.ttf");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Karla';
+  font-family: "Karla";
   font-display: swap;
-  src: url('../fonts/Karla-Bold.ttf');
+  src: url("../fonts/Karla-Bold.ttf");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Karla';
+  font-family: "Karla";
   font-display: swap;
-  src: url('../fonts/Karla-ExtraBold.ttf');
+  src: url("../fonts/Karla-ExtraBold.ttf");
   font-weight: 800;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Oxanium';
+  font-family: "Oxanium";
   font-display: swap;
-  src: url('../fonts/Oxanium-ExtraLight.ttf');
+  src: url("../fonts/Oxanium-ExtraLight.ttf");
   font-weight: 200;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Oxanium';
+  font-family: "Oxanium";
   font-display: swap;
-  src: url('../fonts/Oxanium-Light.ttf');
+  src: url("../fonts/Oxanium-Light.ttf");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Oxanium';
+  font-family: "Oxanium";
   font-display: swap;
-  src: url('../fonts/Oxanium-Medium.ttf');
+  src: url("../fonts/Oxanium-Medium.ttf");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Oxanium';
+  font-family: "Oxanium";
   font-display: swap;
-  src: url('../fonts/Oxanium-Regular.ttf');
+  src: url("../fonts/Oxanium-Regular.ttf");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Oxanium';
+  font-family: "Oxanium";
   font-display: swap;
-  src: url('../fonts/Oxanium-SemiBold.ttf');
+  src: url("../fonts/Oxanium-SemiBold.ttf");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Oxanium';
+  font-family: "Oxanium";
   font-display: swap;
-  src: url('../fonts/Oxanium-Bold.ttf');
+  src: url("../fonts/Oxanium-Bold.ttf");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Oxanium';
+  font-family: "Oxanium";
   font-display: swap;
-  src: url('../fonts/Oxanium-ExtraBold.ttf');
+  src: url("../fonts/Oxanium-ExtraBold.ttf");
   font-weight: 800;
   font-style: normal;
 }
