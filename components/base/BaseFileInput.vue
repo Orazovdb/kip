@@ -4,7 +4,6 @@
       <input @change="change" type="file" />
       <div v-if="!imgPath" class="file-input__content">
         <base-icon icon="adminImg"></base-icon>
-        <p>Add photo</p>
       </div>
       <img v-else :src="imgPath" alt="" />
     </label>
@@ -16,15 +15,15 @@ export default {
   data() {
     return {
       imgPath: null,
-    }
+    };
   },
   methods: {
     change(event) {
-      this.imgPath = URL.createObjectURL(event?.target?.files[0])
-      this.$emit('file', event.target.files[0])
+      this.imgPath = URL.createObjectURL(event?.target?.files[0]);
+      this.$emit("file", event.target.files[0]);
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -32,8 +31,8 @@ export default {
   position: relative;
   width: 100%;
   min-height: 100%;
-  border: 1px dashed #969494;
   border-radius: 2px;
+  background-color: var(--gray-700);
 
   label {
     width: 100%;
@@ -55,7 +54,7 @@ export default {
 
   input {
     visibility: hidden;
-    width: 100%;	
+    width: 100%;
     height: 100%;
   }
 
@@ -66,8 +65,12 @@ export default {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 20px;
     cursor: pointer;
+    width: 45px;
+    height: 35px;
+    background-color: #fff;
     p {
       font-weight: 500;
       font-size: 14px;

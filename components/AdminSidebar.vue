@@ -46,7 +46,7 @@ export default {
       links: [
         {
           id: 2,
-          url: `/1`,
+          url: ``,
           icon: "folder",
           name: "About us",
         },

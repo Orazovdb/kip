@@ -48,7 +48,7 @@ export default {
           if (statusCode) {
             this.$cookies.set("Authorization", `Bearer ${data.token}`);
             localStorage.setItem("Authorization", `Bearer ${data.token}`);
-            this.$router.push(`/admin/1`);
+            this.$router.push(`/admin`);
           } else {
             this.$router.push("/admin/login");
           }

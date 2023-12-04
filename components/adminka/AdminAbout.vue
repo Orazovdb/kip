@@ -9,35 +9,18 @@
         class="mb-2"
         placeholder="..."
       />
-      <div class="text-editor-wrapper">
-        <div class="text-editor-wrapper__text-editor">
-          <div class="text-editor-wrapper__text-editor-item">
-            <base-icon icon="h1Icon" />
-          </div>
-          <div class="text-editor-wrapper__text-editor-item">
-            <base-icon icon="h2Icon" />
-          </div>
-          <div class="text-editor-wrapper__text-editor-item">
-            <base-icon icon="quoteIcon" />
-          </div>
-          <div class="text-editor-wrapper__text-editor-item">
-            <base-icon icon="boldIcon" />
-          </div>
-          <div class="text-editor-wrapper__text-editor-item">
-            <base-icon icon="underlinedIcon" />
-          </div>
-          <div class="text-editor-wrapper__text-editor-item">
-            <base-icon icon="italicIcon" />
-          </div>
-        </div>
-        <!-- <div class="text-editor-wrapper__calendar">
-          <admin-input label="Calendar" type="date" appendIcon="calendar" />
-        </div> -->
-      </div>
+      <text-editor></text-editor>
       <admin-textarea
         @updateValue="(val) => (main[`content${activeLang}`] = val)"
         :value="main[`content${activeLang}`]"
         label="Content"
+        class="mb-2"
+        placeholder="..."
+      />
+      <admin-textarea
+        @updateValue="(val) => (main[`tagline${activeLang}`] = val)"
+        :value="main[`tagline${activeLang}`]"
+        label="Tagline #home"
         class="mb-2"
         placeholder="..."
       />
@@ -51,16 +34,22 @@
         </base-button>
       </div>
     </form>
+    <popup-error :errorPupUp="errorPupUp"></popup-error>
+    <popup-success :activePupUp="activePupUp"></popup-success>
   </div>
 </template>
-
 <script>
-import { ADD_ABOUT } from "@/api/admin.api";
+import { ADD_ABOUT, GET_ABOUT } from "@/api/admin.api";
+import { mapGetters } from "vuex";
+import TextEditor from "../base/TextEditor.vue";
 
 export default {
+  components: { TextEditor },
   data() {
     return {
       activeLang: "Tm",
+      activePupUp: false,
+      errorPupUp: false,
       main: {
         titleTm: "",
         titleRu: "",
@@ -68,17 +57,56 @@ export default {
         contentTm: "",
         contentRu: "",
         contentEn: "",
+        taglineTm: "",
+        taglineRu: "",
+        taglineEn: "",
       },
     };
   },
+
+  computed: {
+    ...mapGetters(["isPopup", "imgURL"]),
+  },
+
+  async mounted() {
+    await this.fetchAbout();
+  },
+
   methods: {
     async addAbout() {
       try {
-        const { data, status } = await ADD_ABOUT({ data: this.main });
-        console.log(data);
-        if (!status) return;
+        const { data, statusCode } = await ADD_ABOUT({
+          data: {
+            titleTm: this.main.titleTm,
+            contentTm: this.main.contentTm,
+            titleRu: this.main.titleRu,
+            contentRu: this.main.contentRu,
+            titleEn: this.main.titleEn,
+            contentEn: this.main.contentEn,
+            taglineTm: this.main.taglineTm,
+            taglineRu: this.main.taglineRu,
+            taglineEn: this.main.taglineEn,
+          },
+        });
+        this.activePupUp = true;
+        setTimeout(() => {
+          this.activePupUp = false;
+        }, 2000);
+        if (!statusCode) return;
       } catch (error) {
         console.log(error);
+        this.errorPupUp = true;
+      }
+    },
+
+    async fetchAbout() {
+      try {
+        const { data, statusCode } = await GET_ABOUT();
+        if (statusCode) {
+          this.main = data;
+        }
+      } catch (error) {
+        console.error(error, "NO INTERNET");
       }
     },
 
@@ -93,40 +121,5 @@ export default {
 <style lang="scss" scoped>
 .admin-form {
   padding: 0 36px;
-  .text-editor-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-    &__text-editor {
-      display: flex;
-      gap: 6px;
-      padding: 6px;
-      border-radius: 8px;
-      background-color: var(--gray-800);
-    }
-
-    &__text-editor-item {
-      padding: 7px;
-      border-radius: 4px;
-      background-color: var(--primary);
-      color: #fff;
-      cursor: pointer;
-      transition: 0.3s;
-      &:hover {
-        transform: scale(1.07);
-      }
-
-      &:deep() {
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-
-    &__calendar {
-    }
-  }
 }
 </style>

@@ -29,8 +29,8 @@ export default {
 .admin-layout {
   width: 100%;
   height: 100vh;
-  background-color: var(--admin-background);
-  overflow: hidden;
+  background-color: var(--gray-light);
+  overflow-x: hidden;
   cursor: auto;
   &__row {
     display: grid;

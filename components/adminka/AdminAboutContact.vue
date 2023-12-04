@@ -1,5 +1,7 @@
 <template>
-  <div>Contact</div>
+  <div class='admin-about-contact'>
+    <base-languages @selectLanguage="toggleLanguage" :activeLang="activeLang" />
+  </div>
 </template>
 
 <script>

@@ -76,17 +76,7 @@
       <div class="news__right">
         <h1 class="news__right-title">News</h1>
         <h2 class="news__right-subtitle">News of the company</h2>
-        <div class="news__right-button">
-          <div class="relative">
-            <base-button-circle primary @clicked="openVideo = !openVideo">
-              <base-icon icon="playIcon" />
-            </base-button-circle>
-            <div class="button-arrow-title">
-              <base-icon icon="workBlackArrow" />
-              <h2 class="button-arrow-title__text">More video</h2>
-            </div>
-          </div>
-        </div>
+      
         <!-- <button @click="$router.push('/news')" class="news__watch-button">See all</button> -->
       </div>
     </div>
@@ -105,18 +95,18 @@ export default {
       openVideo: false,
     };
   },
-  methods: {
-    playVideo() {
-      const vid = this.$refs.myVideo;
-      vid.play();
-    },
+  // methods: {
+  //   playVideo() {
+  //     const vid = this.$refs.myVideo;
+  //     vid.play();
+  //   },
 
-    pauseVid() {
-      const vid = this.$refs.myVideo;
-      vid.pause();
-      this.openVideo = false;
-    },
-  },
+  //   pauseVid() {
+  //     const vid = this.$refs.myVideo;
+  //     vid.pause();
+  //     this.openVideo = false;
+  //   },
+  // },
 };
 </script>
 
