@@ -1,6 +1,8 @@
 <template>
   <div :class="['popup', { active: errorPupUp }]">
-    <div @click.stop class="popup__box"><h1>Bosh meydanlary doldur!!!</h1></div>
+    <div @click.stop class="popup__box">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -37,11 +39,9 @@ export default {
     align-items: center;
     box-shadow: 0.4px 0.4px 10px #ff00009c;
     padding: 4px;
-    h1 {
-      color: #fff;
-      font-size: 16px;
-      text-align: center;
-    }
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
   }
 }
 </style>
