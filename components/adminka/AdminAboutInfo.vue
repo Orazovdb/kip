@@ -2,16 +2,16 @@
   <div>
     <base-languages @selectLanguage="toggleLanguage" :activeLang="activeLang" />
     <form class="admin-form" @submit.prevent>
-      <!-- :value="datas[information[]]" -->
       <admin-input
         @updateValue="(val) => (main.info1[`title${activeLang}`] = val)"
+        :value="main?.info1 && main?.info1[`title${activeLang}`]"
         label="Countries"
         class="mb-2"
         placeholder="..."
       />
       <admin-input
         @updateValue="(val) => (main.info1.count = val)"
-        :value="main"
+        :value="main?.info1?.count"
         label="Number"
         type="number"
         class="mb-2"
@@ -19,14 +19,14 @@
       />
       <admin-input
         @updateValue="(val) => (main.info2[`title${activeLang}`] = val)"
-        :value="main"
+        :value="main?.info2 && main?.info2[`title${activeLang}`]"
         label="Employees"
         class="mb-2"
         placeholder="..."
       />
       <admin-input
         @updateValue="(val) => (main.info2.count = val)"
-        :value="main"
+        :value="main?.info2?.count"
         label="Number"
         type="number"
         class="mb-2"
@@ -34,14 +34,14 @@
       />
       <admin-input
         @updateValue="(val) => (main.info3[`title${activeLang}`] = val)"
-        :value="main"
+        :value="main?.info3 && main?.info3[`title${activeLang}`]"
         label="Clients"
         class="mb-2"
         placeholder="..."
       />
       <admin-input
         @updateValue="(val) => (main.info3.count = val)"
-        :value="main"
+        :value="main?.info3?.count"
         label="Number"
         type="number"
         class="mb-2"
@@ -49,36 +49,32 @@
       />
       <admin-input
         @updateValue="(val) => (main.info4[`title${activeLang}`] = val)"
-        :value="main"
+        :value="main?.info4 && main?.info4[`title${activeLang}`]"
         label="Projects"
         class="mb-2"
         placeholder="..."
       />
       <admin-input
         @updateValue="(val) => (main.info4.count = val)"
-        :value="main"
+        :value="main?.info4?.count"
         label="Number"
         type="number"
         class="mb-2"
         placeholder="..."
       />
       <div class="flex flex-x-end admin-header-button">
-        <base-button
-          @clickedButton="addAboutInfo"
-          style="width: 150px"
-          class=""
-        >
+        <base-button @clickedButton="addAboutInfo" style="width: 150px">
           Save
         </base-button>
       </div>
     </form>
-    <popup-error :errorPupUp="errorPupUp"></popup-error>
+    <popup-error :errorPupUp="errorPupUp">Boş meydanlary dolduryň!</popup-error>
     <popup-success :activePupUp="activePupUp"></popup-success>
   </div>
 </template>
 
 <script>
-import { ADD_ABOUT_INFO } from "@/api/admin.api";
+import { ADD_ABOUT_INFO, GET_ABOUT_INFO } from "@/api/admin.api";
 export default {
   data() {
     return {
@@ -113,6 +109,11 @@ export default {
       },
     };
   },
+
+  async mounted() {
+    await this.fetchAboutInfo();
+  },
+
   methods: {
     async addAboutInfo() {
       try {
@@ -125,6 +126,17 @@ export default {
       } catch (error) {
         console.log(error);
         this.errorPupUp = true;
+      }
+    },
+
+    async fetchAboutInfo() {
+      try {
+        const { data, statusCode } = await GET_ABOUT_INFO();
+        if (statusCode) {
+          this.main = data;
+        }
+      } catch (error) {
+        console.error(error, "NO INTERNET");
       }
     },
 

@@ -34,17 +34,15 @@
         </base-button>
       </div>
     </form>
-    <popup-error :errorPupUp="errorPupUp"></popup-error>
+    <popup-error :errorPupUp="errorPupUp">Boş meydanlary dolduryň!</popup-error>
     <popup-success :activePupUp="activePupUp"></popup-success>
   </div>
 </template>
 <script>
 import { ADD_ABOUT, GET_ABOUT } from "@/api/admin.api";
 import { mapGetters } from "vuex";
-import TextEditor from "../base/TextEditor.vue";
 
 export default {
-  components: { TextEditor },
   data() {
     return {
       activeLang: "Tm",

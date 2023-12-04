@@ -25,6 +25,10 @@
         </form>
       </div>
     </div>
+    <popup-error :errorPupUp="errorPupUp">
+      Username or password error!
+    </popup-error>
+    <popup-success :activePupUp="activePupUp"></popup-success>
   </div>
 </template>
 
@@ -35,6 +39,8 @@ export default {
   data() {
     return {
       form: { username: "kip-admin", password: "P@ssword123" },
+      activePupUp: false,
+      errorPupUp: false,
     };
   },
 
@@ -49,11 +55,16 @@ export default {
             this.$cookies.set("Authorization", `Bearer ${data.token}`);
             localStorage.setItem("Authorization", `Bearer ${data.token}`);
             this.$router.push(`/admin`);
+            this.activePupUp = true;
+            setTimeout(() => {
+              this.activePupUp = false;
+            }, 2000);
           } else {
             this.$router.push("/admin/login");
           }
         } catch (err) {
           console.log(err);
+          this.errorPupUp = true;
         }
       }
     },
