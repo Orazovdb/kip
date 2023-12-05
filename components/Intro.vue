@@ -57,7 +57,7 @@
       </div>
     </div>
     <div class="intro__swiper">
-      <swiper-item title="News"> </swiper-item>
+      <swiper-item title="Gallery"> </swiper-item>
     </div>
     <div class="intro__title-block">
       <div class="intro__title-block-box-wrapper">
@@ -80,9 +80,7 @@
         <div class="representative__item">
           <img src="@/assets/img/mennan.svg" alt="" />
         </div>
-        <div class="representative__item">
-          <img src="@/assets/img/hollysos.svg" alt="" />
-        </div>
+
         <div class="representative__item">
           <img src="@/assets/img/interflon.svg" alt="" />
         </div>
@@ -436,13 +434,8 @@ export default {
     img {
       max-width: 100%;
       object-fit: contain;
-      filter: grayscale(100%);
     }
-    &:hover {
-      img {
-        filter: grayscale(0%);
-      }
-    }
+
     @media (max-width: 479px) {
       max-width: 60px;
     }

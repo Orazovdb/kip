@@ -23,9 +23,6 @@
             <div class="representative__image swiper-slide">
               <img src="@/assets/img/airpol.svg" alt="" />
             </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/hollysos.svg" alt="" />
-            </div>
           </div>
           <div class="representative__swiper-navigations">
             <div
@@ -294,14 +291,8 @@ export default {
     img {
       width: 100%;
       height: 100%;
-      filter: grayscale(100%);
       object-fit: contain;
       transition: all 0.3s;
-    }
-    &:hover {
-      img {
-        filter: grayscale(0%);
-      }
     }
   }
 }
