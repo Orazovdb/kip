@@ -39,6 +39,11 @@
     </div>
     <popup-error :errorPupUp="errorPupUp">{{ errorMessage }}</popup-error>
     <popup-success :activePupUp="activePupUp"></popup-success>
+    <pop-up-delete
+      :deletePupUp="deletePupUp"
+      @no="deletePupUp = false"
+      @confirm="confirm"
+    ></pop-up-delete>
   </div>
 </template>
 
@@ -52,6 +57,7 @@ export default {
       activePupUp: false,
       errorPupUp: false,
       paginationCount: 0,
+      deletePupUp: false,
       errorMessage: "Boş meydanlary dolduryň!",
       id: null,
       page: 1,
@@ -107,6 +113,19 @@ export default {
     },
     itemDelete(data) {
       this.id = data.galleryId;
+      this.deletePupUp = true;
+    },
+    async confirm() {
+      try {
+        const { success } = await request({
+          url: `images/gallery/remove/${this.id}`,
+        });
+        if (!success) return;
+        this.deletePupUp = false;
+        await this.getGalleries();
+      } catch (error) {
+        console.log(error);
+      }
     },
     async upsertData() {
       if (!this.main.priority || !this.main.image) {
@@ -122,6 +141,7 @@ export default {
           });
           if (!success) return;
           this.galleries.unshift(data);
+          Object.keys((key) => (this.main[key] = null));
         } catch (error) {
           console.log(error.response);
           if (error.response.data.statusCode === 611) {

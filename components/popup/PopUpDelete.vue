@@ -7,8 +7,8 @@
         unusli bol😳
       </p>
       <div class="popup-delete__buttons">
-        <button>NO</button>
-        <button>Yes</button>
+        <button @click="$emit('no')">NO</button>
+        <button @click="$emit('confirm')">Yes</button>
       </div>
     </div>
   </div>
@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  emits: ["no", "confirm"],
   props: {
     deletePupUp: {
       type: Boolean,

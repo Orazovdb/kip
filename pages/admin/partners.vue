@@ -8,6 +8,7 @@
           <form @submit.prevent class="admin-partners__block-form">
             <base-file-input
               imgUpload
+              @file="(file) => uploadPhoto(file, 'dealership')"
               style="width: 290px; min-height: 200px"
               class="mb-1"
             />
@@ -15,60 +16,252 @@
               label="Priority"
               placeholder="..."
               type="number"
+              @updateValue="(val) => (main.dealership.priority = val)"
+              :value="main?.dealership?.priority"
               class="mb-2"
               appendIcon="starIcon"
             />
-            <base-button>Save</base-button>
+            <admin-input
+              label="Website"
+              placeholder="..."
+              @updateValue="(val) => (main.dealership.website = val)"
+              :value="main?.dealership?.website"
+              class="mb-2"
+            />
+            <base-button @clickedButton="upsertData('dealership')"
+              >Save</base-button
+            >
           </form>
           <div class="admin-partners__block-row-wrapper">
             <base-uploaded-file
               class="admin-partners__block-image"
-              v-for="item in 10"
-              :key="item"
+              v-for="item in datas.dealership"
+              :key="item.partnerId"
               imgUpload
-              positionNumber="1"
+              :image="item.fileUrl"
+              :positionNumber="item.priority"
+              @itemDelete="() => itemDelete(item)"
               adminCrash
             />
           </div>
         </div>
       </div>
       <div class="admin-partners__block">
-        <h1 class="admin-partners__block-title">DEALERSHIP</h1>
+        <h1 class="admin-partners__block-title">Наши клиенты</h1>
         <div class="admin-partners__block-row">
           <form @submit.prevent class="admin-partners__block-form">
             <base-file-input
               imgUpload
+              @file="(file) => uploadPhoto(file, 'clients')"
               style="width: 290px; min-height: 200px"
               class="mb-1"
             />
             <admin-input
               label="Priority"
               placeholder="..."
+              @updateValue="(val) => (main.clients.priority = val)"
+              :value="main?.clients?.priority"
               type="number"
               class="mb-2"
               appendIcon="starIcon"
             />
-            <base-button>Save</base-button>
+            <admin-input
+              label="Website"
+              placeholder="..."
+              @updateValue="(val) => (main.clients.website = val)"
+              :value="main?.clients?.website"
+              class="mb-2"
+            />
+            <base-button @clickedButton="upsertData('clients')"
+              >Save</base-button
+            >
           </form>
           <div class="admin-partners__block-row-wrapper">
             <base-uploaded-file
               class="admin-partners__block-image"
-              v-for="item in 10"
-              :key="item"
+              v-for="item in datas.clients"
+              :key="item.partnerId"
               imgUpload
-              positionNumber="1"
+              :image="item.fileUrl"
+              :positionNumber="item.priority"
+              @itemDelete="() => itemDelete(item)"
+              adminCrash
+            />
+          </div>
+        </div>
+      </div>
+      <div class="admin-partners__block">
+        <h1 class="admin-partners__block-title">Наши проекты</h1>
+        <div class="admin-partners__block-row">
+          <form @submit.prevent class="admin-partners__block-form">
+            <base-file-input
+              imgUpload
+              @file="(file) => uploadPhoto(file, 'projects')"
+              style="width: 290px; min-height: 200px"
+              class="mb-1"
+            />
+            <admin-input
+              label="Priority"
+              placeholder="..."
+              @updateValue="(val) => (main.projects.priority = val)"
+              :value="main?.projects?.priority"
+              type="number"
+              class="mb-2"
+              appendIcon="starIcon"
+            />
+            <admin-input
+              label="Website"
+              placeholder="..."
+              @updateValue="(val) => (main.projects.website = val)"
+              :value="main?.projects?.website"
+              class="mb-2"
+            />
+            <base-button @clickedButton="upsertData('projects')"
+              >Save</base-button
+            >
+          </form>
+          <div class="admin-partners__block-row-wrapper">
+            <base-uploaded-file
+              class="admin-partners__block-image"
+              v-for="item in datas.projects"
+              :key="item.partnerId"
+              imgUpload
+              :image="item.fileUrl"
+              :positionNumber="item.priority"
+              @itemDelete="() => itemDelete(item)"
               adminCrash
             />
           </div>
         </div>
       </div>
     </div>
+    <popup-error :errorPupUp="errorPupUp">{{ errorMessage }}</popup-error>
+    <popup-success :activePupUp="activePupUp"></popup-success>
+    <pop-up-delete
+      :deletePupUp="deletePupUp"
+      @no="deletePupUp = false"
+      @confirm="confirm"
+    ></pop-up-delete>
   </div>
 </template>
 
 <script>
+import { request } from "@/api/generic.api";
+
 export default {
   layout: "admin",
+  data() {
+    return {
+      datas: { dealership: [], clients: [], projects: [] },
+      activePupUp: false,
+      errorPupUp: false,
+      paginationCount: 0,
+      deletePupUp: false,
+      errorMessage: "Boş meydanlary dolduryň!",
+      id: null,
+      main: {
+        dealership: {
+          partnerId: null,
+          website: null,
+          fileUrl: null,
+          priority: null,
+          type: "dealership",
+        },
+        clients: {
+          partnerId: null,
+          website: null,
+          fileUrl: null,
+          priority: null,
+          type: "clients",
+        },
+        projects: {
+          partnerId: null,
+          website: null,
+          fileUrl: null,
+          priority: null,
+          type: "projects",
+        },
+      },
+    };
+  },
+  async mounted() {
+    await this.getGalleries();
+  },
+  methods: {
+    async getGalleries() {
+      try {
+        const { success, data } = await request({
+          url: "images/partners/all",
+        });
+        if (!success) return;
+        this.paginationCount = Math.ceil(data.count / this.limit);
+        this.datas.dealership = data.dealership;
+        this.datas.clients = data.clients;
+        this.datas.projects = data.projects;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    itemDelete(data) {
+      this.id = data.partnerId;
+      this.deletePupUp = true;
+    },
+    async upsertData(str) {
+      console.log(str);
+      if (!this.main[str].priority || !this.main[str].fileUrl) {
+        this.errorPupUp = true;
+        setTimeout(() => {
+          this.errorPupUp = false;
+        }, 2000);
+      } else {
+        try {
+          const { success, data } = await request({
+            url: "images/partners/upsert",
+            data: this.main[str],
+          });
+          if (!success) return;
+          this.datas[str].unshift(data);
+          Object.keys((key) => (this.main[str][key] = null));
+        } catch (error) {
+          console.log(error.response);
+          if (error.response.data.statusCode === 611) {
+            this.errorMessage = "Bul piority eyam bar";
+            this.errorPupUp = true;
+            setTimeout(() => {
+              this.errorPupUp = false;
+            }, 2000);
+          }
+        }
+      }
+    },
+    async confirm() {
+      try {
+        const { success } = await request({
+          url: `images/partners/remove/${this.id}`,
+        });
+        if (!success) return;
+        this.deletePupUp = false;
+        await this.getGalleries();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async uploadPhoto(file, str) {
+      try {
+        const { success, data } = await request({
+          url: "upload",
+          data: {
+            fileUrl: file,
+          },
+          file: true,
+        });
+        if (!success) return;
+        this.main[str].fileUrl = data.url;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
 };
 </script>
 

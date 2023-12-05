@@ -14,7 +14,7 @@
     <base-icon
       class="base-uploaded-file__icon-right"
       v-if="adminCrash"
-      @click="$emit('itemDelete')"
+      @clicked="$emit('itemDelete')"
       icon="adminCrash"
     />
   </div>
