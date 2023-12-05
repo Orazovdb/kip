@@ -1,11 +1,11 @@
 export const state = () => ({
-  //   baseURL: process.env.baseURL,
+  imageURL: process.env.IMAGE_URL,
   isPopup: false,
 });
 
 export const getters = {
-  baseURL(state) {
-    //  return state.baseURL;
+  imageURL(state) {
+    return state.imageURL;
   },
   isPopup(state) {
     return state.isPopup;

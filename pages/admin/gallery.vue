@@ -2,20 +2,10 @@
   <div>
     <admin-header> Gallery </admin-header>
     <div class="admin-gallery">
-      <admin-input
-        @updateValue="(val) => (main[`title${activeLang}`] = val)"
-        :value="main[`title${activeLang}`]"
-        label="Title"
-        placeholder="..."
-        class="mb-2"
-      />
-      <div class="admin-gallery__row mb-1">
-        <base-file-input @file="uploadPhoto" style="height: 200px" imgUpload />
-      </div>
       <div class="admin-gallery__row">
         <admin-input
-          @updateValue="(val) => (main[`title${activeLang}`] = val)"
-          :value="main[`title${activeLang}`]"
+          @updateValue="(val) => (main.priority = val)"
+          :value="main.priority"
           label="Priority"
           placeholder="..."
           type="number"
@@ -23,19 +13,37 @@
           appendIcon="starIcon"
         />
       </div>
+      <div class="admin-gallery__row mb-1">
+        <base-file-input @file="uploadPhoto" style="height: 200px" imgUpload />
+      </div>
+      <base-button style="width: 150px" class="mb-2" @clickedButton="upsertData"
+        >Save</base-button
+      >
       <div class="admin-gallery__row">
         <base-uploaded-file
           adminCrash
-          positionNumber='1'
-          v-for="item in 10"
-          :key="item"
+          imgUpload
+          v-for="item in galleries"
+          :key="item.galleryId"
+          :image="item.image"
+          @itemDelete="() => itemDelete(item)"
+          :positionNumber="item.priority"
         />
       </div>
+      <base-pagination
+        v-if="paginationCount > 1"
+        :modelValue="page"
+        @clickPage="(pagination) => updatePage(pagination)"
+        :pageCount="paginationCount"
+      ></base-pagination>
     </div>
+    <popup-error :errorPupUp="errorPupUp">{{ errorMessage }}</popup-error>
+    <popup-success :activePupUp="activePupUp"></popup-success>
   </div>
 </template>
 
 <script>
+import { request } from "@/api/generic.api";
 export default {
   layout: "admin",
   data() {
@@ -43,29 +51,87 @@ export default {
       activeLang: "Tm",
       activePupUp: false,
       errorPupUp: false,
+      paginationCount: 0,
+      errorMessage: "Boş meydanlary dolduryň!",
+      id: null,
+      page: 1,
+      limit: 10,
+      galleries: [],
       main: {
-        titleTm: "",
-        titleRu: "",
-        titleEn: "",
-        contentTm: "",
-        contentRu: "",
-        contentEn: "",
-        taglineTm: "",
-        taglineRu: "",
-        taglineEn: "",
+        galleryId: null,
+        priority: null,
+        image: null,
       },
     };
   },
+  async mounted() {
+    await this.getGalleries();
+  },
   methods: {
     async uploadPhoto(file) {
+      console.log(file);
       try {
-        const { data, status } = await addAboutGallery({
-          data: { file: file },
+        const { success, data } = await request({
+          url: "upload",
+          data: {
+            fileUrl: file,
+          },
+          file: true,
         });
-        if (!status) return;
-        await this.fetchGalleryPhoto();
+        if (!success) return;
+        this.main.image = data.url;
       } catch (error) {
         console.log(error);
+      }
+    },
+    async getGalleries() {
+      try {
+        const { success, data } = await request({
+          url: "images/gallery/all",
+          data: {
+            page: this.page,
+            limit: this.limit,
+            deleted: false,
+          },
+        });
+        if (!success) return;
+        this.paginationCount = Math.ceil(data.count / this.limit);
+        this.galleries = data.rows || [];
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updatePage(p) {
+      this.page = p;
+      await this.getGalleries();
+    },
+    itemDelete(data) {
+      this.id = data.galleryId;
+    },
+    async upsertData() {
+      if (!this.main.priority || !this.main.image) {
+        this.errorPupUp = true;
+        setTimeout(() => {
+          this.errorPupUp = false;
+        }, 2000);
+      } else {
+        try {
+          const { success, data } = await request({
+            url: "images/gallery/upsert",
+            data: this.main,
+          });
+          if (!success) return;
+          this.galleries.unshift(data);
+        } catch (error) {
+          console.log(error.response);
+          if (error.response.data.statusCode === 611) {
+            this.errorMessage = "Bul piority eyam bar";
+            this.errorPupUp = true;
+            setTimeout(() => {
+              this.errorPupUp = false;
+            }, 2000);
+          }
+        }
       }
     },
   },

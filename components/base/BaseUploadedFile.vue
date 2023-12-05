@@ -1,7 +1,7 @@
 <template>
   <div class="base-uploaded-file">
     <div class="base-uploaded-file__image">
-      <img src="@/assets/img/projects_2.png" alt="" />
+      <img :src="`${imageURL}${image}`" alt="" />
     </div>
     <div v-if="positionNumber" class="base-uploaded-file__icon-position">
       {{ positionNumber }}
@@ -14,26 +14,37 @@
     <base-icon
       class="base-uploaded-file__icon-right"
       v-if="adminCrash"
+      @click="$emit('itemDelete')"
       icon="adminCrash"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
+  emits: ["itemDelete"],
   props: {
     imgUpload: {
       type: Boolean,
       default: () => null,
     },
     positionNumber: {
-      type: String,
+      type: [String, Number],
       default: () => "",
     },
     adminCrash: {
       type: Boolean,
       default: () => null,
     },
+    image: {
+      type: String,
+      default: () => "",
+    },
+  },
+  computed: {
+    ...mapGetters(["imageURL"]),
   },
 };
 </script>
