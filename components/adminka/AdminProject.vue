@@ -6,14 +6,12 @@
         @updateValue="(val) => (main[`title${activeLang}`] = val)"
         :value="main[`title${activeLang}`]"
         label="Project name"
-        class="mb-2"
         placeholder="..."
       />
       <admin-input
         @updateValue="(val) => (main[`title${activeLang}`] = val)"
         :value="main[`title${activeLang}`]"
         label="Company name"
-        class="mb-2"
         placeholder="..."
       />
 
@@ -22,7 +20,6 @@
           @updateValue="(val) => (main[`title${activeLang}`] = val)"
           :value="main[`title${activeLang}`]"
           label="number"
-          class="mb-2"
           placeholder="..."
           type="number"
           style="width: 200px"
@@ -33,11 +30,10 @@
         </div>
       </div>
       <div></div>
-      <text-editor></text-editor>
       <admin-textarea
-        @updateValue="(val) => (main[`content${activeLang}`] = val)"
-        :value="main[`content${activeLang}`]"
-        label="Content"
+        @updateValue="(val) => (main[`description${activeLang}`] = val)"
+        :value="main[`description${activeLang}`]"
+        label="Description"
         class="mb-2 admin-textarea"
         placeholder="..."
       />
@@ -51,7 +47,9 @@
         </base-button>
       </div>
     </form>
-    <base-file-input imgUpload style="width: 290px; height: 216px" />
+    <div class="admin-project-page__images-wrapper">
+      <base-file-input imgUpload style="height: 216px" />
+    </div>
     <div class="admin-project-page__images">
       <base-uploaded-file v-for="item in 6" :key="item"></base-uploaded-file>
     </div>
@@ -105,6 +103,12 @@ export default {
 <style lang="scss" scoped>
 .admin-project-page {
   padding: 0 36px 30px;
+
+  &__images-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   &__images {
     margin-top: 15px;
     display: grid;

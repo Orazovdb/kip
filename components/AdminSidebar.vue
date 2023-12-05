@@ -216,6 +216,7 @@ export default {
     border-radius: 10px;
     transition: 0.2s all;
     position: relative;
+    color: var(--primary);
     &:hover {
       background: #e1e1e1;
     }

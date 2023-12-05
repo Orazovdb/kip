@@ -78,6 +78,10 @@ export default {
     width: 45px;
     height: 35px;
     background-color: #fff;
+    transition: 0.2s;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
     p {
       font-weight: 500;
       font-size: 14px;
@@ -94,6 +98,7 @@ export default {
     padding: 6px;
     border-radius: 6px;
     background-color: #fff;
+    cursor: auto;
   }
 }
 </style>

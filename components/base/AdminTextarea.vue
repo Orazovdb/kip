@@ -48,17 +48,17 @@
       </div>
     </div>
     <div class="base-textarea__textarea">
-      <editor-content :editor="editor" />
+      <editor-content :editor="editor" class="base-textarea__tiptap" />
     </div>
   </div>
 </template>
 
 <script>
-import { Editor, EditorContent } from "@tiptap/vue-2";
-import StarterKit from "@tiptap/starter-kit";
-import Placeholder from "@tiptap/extension-placeholder";
 import Blockquote from "@tiptap/extension-blockquote";
+import Placeholder from "@tiptap/extension-placeholder";
 import Underline from "@tiptap/extension-underline";
+import StarterKit from "@tiptap/starter-kit";
+import { Editor, EditorContent } from "@tiptap/vue-2";
 export default {
   components: {
     EditorContent,
@@ -209,7 +209,8 @@ export default {
     color: var(--border);
     font-size: 16px;
     width: 100%;
-    height: 215px;
+    line-height: 19px;
+    height: 150px;
     transition: 0.3s ease 0s;
     padding: 10px 17px 10px 10px;
     background: #f3f3f3;
@@ -226,8 +227,16 @@ export default {
       font-size: 12px;
     }
   }
+
+  &__tiptap {
+    width: 100%;
+    height: 100%;
+  }
+
   &:deep() {
     .tiptap {
+      width: 100%;
+      height: 100%;
       > * + * {
         margin-top: 0.75em;
       }
@@ -287,7 +296,7 @@ export default {
         }
       }
       strong {
-        font-weight: bold !important;
+        font-weight: 800 !important;
         color: #000 !important;
       }
 
@@ -340,6 +349,10 @@ export default {
         border-top: 2px solid rgba(#0d0d0d, 0.1);
         margin: 2rem 0;
       }
+    }
+    .is-editor-empty {
+      width: 100%;
+      height: 100%;
     }
   }
 }
