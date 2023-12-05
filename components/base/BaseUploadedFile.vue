@@ -28,7 +28,7 @@ export default {
     },
     positionNumber: {
       type: String,
-      default: () => '',
+      default: () => "",
     },
     adminCrash: {
       type: Boolean,
@@ -60,6 +60,25 @@ export default {
       object-fit: cover;
       object-position: center;
     }
+  }
+
+  &__icon-position {
+    padding: 4px;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background-color: #fff;
+    border-radius: 4px;
+    transition: 0.2s;
+    z-index: 2;
+    font-size: 16px;
+    text-align: center;
+    color: var(--text4);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__icon-left {

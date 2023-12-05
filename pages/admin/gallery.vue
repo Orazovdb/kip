@@ -26,7 +26,7 @@
       <div class="admin-gallery__row">
         <base-uploaded-file
           adminCrash
-          positionNumber
+          positionNumber='1'
           v-for="item in 10"
           :key="item"
         />
