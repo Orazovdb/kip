@@ -53,7 +53,7 @@ export default {
 .base-uploaded-file {
   position: relative;
   &__image {
-    height: 216px;
+    height: 200px;
     position: relative;
     &::before {
       content: "";

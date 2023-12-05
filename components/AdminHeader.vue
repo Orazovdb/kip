@@ -12,7 +12,7 @@ export default {};
 
 <style lang="scss" scoped>
 .admin-header {
-  padding: 14px 18px;
+  padding: 12px 18px;
   margin-bottom: 18px;
   border-bottom: 1px solid var(--gray-light2);
   width: 100%;
