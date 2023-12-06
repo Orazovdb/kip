@@ -76,14 +76,9 @@
       <div class="news__right">
         <h1 class="news__right-title">News</h1>
         <h2 class="news__right-subtitle">News of the company</h2>
-      
+
         <!-- <button @click="$router.push('/news')" class="news__watch-button">See all</button> -->
       </div>
-    </div>
-    <div class="video-wrapper" @click="pauseVid">
-      <video @click.stop controls ref="myVideo">
-        <source src="/video.mp4" type="video/mp4" />
-      </video>
     </div>
   </div>
 </template>

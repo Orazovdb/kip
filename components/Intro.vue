@@ -1,5 +1,6 @@
 <template>
   <div class="intro">
+    <div ref="aos" />
     <div
       :class="['contact-modal', { active: openContact }]"
       @click.stop="openContact = false"
@@ -32,7 +33,7 @@
     <div class="intro__left-bg" />
     <h1 class="intro__title">Quality matters.</h1>
     <div class="intro__center-items">
-      <div class="relative mobile-button-circle-primary">
+      <div class="relative mobile-button-circle-primary" ref="contact">
         <base-button-circle @clicked="openContact = !openContact"
           >Contact</base-button-circle
         >
@@ -41,10 +42,10 @@
           <base-icon icon="contactWhiteArrow" />
         </div>
       </div>
-      <div class="intro__logo">
+      <div class="intro__logo" ref="image">
         <img src="@/assets/img/kip-logo.svg" alt="logo" />
       </div>
-      <div class="relative mobile-button-circle-white">
+      <div class="relative mobile-button-circle-white" ref="project">
         <base-button-circle :url="url" v-if="url" primary
           >Projects</base-button-circle
         >
@@ -103,13 +104,55 @@ export default {
   data() {
     return {
       openContact: false,
+      observer: null,
     };
+  },
+  mounted() {
+    if (this.$refs.aos) {
+      const options =
+        {
+          rootMargin: "0px 0px 0px 0px",
+          threshold: 1,
+        } || {};
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry && entry.isIntersecting) {
+            this.$refs.image.classList.add("aos");
+            this.$refs.contact.classList.add("aos");
+            this.$refs.project.classList.add("aos");
+            const elemAos = document.querySelectorAll(".aos");
+            console.log(elemAos);
+            elemAos.forEach((elem) => {
+              if (
+                !elem.classList.contains("mobile-button-circle-primary") &&
+                !elem.classList.contains("mobile-button-circle-white") &&
+                !elem.classList.contains("intro__logo")
+              ) {
+                elem.classList.remove("aos");
+              }
+            });
+          }
+        });
+      }, options);
+    }
+    this.observer.observe(this.$refs.aos);
+  },
+  destroyed() {
+    this.observer.disconnect();
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .mobile-button-circle-primary {
+  transition: 1s all;
+  transform: translateX(-80px);
+  opacity: 0;
+  &.aos {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 1s all;
+  }
   @media (max-width: 767px) {
     position: absolute !important;
     bottom: 10%;
@@ -120,6 +163,14 @@ export default {
   }
 }
 .mobile-button-circle-white {
+  transition: 1s all;
+  transform: translateX(80px);
+  opacity: 0;
+  &.aos {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 1s all;
+  }
   @media (max-width: 767px) {
     position: absolute;
     top: 20%;
@@ -206,6 +257,14 @@ export default {
     max-height: 250px;
     border-radius: 50%;
     position: relative;
+    transition: 1s all;
+    transform: translateY(80px);
+    opacity: 0;
+    &.aos {
+      opacity: 1;
+      transform: translateY(0px);
+      transition: 1s all;
+    }
     &::before {
       content: "";
       width: 200px;
@@ -218,6 +277,7 @@ export default {
       border-radius: 50%;
       z-index: -1;
     }
+
     @media (max-width: 767px) {
       &::before {
         content: "";
@@ -285,7 +345,7 @@ export default {
 
   &__title-block {
     position: absolute;
-    bottom: 8%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     @media (max-width: 756px) {

@@ -28,9 +28,9 @@
               :value="main?.dealership?.website"
               class="mb-2"
             />
-            <base-button @clickedButton="upsertData('dealership')"
-              >Save</base-button
-            >
+            <base-button @clickedButton="upsertData('dealership')">
+              Save
+            </base-button>
           </form>
           <div class="admin-partners__block-row-wrapper">
             <base-uploaded-file
@@ -161,21 +161,21 @@ export default {
       id: null,
       main: {
         dealership: {
-          partnerId: null,
+          partnerId: "",
           website: null,
           fileUrl: null,
           priority: null,
           type: "dealership",
         },
         clients: {
-          partnerId: null,
+          partnerId: "",
           website: null,
           fileUrl: null,
           priority: null,
           type: "clients",
         },
         projects: {
-          partnerId: null,
+          partnerId: "",
           website: null,
           fileUrl: null,
           priority: null,

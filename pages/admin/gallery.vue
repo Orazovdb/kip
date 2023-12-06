@@ -16,9 +16,9 @@
       <div class="admin-gallery__row mb-1">
         <base-file-input @file="uploadPhoto" style="height: 200px" imgUpload />
       </div>
-      <base-button style="width: 150px" class="mb-2" @clickedButton="upsertData"
-        >Save</base-button
-      >
+      <div class="admin-gallery__row mb-2">
+        <base-button @clickedButton="upsertData">Save</base-button>
+      </div>
       <div class="admin-gallery__row">
         <base-uploaded-file
           adminCrash
