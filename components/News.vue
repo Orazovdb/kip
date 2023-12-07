@@ -1,6 +1,6 @@
 <template>
-  <div :class="['news', { active: openVideo }]">
-    <div class="news__row">
+  <div class="news" ref="aos">
+    <div class="news__row" ref="row">
       <div class="news__left">
         <div class="news__left-items">
           <div class="news__left-item">
@@ -87,27 +87,38 @@
 export default {
   data() {
     return {
-      openVideo: false,
+      observer: null,
     };
   },
-  // methods: {
-  //   playVideo() {
-  //     const vid = this.$refs.myVideo;
-  //     vid.play();
-  //   },
-
-  //   pauseVid() {
-  //     const vid = this.$refs.myVideo;
-  //     vid.pause();
-  //     this.openVideo = false;
-  //   },
-  // },
+  mounted() {
+    if (this.$refs.aos) {
+      const options =
+        {
+          rootMargin: "0px 0px 0px 0px",
+          threshold: 0.4,
+        } || {};
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry && entry.isIntersecting) {
+            this.$refs.row.classList.add("aos");
+            const elemAos = document.querySelectorAll(".aos");
+            console.log(elemAos);
+          }
+        });
+      }, options);
+    }
+    this.observer.observe(this.$refs.aos);
+  },
+  destroyed() {
+    this.observer.disconnect();
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .news {
   width: 100%;
+  padding-top: 30px;
   &.active {
     .video-wrapper {
       opacity: 1;
@@ -157,7 +168,15 @@ export default {
     height: 100%;
     align-items: center;
     margin: 0 40px;
-    padding: 90px 0;
+    padding: 90px 0 20px;
+    transition: 1s all;
+    transform: translateY(120px);
+    opacity: 0;
+    &.aos {
+      opacity: 1;
+      transform: translateY(0px);
+      transition: 1s all;
+    }
     @media (max-width: 767px) {
       grid-template-columns: 1fr;
       gap: 0;

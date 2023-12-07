@@ -33,7 +33,7 @@ export default {};
 
 <style lang="scss" scoped>
 .gallery-page {
-  padding: 40px 0;
+  padding: 80px 0 40px;
   @media (max-width: 767px) {
     padding: 30px 0;
   }
