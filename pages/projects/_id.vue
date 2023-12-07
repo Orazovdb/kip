@@ -191,6 +191,10 @@
     }
 
     &__images-wrapper {
+      position: relative;
+      &::before {
+        
+      }
     }
 
     &__images-title {

@@ -1,9 +1,9 @@
 <template>
-  <div class="intro">
-    <div ref="aos" />
+  <div class="intro" ref="aos">
     <div
       :class="['contact-modal', { active: openContact }]"
       @click.stop="openContact = false"
+      v-if="openContact"
     >
       <div class="contact-modal__wrapper">
         <div class="contact-modal__box" @click.stop>
@@ -112,7 +112,7 @@ export default {
       const options =
         {
           rootMargin: "0px 0px 0px 0px",
-          threshold: 1,
+          threshold: 0.4,
         } || {};
       this.observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -123,20 +123,7 @@ export default {
             this.$refs.representative.classList.add("aos");
             this.$refs.titleBlock.classList.add("aos");
             this.$refs.swiper.classList.add("aos");
-
             const elemAos = document.querySelectorAll(".aos");
-            elemAos.forEach((elem) => {
-              if (
-                !elem.classList.contains("mobile-button-circle-primary") &&
-                !elem.classList.contains("mobile-button-circle-white") &&
-                !elem.classList.contains("representative") &&
-                !elem.classList.contains("intro__title-block") &&
-                !elem.classList.contains("intro__swiper") &&
-                !elem.classList.contains("intro__logo")
-              ) {
-                elem.classList.remove("aos");
-              }
-            });
           }
         });
       }, options);
@@ -187,6 +174,10 @@ export default {
   width: 100%;
   height: 100vh;
   position: relative;
+  @media (max-width: 767px) {
+    cursor: none;
+  }
+
   &::after {
     content: "";
     fill: rgba(24, 58, 96, 0.5);
@@ -268,7 +259,7 @@ export default {
     opacity: 0;
     &.aos {
       opacity: 1;
-      transform: translateY(0px);
+      transform: translateY(0);
       transition: 1s all;
     }
     &::before {
@@ -285,6 +276,9 @@ export default {
     }
 
     @media (max-width: 767px) {
+      &.aos {
+        transform: translate(-50%, -50%);
+      }
       &::before {
         content: "";
         width: 135px;

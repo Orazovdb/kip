@@ -170,6 +170,7 @@ export default {
 .representative {
   width: 100%;
   height: 100%;
+  padding-top: 30px;
   &__title-wrapper {
     flex: 1 1 auto;
     margin-top: 150px;
