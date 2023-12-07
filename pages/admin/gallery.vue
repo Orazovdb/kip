@@ -80,7 +80,6 @@ export default {
   },
   methods: {
     async uploadPhoto(file) {
-      console.log(file);
       try {
         const { success, data } = await request({
           url: "upload",
@@ -135,6 +134,7 @@ export default {
     async upsertData() {
       if (!this.main.priority || !this.main.image) {
         this.errorPupUp = true;
+        this.errorMessage = "Boş meydanlary doldury";
         setTimeout(() => {
           this.errorPupUp = false;
         }, 2000);

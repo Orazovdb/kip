@@ -125,7 +125,6 @@ export default {
             this.$refs.swiper.classList.add("aos");
 
             const elemAos = document.querySelectorAll(".aos");
-            console.log(elemAos);
             elemAos.forEach((elem) => {
               if (
                 !elem.classList.contains("mobile-button-circle-primary") &&

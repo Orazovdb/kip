@@ -62,7 +62,6 @@ export default {
   },
   methods: {
     toggleLanguage(key) {
-      console.log(key);
       this.activeLang = key;
     },
     changeButtonPage(key) {

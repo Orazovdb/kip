@@ -73,7 +73,6 @@ export default {
   },
   methods: {
     toggleLanguage(key) {
-      console.log(key);
       this.activeLang = key;
     },
     changeButtonPage(key) {
@@ -84,7 +83,6 @@ export default {
       this.changeButtonPage(1);
       setTimeout(() => {
         this.idEdit = data.newsId;
-        console.log(this.idEdit);
       }, 0);
     },
     async getNews() {
@@ -97,7 +95,6 @@ export default {
             deleted: false,
           },
         });
-        console.log(success, data);
         if (!success) return;
         this.paginationCount = Math.ceil(data.count / this.limit);
         this.news = data.rows || [];

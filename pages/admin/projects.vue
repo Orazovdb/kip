@@ -18,22 +18,40 @@
       </base-button>
     </div>
     <div v-if="activeBtn === 1">
-      <admin-project />
+      <admin-project :id="idEdit" />
     </div>
     <div v-else-if="activeBtn === 2">
-      <admin-project-list />
+      <admin-project-list
+        :datas="projects"
+        :page="page"
+        :limit="limit"
+        @itemDelete="getProjects"
+        @itemEdit="itemEdit"
+      />
+      <base-pagination
+        v-if="paginationCount > 1"
+        :modelValue="page"
+        @clickPage="(pagination) => updatePage(pagination)"
+        :pageCount="paginationCount"
+      ></base-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import { request } from "@/api/generic.api";
 export default {
   layout: "admin",
   data() {
     return {
       activeBtn: 1,
       activeLang: "Tm",
-
+      id: null,
+      page: 1,
+      limit: 10,
+      paginationCount: 0,
+      projects: [],
+      idEdit: null,
       buttons: [
         {
           key: 1,
@@ -50,14 +68,43 @@ export default {
       ],
     };
   },
+  async mounted() {
+    await this.getProjects();
+  },
   methods: {
     toggleLanguage(key) {
-      console.log(key);
       this.activeLang = key;
     },
     changeButtonPage(key) {
       this.activeBtn = key;
       this.activeLang = "Tm";
+    },
+    itemEdit(data) {
+      this.changeButtonPage(1);
+      setTimeout(() => {
+        this.idEdit = data.projectId;
+      }, 0);
+    },
+    async getProjects() {
+      try {
+        const { success, data } = await request({
+          url: "projects/all",
+          data: {
+            page: this.page,
+            limit: this.limit,
+            deleted: false,
+          },
+        });
+        if (!success) return;
+        this.paginationCount = Math.ceil(data.count / this.limit);
+        this.projects = data.rows || [];
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updatePage(p) {
+      this.page = p;
+      await this.getProjects();
     },
   },
 };

@@ -210,9 +210,9 @@ export default {
       this.deletePupUp = true;
     },
     async upsertData(str) {
-      console.log(str);
       if (!this.main[str].priority || !this.main[str].fileUrl) {
         this.errorPupUp = true;
+        this.errorMessage = "Boş meydanlary doldury";
         setTimeout(() => {
           this.errorPupUp = false;
         }, 2000);
@@ -224,7 +224,7 @@ export default {
           });
           if (!success) return;
           this.datas[str].unshift(data);
-          Object.keys(his.main[str]).forEach(
+          Object.keys(this.main[str]).forEach(
             (key) => (this.main[str][key] = null)
           );
         } catch (error) {

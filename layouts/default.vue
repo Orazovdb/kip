@@ -32,7 +32,6 @@ export default {
       this.observer = new IntersectionObserver(async ([entry]) => {
         if (entry && entry.isIntersecting) {
           const elemAos = document.querySelectorAll(".aos");
-          console.log(elemAos);
           elemAos.forEach((elem) => {
             if (!elem.classList.contains("menu")) {
               elem.classList.remove("aos");

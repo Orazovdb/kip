@@ -3,43 +3,47 @@
     <base-languages @selectLanguage="toggleLanguage" :activeLang="activeLang" />
     <form class="admin-form" @submit.prevent>
       <admin-input
-        @updateValue="(val) => (main[`title${activeLang}`] = val)"
-        :value="main[`title${activeLang}`]"
+        @updateValue="(val) => (main[`name${activeLang}`] = val)"
+        :value="main[`name${activeLang}`]"
         label="Project name"
         placeholder="..."
       />
       <admin-input
-        @updateValue="(val) => (main[`title${activeLang}`] = val)"
-        :value="main[`title${activeLang}`]"
+        @updateValue="(val) => (main[`company`] = val)"
+        :value="main[`company`]"
         label="Company name"
         placeholder="..."
       />
 
       <div class="flex gap-10">
         <admin-input
-          @updateValue="(val) => (main[`title${activeLang}`] = val)"
-          :value="main[`title${activeLang}`]"
-          label="number"
+          @updateValue="(val) => (main[`priority`] = val)"
+          :value="main[`priority`]"
+          label="Priority"
           placeholder="..."
           type="number"
           style="width: 200px"
           appendIcon="starIcon"
         />
         <div class="text-editor-wrapper__calendar" style="width: 200px">
-          <admin-input label="Calendar" type="date" appendIcon="calendar" />
+          <admin-input
+            label="Calendar"
+            @updateValue="(val) => (main[`workDate`] = val)"
+            :value="main[`workDate`]"
+            type="date"
+            appendIcon="calendar"
+          />
         </div>
       </div>
       <div></div>
       <admin-textarea
-        @updateValue="(val) => (main[`description${activeLang}`] = val)"
-        :value="main[`description${activeLang}`]"
+        v-model="main[`description${activeLang}`]"
         label="Description"
         class="mb-2 admin-textarea"
-        placeholder="..."
       />
       <div class="flex flex-x-end grid-column">
         <base-button
-          @clickedButton="addAbout"
+          @clickedButton="upsertData"
           style="width: 150px"
           class="admin-header__button"
         >
@@ -47,53 +51,183 @@
         </base-button>
       </div>
     </form>
-    <div class="admin-project-page__images-wrapper">
-      <base-file-input imgUpload :image="main.image" style="height: 216px" />
+    <div class="admin-project-page__images-wrapper gap-20">
+      <base-file-input
+        imgUpload
+        :image="main.cover"
+        @file="uploadPhotoCover"
+        style="height: 216px"
+      />
+      <base-file-input
+        imgUpload
+        @file="uploadPhotoImages"
+        :image="main.images[0]"
+        style="height: 216px"
+      />
     </div>
     <div class="admin-project-page__images">
-      <base-uploaded-file v-for="item in 6" :key="item"></base-uploaded-file>
+      <base-uploaded-file
+        v-for="item in main.images"
+        :key="item"
+        :image="item"
+        @itemDelete="itemDelete(item)"
+        adminCrash
+        imgUpload
+      ></base-uploaded-file>
     </div>
-    <popup-error :errorPupUp="errorPupUp"></popup-error>
+    <popup-error :errorPupUp="errorPupUp">{{ errorMessage }}</popup-error>
     <popup-success :activePupUp="activePupUp"></popup-success>
   </div>
 </template>
 
 <script>
+import { request } from "@/api/generic.api";
 export default {
+  props: {
+    id: {
+      type: String,
+      default: null,
+    },
+  },
   data() {
     return {
       activeLang: "Tm",
       activePupUp: false,
       errorPupUp: false,
+      image: null,
+      errorMessage: "Boş meydanlary dolduryň!",
       main: {
-        titleTm: "",
-        titleRu: "",
-        titleEn: "",
-        contentTm: "",
-        contentRu: "",
-        contentEn: "",
-        taglineTm: "",
-        taglineRu: "",
-        taglineEn: "",
+        projectId: null,
+        nameTm: "",
+        nameRu: "",
+        nameEn: "",
+        descriptionTm: "",
+        descriptionRu: "",
+        descriptionEn: "",
+        company: "",
+        workDate: "",
+        images: [],
+        cover: "",
+        priority: null,
+        authorId: null,
       },
     };
+  },
+  watch: {
+    id: async function (val) {
+      await this.getOneProject(val);
+    },
   },
   methods: {
     async addAbout() {
       try {
         const { data, statusCode } = await ADD_ABOUT({ data: this.main });
+        if (!statusCode) return;
         this.activePupUp = true;
         setTimeout(() => {
           this.activePupUp = false;
         }, 2000);
-        if (!statusCode) return;
       } catch (error) {
         console.log(error);
         this.errorPupUp = true;
       }
     },
+    itemDelete(data) {
+      this.main.images = this.main.images.filter((item) => item !== data);
+    },
+    async upsertData() {
+      if (
+        !this.main[`name${this.activeLang}`] ||
+        !this.main[`description${this.activeLang}`]
+      ) {
+        this.errorPupUp = true;
+        this.errorMessage = "Boş meydanlary doldury";
+        setTimeout(() => {
+          this.errorPupUp = false;
+        }, 2000);
+      } else {
+        try {
+          const { success, data } = await request({
+            url: "news/upsert",
+            data: this.main,
+          });
+          if (!success) return;
+          this.main.projectId = null;
+          this.main.nameTm = "";
+          this.main.descriptionTm = "";
+          this.main.nameRu = "";
+          this.main.descriptionRu = "";
+          this.main.nameEn = "";
+          this.main.descriptionEn = "";
+          this.main.images = [];
+          this.main.priority = null;
+          this.main.company = null;
+          this.main.workDate = null;
+          this.main.cover = null;
+          this.main.authorId = null;
+        } catch (error) {
+          console.log(error.response);
+          if (error?.response?.data?.statusCode === 611) {
+            this.errorMessage = "Bul piority eyam bar";
+            this.errorPupUp = true;
+            setTimeout(() => {
+              this.errorPupUp = false;
+            }, 2000);
+          }
+        }
+      }
+    },
+    async getOneProject(id) {
+      try {
+        const { success, data } = await request({
+          url: `projects/one/${id}`,
+          method: "GET",
+        });
+        if (!success) return;
+        for (let [key] of Object.entries(this.main)) {
+          for (let [dataKey] of Object.entries(data)) {
+            if (dataKey === key) {
+              if (dataKey) {
+                this.main[dataKey] = data[dataKey];
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async uploadPhotoCover(file) {
+      try {
+        const { success, data } = await request({
+          url: "upload",
+          data: {
+            fileUrl: file,
+          },
+          file: true,
+        });
+        if (!success) return;
+        this.main.cover = data.url;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async uploadPhotoImages(file) {
+      try {
+        const { success, data } = await request({
+          url: "upload",
+          data: {
+            fileUrl: file,
+          },
+          file: true,
+        });
+        if (!success) return;
+        this.main.images.unshift(data.url);
+      } catch (error) {
+        console.log(error);
+      }
+    },
     toggleLanguage(key) {
-      console.log(key);
       this.activeLang = key;
     },
   },

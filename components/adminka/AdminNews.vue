@@ -131,7 +131,6 @@ export default {
           url: `news/one/${id}`,
           method: "GET",
         });
-        console.log(success, data);
         if (!success) return;
         for (let [key] of Object.entries(this.main)) {
           for (let [dataKey] of Object.entries(data)) {
@@ -155,6 +154,7 @@ export default {
         !this.main[`title${this.activeLang}`]
       ) {
         this.errorPupUp = true;
+        this.errorMessage = "Boş meydanlary doldury";
         setTimeout(() => {
           this.errorPupUp = false;
         }, 2000);
@@ -164,7 +164,6 @@ export default {
             url: "news/upsert",
             data: this.main,
           });
-          console.log(success, data);
           if (!success) return;
           this.main.newsId = null;
           this.main.titleTm = "";
@@ -178,7 +177,6 @@ export default {
           this.main.isMain = false;
           this.main.priority = null;
           this.main.authorId = "";
-          console.log(this.main);
         } catch (error) {
           console.log(error.response);
           if (error?.response?.data?.statusCode === 611) {

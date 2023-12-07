@@ -109,7 +109,6 @@ export default {
     },
 
     toggleLanguage(key) {
-      console.log(key);
       this.activeLang = key;
     },
   },

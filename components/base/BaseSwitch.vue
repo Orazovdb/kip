@@ -34,7 +34,6 @@ export default {
   },
   watch: {
     checked: function (newVal) {
-      console.log(newVal);
       this.checkedValue = newVal;
     },
   },
