@@ -3,11 +3,11 @@ export default {
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
     return {
-      titleTemplate: "%s | Kip",
-      title: "Kip",
+      titleTemplate: "%s | KIP",
+      title: "KIP",
       htmlAttrs: {
         lang: "en",
-        myAttribute: "Kip",
+        myAttribute: "KIP",
         ...i18nHead.htmlAttrs,
       },
       meta: [
@@ -17,7 +17,7 @@ export default {
           content:
             "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
         },
-        { property: "og:title", content: "Kip" },
+        { property: "og:title", content: "KIP" },
         {
           name: "author",
           content: "Developer: Orazov Dovran (#dob)",
@@ -35,10 +35,10 @@ export default {
         { name: "msapplication-navbutton-color", content: "#183A60" },
         { name: "apple-mobile-web-app-status-bar-style", content: "#183A60" },
         { name: "msapplication-TileColor", content: "#183A60" },
-        { name: "application-name", content: "Kip" },
-        { name: "msapplication-tooltip", content: "Kip" },
+        { name: "application-name", content: "KIP" },
+        { name: "msapplication-tooltip", content: "KIP" },
         { name: "mobile-web-app-capable", content: "yes" },
-        { name: "apple-mobile-web-app-title", content: "Kip" },
+        { name: "apple-mobile-web-app-title", content: "KIP" },
         { name: "apple-mobile-web-app-capable", content: "yes" },
         ...i18nHead.meta,
       ],

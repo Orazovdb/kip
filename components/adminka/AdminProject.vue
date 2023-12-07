@@ -97,7 +97,7 @@ export default {
       image: null,
       errorMessage: "Boş meydanlary dolduryň!",
       main: {
-        projectId: null,
+        projectId: "",
         nameTm: "",
         nameRu: "",
         nameEn: "",
