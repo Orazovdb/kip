@@ -57,10 +57,10 @@
         </div>
       </div>
     </div>
-    <div class="intro__swiper">
+    <div class="intro__swiper" ref="swiper">
       <swiper-item title="Gallery"> </swiper-item>
     </div>
-    <div class="intro__title-block">
+    <div class="intro__title-block" ref="titleBlock">
       <div class="intro__title-block-box-wrapper">
         <img
           src="@/assets/img/intro-title-wrapper.png"
@@ -72,7 +72,7 @@
         </h3>
       </div>
     </div>
-    <div class="representative">
+    <div class="representative" ref="representative">
       <h2 class="representative__title">DEALERSHIP</h2>
       <div class="representative__items">
         <div class="representative__item">
@@ -120,12 +120,19 @@ export default {
             this.$refs.image.classList.add("aos");
             this.$refs.contact.classList.add("aos");
             this.$refs.project.classList.add("aos");
+            this.$refs.representative.classList.add("aos");
+            this.$refs.titleBlock.classList.add("aos");
+            this.$refs.swiper.classList.add("aos");
+
             const elemAos = document.querySelectorAll(".aos");
             console.log(elemAos);
             elemAos.forEach((elem) => {
               if (
                 !elem.classList.contains("mobile-button-circle-primary") &&
                 !elem.classList.contains("mobile-button-circle-white") &&
+                !elem.classList.contains("representative") &&
+                !elem.classList.contains("intro__title-block") &&
+                !elem.classList.contains("intro__swiper") &&
                 !elem.classList.contains("intro__logo")
               ) {
                 elem.classList.remove("aos");
@@ -338,6 +345,14 @@ export default {
     left: 40px;
     z-index: 10;
     width: 250px;
+    transition: 1s all;
+    transform: translateX(-80px);
+    opacity: 0;
+    &.aos {
+      opacity: 1;
+      transform: translateY(0px);
+      transition: 1s all;
+    }
     @media (max-width: 767px) {
       display: none;
     }
@@ -345,9 +360,17 @@ export default {
 
   &__title-block {
     position: absolute;
-    bottom: 10%;
+    bottom: 12%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 80px);
+    transition: 1s all;
+    opacity: 0;
+
+    &.aos {
+      opacity: 1;
+      transform: translate(-50%, 0px);
+      transition: 1s all;
+    }
     @media (max-width: 756px) {
       max-width: 200px;
     }
@@ -461,6 +484,14 @@ export default {
   bottom: 2.6%;
   right: 2.8%;
   z-index: 1;
+  transition: 1s all;
+  transform: translateX(80px);
+  opacity: 0;
+  &.aos {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 1s all;
+  }
   @media (max-width: 479px) {
     right: 3%;
   }
