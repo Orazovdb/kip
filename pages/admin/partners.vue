@@ -10,6 +10,7 @@
               imgUpload
               @file="(file) => uploadPhoto(file, 'dealership')"
               style="width: 290px; min-height: 200px"
+              :image="main['dealership'].fileUrl"
               class="mb-1"
             />
             <admin-input
@@ -52,6 +53,7 @@
           <form @submit.prevent class="admin-partners__block-form">
             <base-file-input
               imgUpload
+              :image="main['clients'].fileUrl"
               @file="(file) => uploadPhoto(file, 'clients')"
               style="width: 290px; min-height: 200px"
               class="mb-1"
@@ -96,6 +98,7 @@
           <form @submit.prevent class="admin-partners__block-form">
             <base-file-input
               imgUpload
+              :image="main['projects'].fileUrl"
               @file="(file) => uploadPhoto(file, 'projects')"
               style="width: 290px; min-height: 200px"
               class="mb-1"
@@ -120,7 +123,7 @@
               >Save</base-button
             >
           </form>
-          <div class="admin-partners__block-row-wrapper">
+          <!-- <div class="admin-partners__block-row-wrapper">
             <base-uploaded-file
               class="admin-partners__block-image"
               v-for="item in datas.projects"
@@ -131,7 +134,7 @@
               @itemDelete="() => itemDelete(item)"
               adminCrash
             />
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -221,7 +224,9 @@ export default {
           });
           if (!success) return;
           this.datas[str].unshift(data);
-          Object.keys((key) => (this.main[str][key] = null));
+          Object.keys(his.main[str]).forEach(
+            (key) => (this.main[str][key] = null)
+          );
         } catch (error) {
           console.log(error.response);
           if (error.response.data.statusCode === 611) {

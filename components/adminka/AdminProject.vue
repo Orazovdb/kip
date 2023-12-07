@@ -48,7 +48,7 @@
       </div>
     </form>
     <div class="admin-project-page__images-wrapper">
-      <base-file-input imgUpload style="height: 216px" />
+      <base-file-input imgUpload :image="main.image" style="height: 216px" />
     </div>
     <div class="admin-project-page__images">
       <base-uploaded-file v-for="item in 6" :key="item"></base-uploaded-file>

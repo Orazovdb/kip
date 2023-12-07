@@ -5,18 +5,23 @@
       <div v-if="!imgPath" class="file-input__content">
         <base-icon icon="adminImg"></base-icon>
       </div>
-      <img v-else :src="imgPath" alt="" />
+      <img v-else :src="`${imageURL}${imgPath}`" alt="" />
     </label>
     <base-icon v-if="imgUpload" icon="imgUpload" class="file-input__icon" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     imgUpload: {
       type: Boolean,
       default: () => null,
+    },
+    image: {
+      type: String,
+      default: null,
     },
   },
   data() {
@@ -24,9 +29,21 @@ export default {
       imgPath: null,
     };
   },
+  computed: {
+    ...mapGetters(["imageURL"]),
+  },
+  watch: {
+    image: function (newVal) {
+      if (!newVal || newVal === "") {
+        this.imgPath = null;
+      } else {
+        this.imgPath = newVal;
+      }
+    },
+  },
   methods: {
     change(event) {
-      this.imgPath = URL.createObjectURL(event?.target?.files[0]);
+      // this.imgPath = URL.createObjectURL(event?.target?.files[0]);
       this.$emit("file", event.target.files[0]);
     },
   },
