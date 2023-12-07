@@ -54,6 +54,9 @@ export default {};
           line-height: 22px;
           padding: 10px;
           background-color: #fff;
+          &:not(:nth-child(2)) {
+            text-align: center;
+          }
           &:first-child {
             text-align: center;
           }
@@ -69,6 +72,12 @@ export default {};
           }
           &:last-child {
             width: 100px;
+          }
+          &:deep() {
+            h1 {
+              font-size: 12px !important;
+              color: inherit !important;
+            }
           }
         }
       }

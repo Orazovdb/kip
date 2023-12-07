@@ -14,7 +14,12 @@
         />
       </div>
       <div class="admin-gallery__row mb-1">
-        <base-file-input @file="uploadPhoto" style="height: 200px" imgUpload />
+        <base-file-input
+          @file="uploadPhoto"
+          :image="main.image"
+          style="height: 200px"
+          imgUpload
+        />
       </div>
       <div class="admin-gallery__row mb-2">
         <base-button @clickedButton="upsertData">Save</base-button>
@@ -141,7 +146,7 @@ export default {
           });
           if (!success) return;
           this.galleries.unshift(data);
-          Object.keys((key) => (this.main[key] = null));
+          Object.keys(this.main).forEach((key) => (this.main[key] = null));
         } catch (error) {
           console.log(error.response);
           if (error.response.data.statusCode === 611) {

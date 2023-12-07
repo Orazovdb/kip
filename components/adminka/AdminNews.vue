@@ -13,62 +13,88 @@
         <admin-input label="Calendar" type="date" appendIcon="calendar" />
       </div>
       <admin-textarea
-        @updateValue="(val) => (main[`description${activeLang}`] = val)"
-        :value="main[`description${activeLang}`]"
+        v-model="main[`content${activeLang}`]"
         label="Description"
         class="mb-2 admin-textarea"
-        placeholder="..."
       />
     </form>
     <div class="admin-news-page__images-wrapper">
-      <base-file-input imgUpload style="height: 216px" />
+      <base-file-input
+        imgUpload
+        @file="uploadPhoto"
+        :image="main.image"
+        style="height: 216px"
+      />
       <div class="admin-news-page__switches-wrapper">
         <div class="admin-news-page__switches">
           <admin-input
             label="Priority"
             placeholder="..."
             type="number"
-            @updateValue="(val) => (main.dealership.priority = val)"
-            :value="main?.dealership?.priority"
+            @updateValue="(val) => (main.priority = val)"
+            :value="main?.priority"
             appendIcon="starIcon"
             style="height: 66px"
           />
-          <base-switch title="Home"></base-switch>
-          <base-switch title="News"></base-switch>
+          <base-switch
+            title="Home"
+            :checked="main.isMain"
+            @changed="(event) => (main.isMain = event)"
+          ></base-switch>
+          <base-switch
+            title="News"
+            :checked="main.published"
+            @changed="(event) => (main.published = event)"
+          ></base-switch>
         </div>
         <base-button
-          @clickedButton="upsertData('dealership')"
+          @clickedButton="upsertData"
           style="width: 200px; margin-bottom: 20px; margin-left: 150px"
         >
           Save
         </base-button>
       </div>
     </div>
-
-    <popup-error :errorPupUp="errorPupUp"></popup-error>
+    <popup-error :errorPupUp="errorPupUp">{{ errorMessage }}</popup-error>
     <popup-success :activePupUp="activePupUp"></popup-success>
   </div>
 </template>
 
 <script>
+import { request } from "@/api/generic.api";
 export default {
+  props: {
+    id: {
+      type: String,
+      default: null,
+    },
+  },
   data() {
     return {
       activeLang: "Tm",
       activePupUp: false,
       errorPupUp: false,
+      errorMessage: "Boş meydanlary dolduryň!",
       main: {
+        newsId: null,
         titleTm: "",
-        titleRu: "",
-        titleEn: "",
         contentTm: "",
+        titleRu: "",
         contentRu: "",
+        titleEn: "",
         contentEn: "",
-        taglineTm: "",
-        taglineRu: "",
-        taglineEn: "",
+        image: "",
+        published: false,
+        isMain: false,
+        priority: null,
+        authorId: "",
       },
     };
+  },
+  watch: {
+    id: async function (val) {
+      await this.getOneNews(val);
+    },
   },
   methods: {
     async addAbout() {
@@ -84,9 +110,86 @@ export default {
         this.errorPupUp = true;
       }
     },
+    async uploadPhoto(file) {
+      try {
+        const { success, data } = await request({
+          url: "upload",
+          data: {
+            fileUrl: file,
+          },
+          file: true,
+        });
+        if (!success) return;
+        this.main.image = data.url;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getOneNews(id) {
+      try {
+        const { success, data } = await request({
+          url: `news/one/${id}`,
+          method: "GET",
+        });
+        console.log(success, data);
+        if (!success) return;
+        for (let [key] of Object.entries(this.main)) {
+          for (let [dataKey] of Object.entries(data)) {
+            if (dataKey === key) {
+              if (dataKey) {
+                this.main[dataKey] = data[dataKey];
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
     toggleLanguage(key) {
-      console.log(key);
       this.activeLang = key;
+    },
+    async upsertData() {
+      if (
+        !this.main[`content${this.activeLang}`] ||
+        !this.main[`title${this.activeLang}`]
+      ) {
+        this.errorPupUp = true;
+        setTimeout(() => {
+          this.errorPupUp = false;
+        }, 2000);
+      } else {
+        try {
+          const { success, data } = await request({
+            url: "news/upsert",
+            data: this.main,
+          });
+          console.log(success, data);
+          if (!success) return;
+          this.main.newsId = null;
+          this.main.titleTm = "";
+          this.main.contentTm = "";
+          this.main.titleRu = "";
+          this.main.contentRu = "";
+          this.main.titleEn = "";
+          this.main.contentEn = "";
+          this.main.image = "";
+          this.main.published = false;
+          this.main.isMain = false;
+          this.main.priority = null;
+          this.main.authorId = "";
+          console.log(this.main);
+        } catch (error) {
+          console.log(error.response);
+          if (error?.response?.data?.statusCode === 611) {
+            this.errorMessage = "Bul piority eyam bar";
+            this.errorPupUp = true;
+            setTimeout(() => {
+              this.errorPupUp = false;
+            }, 2000);
+          }
+        }
+      }
     },
   },
 };

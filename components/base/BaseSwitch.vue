@@ -3,7 +3,11 @@
     <h1 class="switch-title">{{ title }}</h1>
     <div class="switch-wrapper">
       <label class="switch">
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          v-model="checkedValue"
+          @change="($event) => $emit('changed', $event.target.checked)"
+        />
         <span class="slider round"></span>
       </label>
     </div>
@@ -12,10 +16,26 @@
 
 <script>
 export default {
+  emits: ["changed"],
   props: {
     title: {
       type: String,
       default: () => "",
+    },
+    checked: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      checkedValue: this.checked,
+    };
+  },
+  watch: {
+    checked: function (newVal) {
+      console.log(newVal);
+      this.checkedValue = newVal;
     },
   },
 };
