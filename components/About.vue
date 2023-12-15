@@ -11,42 +11,12 @@
         />
       </div>
       <div class="about__content" ref="content">
-        <h1 class="about__title">About us</h1>
+        <h1 class="about__title">
+          {{ translateTitle(aboutUs) }}
+        </h1>
         <p class="about__description">
-          Our company was founded in 2020. KIP Engineering holds a distinct
-          position in industry and is a con dent business that is expanding
-          quickly. We successfully oversee projects from the outset, through the
-          phases of planning, execution, and commissioning, and all the way
-          through to the project's completion. The company holds a prominent
-          position in the services industry, providing cutting-edge
-          technological solutions and services to its partners and clients that
-          keep up with the times. The goals, needs, and preferences of the
-          client form the foundation of the business. Our goals revolve around
-          our capacity to deliver to clients the best possible solutions in
-          terms of scope, effectiveness, and suitability under the pertinent
-          circumstances in the shortest amount of time, along with post-purchase
-          guarantees that include free technical support and consulting. <br />
-          Our team of highly skilled specialists and engineers enables us to
-          conduct in-depth analyses of markets and procedures within the
-          industries we work in. Public sector representatives and private
-          industrial organizations are among our company's clientele. KIP
-          Engineering has established itself in a wide range of industries. We
-          deal with IT technologies, offering our own in-house developed
-          products along with the option of integrating them with those of our
-          international and domestic partners. Our work is presented in the
-          textile, food, agricultural, and household chemical industries. We
-          undertake projects in the industrial sector. <br />
-          Our determination to create a highly productive process and solve
-          complicated problems lead us to continuously grow and explore new
-          frontiers, enhancing our skills and making devoted partners and
-          friends. <br />
-          Our Mission <br />
-          Elevating possibilities through engineering and IT mastery. Our
-          mission is to lead with creativity, integrity, and a commitment to
-          client success, shaping a future where technology empowers and
-          connects us all.
+          {{ translateContent(aboutUs) }}
         </p>
-
         <div class="about__button-wrapper">
           <button
             @click="$router.push(localeLocation('/about'))"
@@ -68,8 +38,12 @@
                   <base-icon icon="flag" />
                 </div>
                 <div class="information-button-dropdown__content">
-                  <p class="information-button-dropdown__number">3</p>
-                  <h2 class="information-button-dropdown__title">Countries</h2>
+                  <p class="information-button-dropdown__number">
+                    {{ aboutUs?.information?.info1.count }}
+                  </p>
+                  <h2 class="information-button-dropdown__title">
+                    {{ translateTitle(aboutUs?.information?.info1) }}
+                  </h2>
                 </div>
               </div>
               <div class="information-button-dropdown__item">
@@ -77,8 +51,12 @@
                   <base-icon icon="twoGuy" />
                 </div>
                 <div class="information-button-dropdown__content">
-                  <p class="information-button-dropdown__number">30</p>
-                  <h2 class="information-button-dropdown__title">Employees</h2>
+                  <p class="information-button-dropdown__number">
+                    {{ aboutUs?.information?.info2.count }}
+                  </p>
+                  <h2 class="information-button-dropdown__title">
+                    {{ translateTitle(aboutUs?.information?.info2) }}
+                  </h2>
                 </div>
               </div>
               <div class="information-button-dropdown__item">
@@ -86,8 +64,12 @@
                   <base-icon icon="guy" />
                 </div>
                 <div class="information-button-dropdown__content">
-                  <p class="information-button-dropdown__number">25</p>
-                  <h2 class="information-button-dropdown__title">Clients</h2>
+                  <p class="information-button-dropdown__number">
+                    {{ aboutUs?.information?.info3.count }}
+                  </p>
+                  <h2 class="information-button-dropdown__title">
+                    {{ translateTitle(aboutUs?.information?.info3) }}
+                  </h2>
                 </div>
               </div>
               <div class="information-button-dropdown__item">
@@ -95,15 +77,19 @@
                   <base-icon icon="projects" />
                 </div>
                 <div class="information-button-dropdown__content">
-                  <p class="information-button-dropdown__number">45</p>
-                  <h2 class="information-button-dropdown__title">Projects</h2>
+                  <p class="information-button-dropdown__number">
+                    {{ aboutUs?.information?.info4.count }}
+                  </p>
+                  <h2 class="information-button-dropdown__title">
+                    {{ translateTitle(aboutUs?.information?.info4) }}
+                  </h2>
                 </div>
               </div>
             </div>
           </div>
-          <base-button-circle primary @clicked="isVisible = !isVisible"
-            >information</base-button-circle
-          >
+          <base-button-circle primary @clicked="isVisible = !isVisible">
+            information
+          </base-button-circle>
           <div class="button-arrow-title">
             <base-icon icon="workBlackArrow" class="arrow" />
             <base-icon icon="arrowLeftMini" class="arrow-mobile" />
@@ -119,7 +105,15 @@
 </template>
 
 <script>
+import translate from "@/mixins/translate";
 export default {
+  props: {
+    aboutUs: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  mixins: [translate],
   data() {
     return {
       isVisible: false,
@@ -127,6 +121,7 @@ export default {
       observer: null,
     };
   },
+
   methods: {
     closeDropdown() {
       this.isVisible = false;
@@ -145,7 +140,6 @@ export default {
             this.$refs.image.classList.add("aos");
             this.$refs.content.classList.add("aos");
             const elemAos = document.querySelectorAll(".aos");
-            console.log(elemAos);
           }
         });
       }, options);
@@ -241,7 +235,7 @@ export default {
     max-width: 627px;
     transition: 1s all;
     transform: translateY(80px);
-    opacity: 0;
+    opacity: 1;
     &.aos {
       opacity: 1;
       transform: translateY(0px);
@@ -279,12 +273,22 @@ export default {
     display: inline-block;
     &::after {
       content: "";
-      position: absolute;
-      width: 70%;
-      height: 1px;
-      background-color: var(--red2);
       bottom: 0;
       left: 0;
+      width: 80%;
+      height: 1px;
+      background-color: var(--red);
+      position: absolute;
+      animation: titleAnimate 2s linear infinite;
+      @keyframes titleAnimate {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+          opacity: 0;
+        }
+      }
     }
     @media (max-width: 767px) {
       font-size: 24px;

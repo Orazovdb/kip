@@ -1,85 +1,15 @@
 <template>
-  <div :class="classes">
-    <div
-      v-swiper:mySwiper="options"
-      class="swiper-block__swiper swiper"
-      v-if="sliders"
-    >
-      <h1 class="swiper-block__title" v-if="title">{{ title }}</h1>
-      <!-- <div class="swiper-block__circle"></div>
-      <div class="swiper-block__box"></div> -->
+  <div class="swiper-block">
+    <div v-swiper:mySwiper="options" class="swiper-block__swiper swiper">
+      <h1 class="swiper-block__title">Gallery</h1>
       <div class="swiper-block__wrapper swiper-wrapper">
         <div
           class="swiper-block__slide swiper-slide"
-          v-for="(slider, index) in sliders"
-          :key="index"
+          v-for="photo in photos"
+          :key="photo.galleryId"
         >
-          <div class="swiper-block__image">
-            <img :src="require(`@/assets/img/${slider.image}`)" />
-          </div>
-          <div class="swiper-block__title-wrapper">
-            <h1 class="swiper-block__slide-title">{{ slider.title }}</h1>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-block__navigations">
-        <div class="swiper-block__prev-navigation swiper-button-prev">
-          <base-icon icon="prevNavigation" />
-        </div>
-        <div class="swiper-block__next-navigation swiper-button-next">
-          <base-icon icon="nextNavigation" />
-        </div>
-      </div>
-    </div>
-    <div
-      v-swiper:mySwiper="options"
-      class="swiper-block__swiper swiper"
-      v-else-if="telecom"
-    >
-      <h1 class="swiper-block__title" v-if="title">{{ title }}</h1>
-      <!-- <div class="swiper-block__circle"></div>
-      <div class="swiper-block__box"></div> -->
-      <div class="swiper-block__wrapper swiper-wrapper">
-        <div
-          class="swiper-block__slide swiper-slide"
-          v-for="(slider, index) in telecom"
-          :key="index"
-        >
-          <div class="swiper-block__image">
-            <img :src="require(`@/assets/img/${slider.image}`)" />
-          </div>
-          <div class="swiper-block__title-wrapper">
-            <h1 class="swiper-block__slide-title">{{ slider.title }}</h1>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-block__navigations">
-        <div class="swiper-block__prev-navigation swiper-button-prev">
-          <base-icon icon="prevNavigation" />
-        </div>
-        <div class="swiper-block__next-navigation swiper-button-next">
-          <base-icon icon="nextNavigation" />
-        </div>
-      </div>
-    </div>
-    <div v-else v-swiper:mySwiper="options" class="swiper-block__swiper swiper">
-      <h1 class="swiper-block__title" v-if="title">{{ title }}</h1>
-      <!-- <div class="swiper-block__circle"></div>
-      <div class="swiper-block__box"></div> -->
-      <div class="swiper-block__wrapper swiper-wrapper">
-        <div class="swiper-block__slide swiper-slide">
-          <div class="swiper-block__image">
-            <img src="@/assets/img/gallery_1.jpg" />
-          </div>
-        </div>
-        <div class="swiper-block__slide swiper-slide">
-          <div class="swiper-block__image">
-            <img src="@/assets/img/gallery_2.jpg" />
-          </div>
-        </div>
-        <div class="swiper-block__slide swiper-slide">
-          <div class="swiper-block__image">
-            <img src="@/assets/img/gallery_3.jpg" />
+          <div v-if="photo.image" class="swiper-block__image">
+            <img :src="`${imageURL}${photo?.image}`" />
           </div>
         </div>
       </div>
@@ -96,39 +26,22 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     title: {
       type: String,
       default: () => "",
     },
-    projects: {
-      type: Boolean,
-      default: () => null,
-    },
-    image: {
-      type: String,
-      default: () => "",
-    },
-    sliders: {
+    photos: {
       type: Array,
-      default: () => null,
-    },
-    telecom: {
-      type: Array,
-      default: () => null,
+      default: () => [],
     },
   },
   computed: {
-    classes: function () {
-      return [
-        "swiper-block",
-        {
-          "swiper-block--projects": this.projects,
-        },
-      ];
-    },
+    ...mapGetters(["imageURL"]),
   },
+  mounted() {},
   data() {
     return {
       options: {
@@ -307,96 +220,6 @@ export default {
 
     &:active {
       transform: scale(1.2);
-    }
-  }
-
-  &--projects {
-    .swiper-block__title {
-      font-size: 36px;
-    }
-    .swiper-block__image {
-      height: 400px;
-      @media (max-width: 767px) {
-        height: 220px;
-      }
-    }
-    .swiper-block__circle {
-      width: 60px;
-      height: 60px;
-      background-color: var(--primary);
-      top: 5px;
-      left: 5px;
-      @media (max-width: 767px) {
-        width: 40px;
-        height: 40px;
-      }
-    }
-
-    .swiper-block__box {
-      width: 70px;
-      height: 70px;
-      background-color: #fff;
-      top: 0;
-      @media (max-width: 767px) {
-        width: 50px;
-        height: 50px;
-      }
-    }
-    .swiper-block__navigations {
-      padding: 6px 12px;
-      background-color: #fff;
-      &:deep() {
-        .swiper-button-disabled {
-          transition: 0.2s all;
-          background-color: transparent !important;
-          cursor: auto;
-          &:active {
-            transform: scale(1);
-          }
-          svg {
-            color: var(--primary) !important;
-            transition: 0.2s all;
-            cursor: auto;
-          }
-        }
-        .swiper-button-prev,
-        .swiper-button-next {
-          background-color: var(--primary);
-          transition: 0.2s all;
-          cursor: pointer;
-          svg {
-            color: white;
-            transition: 0.2s all;
-          }
-        }
-      }
-    }
-    .swiper-block__prev-navigation {
-      width: 35px;
-      height: 35px;
-      border: 1px solid var(--primary);
-    }
-    .swiper-block__next-navigation {
-      width: 35px;
-      height: 35px;
-      border: 1px solid var(--primary);
-    }
-    .swiper-block__title-wrapper {
-      padding: 14px 40px;
-    }
-    .swiper-block__slide-title {
-      font-size: 18px;
-      &::before {
-        content: "";
-        position: absolute;
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background-color: var(--red);
-        left: -22px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
     }
   }
 }

@@ -1,40 +1,58 @@
 export default {
   methods: {
     translateTitle(item) {
-      if (this.$i18n.locale === 'en') {
-        return item.title_en
-      } else if (this.$i18n.locale === 'ru') {
-        return item.title_ru
+      if (this.$i18n.locale === "en") {
+        return item?.titleEn;
+      } else if (this.$i18n.locale === "ru") {
+        return item?.titleRu;
       } else {
-        return item.title_tm
+        return item?.titleTm;
       }
     },
-    translateText(item) {
-      if (this.$i18n.locale === 'en') {
-        return item.text_en
-      } else if (this.$i18n.locale === 'ru') {
-        return item.text_ru
+    translateContent(item) {
+      if (this.$i18n.locale === "en") {
+        return item?.contentEn;
+      } else if (this.$i18n.locale === "ru") {
+        return item?.contentRu;
       } else {
-        return item.text_tm
-      }
-    },
-    translateImage(item) {
-      if (this.$i18n.locale === 'en') {
-        return item.image_en
-      } else if (this.$i18n.locale === 'ru') {
-        return item.image_ru
-      } else {
-        return item.image_tm
+        return item?.contentTm;
       }
     },
     translateDescription(item) {
-      if (this.$i18n.locale === 'en') {
-        return item.description_en
-      } else if (this.$i18n.locale === 'ru') {
-        return item.description_ru
+      if (this.$i18n.locale === "en") {
+        return item?.descriptionEn;
+      } else if (this.$i18n.locale === "ru") {
+        return item?.descriptionRu;
       } else {
-        return item.description_tm
+        return item?.descriptionTm;
       }
-    }
-  }
-}
+    },
+    translateTagline(item) {
+      if (this.$i18n.locale === "en") {
+        return item?.taglineEn;
+      } else if (this.$i18n.locale === "ru") {
+        return item?.taglineRu;
+      } else {
+        return item?.taglineTm;
+      }
+    },
+    translateAddress(item) {
+      if (this.$i18n.locale === "en") {
+        return item?.addressEn;
+      } else if (this.$i18n.locale === "ru") {
+        return item?.addressRu;
+      } else {
+        return item?.addressTm;
+      }
+    },
+    translateName(item) {
+      if (this.$i18n.locale === "en") {
+        return item?.nameEn;
+      } else if (this.$i18n.locale === "ru") {
+        return item?.nameRu;
+      } else {
+        return item?.nameTm;
+      }
+    },
+  },
+};

@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header__container">
       <div class="header__body">
-        <!-- <div :class="['burger-wrapper', { open: openLanguages }]">
+        <div :class="['burger-wrapper', { open: openLanguages }]">
           <div class="burger" @click="toggleLanguages">
             <span></span>
             <span></span>
@@ -15,13 +15,19 @@
             <div class="languages__block">
               <h2 class="languages__title">Language</h2>
               <div class="languages__link-wrapper">
-                <nuxt-link v-for="locale in selectedLocale" exact :key="locale.code" :to="switchLocalePath(locale.code)" class="languages__link">
+                <nuxt-link
+                  v-for="locale in selectedLocale"
+                  exact
+                  :key="locale.code"
+                  :to="switchLocalePath(locale.code)"
+                  class="languages__link"
+                >
                   {{ locale.name }}
                 </nuxt-link>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <nav class="menu">
           <div class="menu__body">
             <ul class="menu__list">
@@ -285,12 +291,13 @@ export default {
   width: 248px;
   padding: 10px 20px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--primary);
   backdrop-filter: blur(30.5px);
   z-index: 10;
   transform: translate(-10px, -10px);
   opacity: 0;
   pointer-events: none;
+  box-shadow: 0.2px 0.2px 4px #fff;
   transition: 0.1s all;
   &__icon {
     display: flex;
@@ -329,7 +336,7 @@ export default {
     &.nuxt-link-active,
     &.nuxt-link-exact-active {
       background: rgba(255, 255, 255, 0.2);
-      color: var(--text);
+      color: #fff;
     }
   }
 }

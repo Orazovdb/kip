@@ -1,5 +1,5 @@
 <template>
-  <div class="projects">
+  <div class="projects" ref="aos">
     <div class="projects__container">
       <div class="projects__top">
         <base-icon
@@ -9,98 +9,21 @@
         />
         <h1 class="projects__title">Projects</h1>
       </div>
-      <div class="projects__items">
+      <div class="projects__items" ref="images">
         <div
+          v-for="project in projects"
+          :key="project.projectId"
           class="projects-item"
-          @click="$router.push(localeLocation(`/projects/${index + 1}`))"
+          @click="
+            $router.push(localeLocation(`/projects/${project.projectId}`))
+          "
         >
           <div class="projects-item__image">
-            <img src="@/assets/img/engineering_1.jpg" alt="" />
-          </div>
-          <div class="projects-item__bottom">
-            <!-- <div class="projects-item__profile">
-              <img src="" alt="" />
-            </div> -->
-            <div class="projects-item__content">
-              <h1 class="projects-item__title">СF / BCF YARNS</h1>
-            </div>
-          </div>
-        </div>
-        <div
-          class="projects-item"
-          @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-        >
-          <div class="projects-item__image">
-            <img src="@/assets/img/telecom_2.png" alt="" />
+            <img :src="`${imageURL}${project?.cover}`" alt="" />
           </div>
           <div class="projects-item__bottom">
             <div class="projects-item__content">
-              <h1 class="projects-item__title">RIETER PATHFINDER 222</h1>
-            </div>
-          </div>
-        </div>
-        <div
-          class="projects-item"
-          @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-        >
-          <div class="projects-item__image">
-            <img src="@/assets/img/lemmer.jpg" alt="" />
-          </div>
-          <div class="projects-item__bottom">
-            <div class="projects-item__content">
-              <h1 class="projects-item__title">Lemmer</h1>
-            </div>
-          </div>
-        </div>
-        <div
-          class="projects-item"
-          @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-        >
-          <div class="projects-item__image">
-            <img src="@/assets/img/lemmer.jpg" alt="" />
-          </div>
-          <div class="projects-item__bottom">
-            <div class="projects-item__content">
-              <h1 class="projects-item__title">Lemmer</h1>
-            </div>
-          </div>
-        </div>
-        <div
-          class="projects-item"
-          @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-        >
-          <div class="projects-item__image">
-            <img src="@/assets/img/lemmer.jpg" alt="" />
-          </div>
-          <div class="projects-item__bottom">
-            <div class="projects-item__content">
-              <h1 class="projects-item__title">Lemmer</h1>
-            </div>
-          </div>
-        </div>
-        <div
-          class="projects-item"
-          @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-        >
-          <div class="projects-item__image">
-            <img src="@/assets/img/lemmer.jpg" alt="" />
-          </div>
-          <div class="projects-item__bottom">
-            <div class="projects-item__content">
-              <h1 class="projects-item__title">Lemmer</h1>
-            </div>
-          </div>
-        </div>
-        <div
-          class="projects-item"
-          @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-        >
-          <div class="projects-item__image">
-            <img src="@/assets/img/lemmer.jpg" alt="" />
-          </div>
-          <div class="projects-item__bottom">
-            <div class="projects-item__content">
-              <h1 class="projects-item__title">Lemmer</h1>
+              <h1 class="projects-item__title">{{ translateName(project) }}</h1>
             </div>
           </div>
         </div>
@@ -110,7 +33,60 @@
 </template>
 
 <script>
-export default {};
+import { GET_PROJECTS } from "@/api/home.api";
+import translate from "@/mixins/translate";
+import { mapGetters } from "vuex";
+
+export default {
+  mixins: [translate],
+  computed: {
+    ...mapGetters(["imageURL"]),
+  },
+  data() {
+    return {
+      observer: null,
+      projects: {
+        type: Array,
+        default: () => null,
+      },
+    };
+  },
+  async mounted() {
+    await this.fetchProjects();
+    if (this.$refs.aos) {
+      const options =
+        {
+          rootMargin: "0px 0px 0px 0px",
+          threshold: 0.4,
+        } || {};
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry && entry.isIntersecting) {
+            this.$refs.images.classList.add("aos");
+            const elemAos = document.querySelectorAll(".aos");
+          }
+        });
+      }, options);
+    }
+    this.observer.observe(this.$refs.aos);
+  },
+  destroyed() {
+    this.observer.disconnect();
+  },
+
+  methods: {
+    async fetchProjects() {
+      try {
+        const { data, statusCode } = await GET_PROJECTS();
+        if (statusCode) {
+          this.projects = data || [];
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -181,6 +157,14 @@ export default {};
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
+    transition: 1s all;
+    transform: translateY(120px);
+    opacity: 0;
+    &.aos {
+      opacity: 1;
+      transform: translateY(0px);
+      transition: 1s all;
+    }
     @media (max-width: 767px) {
       grid-template-columns: 1fr;
       gap: 30px;

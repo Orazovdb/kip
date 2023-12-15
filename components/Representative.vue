@@ -1,6 +1,6 @@
 <template>
-  <div class="representative">
-    <div class="representative__columns">
+  <div class="representative" ref="aos">
+    <div class="representative__columns" ref="images">
       <div class="representative__title-wrapper">
         <h1 class="representative__title">Partners</h1>
       </div>
@@ -8,21 +8,14 @@
         <div class="representative__subtitle">DEALERSHIP</div>
         <div v-swiper:mySwiper="options" class="representative__swiper swiper">
           <div class="representative__images swiper-wrapper">
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/bosch.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/mennan.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/zebra.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/interflon.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/airpol.svg" alt="" />
-            </div>
+            <a
+              v-for="item in main.dealership"
+              :key="item.partnerId"
+              :href="item.website"
+              class="representative__image swiper-slide"
+            >
+              <img :src="`${imageURL}${item?.fileUrl}`" alt="" />
+            </a>
           </div>
           <div class="representative__swiper-navigations">
             <div
@@ -42,27 +35,14 @@
         <div class="representative__subtitle">Our clients</div>
         <div v-swiper:mySwiper4="options" class="representative__swiper swiper">
           <div class="representative__images swiper-wrapper">
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/airlines.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/arcalyk.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/tach.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/smthng.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/tdm.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/mebel.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/bereket.svg" alt="" />
-            </div>
+            <a
+              v-for="item in main.clients"
+              :key="item.partnerId"
+              :href="item.website"
+              class="representative__image swiper-slide"
+            >
+              <img :src="`${imageURL}${item?.fileUrl}`" alt="" />
+            </a>
           </div>
           <div class="representative__swiper-navigations">
             <div
@@ -82,30 +62,14 @@
         <div class="representative__subtitle">Our projects</div>
         <div v-swiper:mySwiper1="options" class="representative__swiper swiper">
           <div class="representative__images swiper-wrapper">
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/ozmak.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/oerlikon.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/oerlikon_2.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/oerlikon_3.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/gea.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/imgo.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/ektam.svg" alt="" />
-            </div>
-            <div class="representative__image swiper-slide">
-              <img src="@/assets/img/krones.svg" alt="" />
-            </div>
+            <a
+              v-for="item in main.projects"
+              :key="item.partnerId"
+              :href="item.website"
+              class="representative__image swiper-slide"
+            >
+              <img :src="`${imageURL}${item?.fileUrl}`" alt="" />
+            </a>
           </div>
           <div class="representative__swiper-navigations">
             <div
@@ -126,9 +90,21 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  props: {
+    main: {
+      dealership: [],
+      clients: [],
+      projects: [],
+    },
+  },
+  computed: {
+    ...mapGetters(["imageURL"]),
+  },
   data() {
     return {
+      observer: null,
       options: {
         slidesPerView: 6,
         speed: 1100,
@@ -160,6 +136,27 @@ export default {
       },
     };
   },
+  mounted() {
+    if (this.$refs.aos) {
+      const options =
+        {
+          rootMargin: "0px 0px 0px 0px",
+          threshold: 0.4,
+        } || {};
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry && entry.isIntersecting) {
+            this.$refs.images.classList.add("aos");
+            const elemAos = document.querySelectorAll(".aos");
+          }
+        });
+      }, options);
+    }
+    this.observer.observe(this.$refs.aos);
+  },
+  destroyed() {
+    this.observer.disconnect();
+  },
 };
 </script>
 
@@ -173,38 +170,45 @@ export default {
   padding-top: 30px;
   &__title-wrapper {
     flex: 1 1 auto;
-    margin-top: 150px;
+    margin-top: 50px;
     display: inline-block;
     text-align: center;
-    @media (max-width: 767pc) {
-      margin-top: 60px;
+    @media (max-width: 767px) {
+      margin-top: 30px;
       flex: 0 0 0%;
     }
   }
 
   &__title {
+    position: relative;
+    padding-bottom: 7px;
     color: var(--text2);
     font-size: 30px;
+    font-style: normal;
     font-weight: 400;
     line-height: 120%;
-    letter-spacing: 0.45px;
+    letter-spacing: 0.33px;
     text-transform: capitalize;
-    padding-bottom: 7px;
-    position: relative;
     display: inline-block;
-    text-align: center;
-    @media (max-width: 767px) {
-      font-size: 22px;
-    }
 
-    &::before {
+    &::after {
       content: "";
-      position: absolute;
-      left: 0;
       bottom: 0;
-      width: 80%;
+      left: 0;
+      width: 110%;
       height: 1px;
       background-color: var(--red);
+      position: absolute;
+      animation: titleAnimate 2s linear infinite;
+      @keyframes titleAnimate {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 80%;
+          opacity: 0;
+        }
+      }
     }
   }
 
@@ -216,6 +220,14 @@ export default {
     padding-bottom: 80px;
     justify-content: center;
     height: 100%;
+    transition: 1s all;
+    transform: translateY(120px);
+    opacity: 0;
+    &.aos {
+      opacity: 1;
+      transform: translateY(0px);
+      transition: 1s all;
+    }
     @media (max-width: 767px) {
       margin: 0 50px;
     }
@@ -254,6 +266,7 @@ export default {
       display: flex;
       align-items: center;
       background-color: #fff;
+      transition: 0.2s all;
       &:deep() {
         svg {
           width: 25px;

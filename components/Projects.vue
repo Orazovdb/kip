@@ -1,66 +1,28 @@
 <template>
-  <div class="projects">
+  <div class="projects" ref="aos">
     <div class="projects__title-wrapper">
       <h1 class="projects__title">Projects</h1>
     </div>
-    <div class="projects__row">
+    <div class="projects__row" ref="images">
       <div
         class="projects__item"
-        @click="$router.push(localeLocation(`/projects/${index + 1}`))"
+        v-for="project in projects"
+        :key="project.projectId"
+        @click="$router.push(localeLocation(`/projects/${project.projectId}`))"
       >
         <div class="projects__image">
-          <img src="@/assets/img/projects_1.jpg" alt="" />
+          <img :src="`${imageURL}${project?.cover}`" alt="" />
         </div>
-        <h1 class="projects__item-title">СF / BCF YARNS</h1>
-      </div>
-      <div
-        class="projects__item"
-        @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-      >
-        <div class="projects__image">
-          <img src="@/assets/img/projects_2.png" alt="" />
-        </div>
-        <h1 class="projects__item-title">RIETER PATHFINDER 222</h1>
-      </div>
-      <div
-        class="projects__item"
-        @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-      >
-        <div class="projects__image">
-          <img src="@/assets/img/engineering_1.jpg" alt="" />
-        </div>
-        <h1 class="projects__item-title">СF / BCF YARNS</h1>
-      </div>
-      <div
-        class="projects__item"
-        @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-      >
-        <div class="projects__image">
-          <img src="@/assets/img/engineering_2.jpg" alt="" />
-        </div>
-        <h1 class="projects__item-title">RIETER PATHFINDER 222</h1>
-      </div>
-      <div
-        class="projects__item"
-        @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-      >
-        <div class="projects__image">
-          <img src="@/assets/img/lemmer.jpg" alt="" />
-        </div>
-        <h1 class="projects__item-title">Lemmer</h1>
-      </div>
-      <div
-        class="projects__item"
-        @click="$router.push(localeLocation(`/projects/${index + 1}`))"
-      >
-        <div class="projects__image">
-          <img src="@/assets/img/projects_1.jpg" alt="" />
-        </div>
-        <h1 class="projects__item-title">СF / BCF YARNS</h1>
+        <h1 class="projects__item-title">
+          {{ translateName(project) }}
+        </h1>
       </div>
     </div>
     <div class="projects__button-wrapper">
-      <button class="projects__button" @click="$router.push('/projects')">
+      <button
+        class="projects__button"
+        @click="$router.push(localeLocation('/projects'))"
+      >
         See all
       </button>
     </div>
@@ -68,9 +30,23 @@
 </template>
 
 <script>
+import translate from "@/mixins/translate";
+import { mapGetters } from "vuex";
+
 export default {
+  mixins: [translate],
+  computed: {
+    ...mapGetters(["imageURL"]),
+  },
+  props: {
+    projects: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
+      observer: null,
       id: 1,
       sliders: [
         {
@@ -93,6 +69,27 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    if (this.$refs.aos) {
+      const options =
+        {
+          rootMargin: "0px 0px 0px 0px",
+          threshold: 0.4,
+        } || {};
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry && entry.isIntersecting) {
+            this.$refs.images.classList.add("aos");
+            const elemAos = document.querySelectorAll(".aos");
+          }
+        });
+      }, options);
+    }
+    this.observer.observe(this.$refs.aos);
+  },
+  destroyed() {
+    this.observer.disconnect();
   },
 };
 </script>
@@ -117,19 +114,18 @@ export default {
   height: 100%;
   position: relative;
   z-index: 2;
-  margin-top: 50px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   @media (max-width: 767px) {
-    padding-top: 80px;
+    padding-top: 70px;
     height: 100%;
   }
   &__title-wrapper {
     text-transform: capitalize;
     position: absolute;
     left: 50%;
-    top: 12%;
+    top: 10%;
     transform: translateX(-50%);
     @media (max-width: 767px) {
       position: relative;
@@ -140,26 +136,35 @@ export default {
   }
 
   &__title {
-    color: var(--primary);
-    font-size: 30px;
-    font-weight: 400;
-    line-height: 120%;
-    letter-spacing: 0.45px;
     position: relative;
     padding-bottom: 7px;
+    color: var(--text2);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: 0.33px;
+    text-transform: capitalize;
     display: inline-block;
-    &:after {
+
+    &::after {
       content: "";
-      position: absolute;
       bottom: 0;
       left: 0;
-      width: 60%;
-      background-color: var(--red);
+      width: 80%;
       height: 1px;
-    }
-    @media (max-width: 767px) {
-      font-size: 20px;
-      margin-bottom: 14px;
+      background-color: var(--red);
+      position: absolute;
+      animation: titleAnimate 2s linear infinite;
+      @keyframes titleAnimate {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 120%;
+          opacity: 0;
+        }
+      }
     }
   }
 
@@ -168,13 +173,20 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin: 150px 100px 20px 100px;
+    transition: 1s all;
+    transform: translateY(120px);
+    opacity: 0;
+    &.aos {
+      opacity: 1;
+      transform: translateY(0px);
+      transition: 1s all;
+    }
     @media (max-width: 992px) {
       max-width: 1100px;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 20px;
       margin: 0 20px;
-      overflow: hidden;
       height: auto;
     }
   }
@@ -198,11 +210,17 @@ export default {
   &__item-title {
     font-size: 22px;
     margin-top: 10px;
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
   }
 
   &__button-wrapper {
     max-width: 1200px;
     margin: 0 100px 0 auto;
+    @media (max-width: 767px) {
+      margin-right: 10px;
+    }
   }
 
   &__button {

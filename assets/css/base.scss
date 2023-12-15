@@ -287,23 +287,14 @@
   &::-webkit-scrollbar-track {
     background-color: transparent;
     transition: 0.3s all;
+    background-color: #d5d5d5;
   }
 
   &::-webkit-scrollbar-thumb {
     background: transparent;
     border-radius: 3px;
     transition: 0.3s all;
-  }
-  &:hover {
-    &::-webkit-scrollbar-track {
-      background-color: #d5d5d5;
-      transition: 0.3s all;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      transition: 0.3s all;
-    }
+    background: var(--primary);
   }
 }
 
@@ -331,7 +322,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type='number'] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 

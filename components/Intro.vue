@@ -11,32 +11,42 @@
           <li class="contact-modal__item">
             <base-icon icon="call" />
             <div class="contact-modal__content">
-              <p>(+993 62) 99 12 12</p>
-              <p>45 17 77</p>
+              <p>{{ intro?.contact?.phone }}</p>
+              <p>{{ intro?.contact?.mobilePhone }}</p>
             </div>
           </li>
           <li class="contact-modal__item">
-            <base-icon icon="insta" />
-            <p>kipengineringtm</p>
+            <a
+              :href="intro?.contact?.instagramLink"
+              class="flex flex-y-center gap-10"
+            >
+              <base-icon icon="insta" />
+              <p>{{ intro?.contact?.instagram }}</p>
+            </a>
           </li>
           <li class="contact-modal__item">
-            <base-icon icon="email" />
-            <p>info@kip.tm</p>
+            <a
+              :href="`mailto:${intro?.contact?.info}`"
+              class="flex flex-y-center gap-10"
+            >
+              <base-icon icon="email" />
+              <p>{{ intro?.contact?.info }}</p>
+            </a>
           </li>
           <li class="contact-modal__item">
             <base-icon icon="location" />
-            <p>Nurmuhammet Andalyp 1B, Ashgabat, Turkmenistan 744000</p>
+            <p>{{ translateAddress(intro?.contact) }}</p>
           </li>
         </div>
       </div>
     </div>
     <div class="intro__left-bg" />
-    <h1 class="intro__title">Quality matters.</h1>
+    <h1 class="intro__title">{{ translateTagline(intro) }}</h1>
     <div class="intro__center-items">
       <div class="relative mobile-button-circle-primary" ref="contact">
-        <base-button-circle @clicked="openContact = !openContact"
-          >Contact</base-button-circle
-        >
+        <base-button-circle @clicked="openContact = !openContact">
+          Contact
+        </base-button-circle>
         <div class="button-arrow-title left">
           <h2 class="button-arrow-title__text white">Contact us</h2>
           <base-icon icon="contactWhiteArrow" />
@@ -46,9 +56,9 @@
         <img src="@/assets/img/kip-logo.svg" alt="logo" />
       </div>
       <div class="relative mobile-button-circle-white" ref="project">
-        <base-button-circle :url="url" v-if="url" primary
-          >Projects</base-button-circle
-        >
+        <base-button-circle :url="url" v-if="url" primary>
+          Projects
+        </base-button-circle>
         <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
         <div class="button-arrow-title">
           <base-icon icon="workBlackArrow" class="black-arrow" />
@@ -58,7 +68,7 @@
       </div>
     </div>
     <div class="intro__swiper" ref="swiper">
-      <swiper-item title="Gallery"> </swiper-item>
+      <swiper-item title="Gallery" :photos="intro?.galary"> </swiper-item>
     </div>
     <div class="intro__title-block" ref="titleBlock">
       <div class="intro__title-block-box-wrapper">
@@ -72,35 +82,28 @@
         </h3>
       </div>
     </div>
+
     <div class="representative" ref="representative">
       <h2 class="representative__title">DEALERSHIP</h2>
-      <div class="representative__items">
-        <div class="representative__item">
-          <img src="@/assets/img/zebra.svg" alt="" />
-        </div>
-        <div class="representative__item">
-          <img src="@/assets/img/mennan.svg" alt="" />
-        </div>
-
-        <div class="representative__item">
-          <img src="@/assets/img/interflon.svg" alt="" />
-        </div>
-        <div class="representative__item">
-          <img src="@/assets/img/airpol.svg" alt="" />
-        </div>
-      </div>
+      <representative-home :representatives="intro?.dealership" />
     </div>
   </div>
 </template>
 
 <script>
+import translate from "@/mixins/translate";
 export default {
   props: {
     url: {
       type: String,
       default: () => "",
     },
+    intro: {
+      type: Object,
+      default: () => {},
+    },
   },
+  mixins: [translate],
   data() {
     return {
       openContact: false,
@@ -123,7 +126,6 @@ export default {
             this.$refs.representative.classList.add("aos");
             this.$refs.titleBlock.classList.add("aos");
             this.$refs.swiper.classList.add("aos");
-            const elemAos = document.querySelectorAll(".aos");
           }
         });
       }, options);
@@ -137,6 +139,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.representative {
+  position: absolute;
+  bottom: 2.6%;
+  right: 2.8%;
+  z-index: 1;
+  transition: 1s all;
+  transform: translateX(80px);
+  opacity: 0;
+  &.aos {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 1s all;
+  }
+  @media (max-width: 479px) {
+    right: 3%;
+  }
+  &__title {
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    @media (max-width: 479px) {
+      font-size: 10px;
+      max-width: 100px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+}
 .mobile-button-circle-primary {
   transition: 1s all;
   transform: translateX(-80px);
@@ -308,28 +341,6 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
     }
-    @media (min-width: 767px) {
-      &:hover {
-        animation: logoAnimate 3s linear infinite;
-      }
-      @keyframes logoAnimate {
-        0% {
-          transform: skewX(0deg) skewY(0);
-        }
-        25% {
-          transform: skewX(10deg);
-        }
-        50% {
-          transform: skewX(0deg) skewY(10deg);
-        }
-        75% {
-          transform: skewX(-10deg);
-        }
-        100% {
-          transform: skewX(0deg) skewY(0);
-        }
-      }
-    }
   }
 
   &__swiper {
@@ -368,7 +379,7 @@ export default {
       max-width: 200px;
     }
     @media (max-width: 479px) {
-      bottom: 22%;
+      bottom: 18%;
       max-width: 170px;
     }
   }
@@ -472,59 +483,7 @@ export default {
     }
   }
 }
-.representative {
-  position: absolute;
-  bottom: 2.6%;
-  right: 2.8%;
-  z-index: 1;
-  transition: 1s all;
-  transform: translateX(80px);
-  opacity: 0;
-  &.aos {
-    opacity: 1;
-    transform: translateY(0px);
-    transition: 1s all;
-  }
-  @media (max-width: 479px) {
-    right: 3%;
-  }
-  &__title {
-    color: #000;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 100%;
-    text-transform: capitalize;
-    margin-bottom: 5px;
-    @media (max-width: 479px) {
-      font-size: 10px;
-      max-width: 100px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-  }
 
-  &__items {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: 16px;
-    }
-  }
-
-  &__item {
-    cursor: pointer;
-    img {
-      max-width: 100%;
-      object-fit: contain;
-    }
-
-    @media (max-width: 479px) {
-      max-width: 60px;
-    }
-  }
-}
 .contact-modal {
   position: fixed;
   left: 0;
@@ -589,6 +548,9 @@ export default {
 
     &:not(:last-child) {
       margin-bottom: 10px;
+    }
+    a {
+      color: #000;
     }
     p {
       font-weight: 300;

@@ -30,7 +30,7 @@
       </div>
     </form>
     <popup-error :errorPupUp="errorPupUp">Boş meydanlary dolduryň!</popup-error>
-    <popup-success :activePupUp="activePupUp"></popup-success>
+    <popup-success :activePupUp="activePupUp">Success</popup-success>
   </div>
 </template>
 <script>

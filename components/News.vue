@@ -56,19 +56,14 @@
       </div>
       <div class="news__center">
         <div class="news__center-image">
-          <img src="@/assets/img/news-new.png" alt="" />
+          <img :src="`${imageURL}${news?.mainNews?.image}`" alt="" />
         </div>
         <div class="news__center-content">
-          <!-- <h1 class="news__center-title">New company</h1> -->
+          <h1 class="news__center-title">
+            {{ translateTitle(news?.mainNews) }}
+          </h1>
           <p class="news__center-description">
-            KIP Engineering has been awarded the status оf Registered Reseller
-            of Zebra company. Zebra Technologies, Inc. offers enterprise
-            mobility solutions that combine industry-leading, world-class data
-            collection products (barcode scanners and data collection
-            terminals), RFID technology others. Mobility products and solutions
-            of Zebra Technologies, Inc. increase productivity, reduce operating
-            costs and increase productivity, creating a competitive advantage
-            for businesses of all sizes.
+            {{ translateContent(news?.mainNews) }}
           </p>
           <p class="news__center-date">06.11.2023</p>
         </div>
@@ -84,12 +79,27 @@
 </template>
 
 <script>
+import translate from "@/mixins/translate";
+import { mapGetters } from "vuex";
+
 export default {
+  props: {
+    news: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  mixins: [translate],
+  computed: {
+    ...mapGetters(["imageURL"]),
+  },
   data() {
     return {
       observer: null,
+      editor: null,
     };
   },
+
   mounted() {
     if (this.$refs.aos) {
       const options =
@@ -102,7 +112,6 @@ export default {
           if (entry && entry.isIntersecting) {
             this.$refs.row.classList.add("aos");
             const elemAos = document.querySelectorAll(".aos");
-            console.log(elemAos);
           }
         });
       }, options);
@@ -181,7 +190,7 @@ export default {
       grid-template-columns: 1fr;
       gap: 0;
       margin: 0 15px;
-      padding: 90px 0 0 0;
+      padding: 50px 0 0 0;
     }
   }
 
@@ -369,12 +378,22 @@ export default {
     display: inline-block;
     &::after {
       content: "";
-      width: 100%;
+      bottom: 0;
+      left: 0;
+      width: 80%;
       height: 1px;
       background-color: var(--red);
       position: absolute;
-      left: 0;
-      bottom: 0;
+      animation: titleAnimate 2s linear infinite;
+      @keyframes titleAnimate {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 110%;
+          opacity: 0;
+        }
+      }
     }
 
     @media (max-width: 767px) {

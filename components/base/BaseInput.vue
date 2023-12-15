@@ -1,5 +1,5 @@
 <template>
-  <div class="base-input">
+  <div :class="classes">
     <h4 class="base-input__label" v-if="label">
       {{ label }}
     </h4>
@@ -7,7 +7,7 @@
       :type="type"
       class="input"
       :placeholder="placeholder"
-      :style="`height: ${height}px`"
+      :style="`height: ${height}px;`"
       @input="
         (e) =>
           $emit(
@@ -23,6 +23,16 @@
 
 <script>
 export default {
+  computed: {
+    classes() {
+      return [
+        "base-input",
+        {
+          "base-input--error": this.error,
+        },
+      ];
+    },
+  },
   props: {
     type: {
       type: String,
@@ -47,6 +57,10 @@ export default {
       type: Boolean,
       default: () => null,
     },
+    error: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
@@ -55,6 +69,13 @@ export default {
 .base-input {
   width: 100%;
   position: relative;
+
+  &--error {
+    .input {
+      border: 2px solid red !important;
+      animation: 0.2s invalid forwards;
+    }
+  }
 
   &__label {
     color: var(--primary);
@@ -138,6 +159,23 @@ input[type="file"] {
   @media (max-width: 479px) {
     font-size: 12px;
     height: 40px;
+  }
+  @keyframes invalid {
+    0% {
+      transform: translateX(0px);
+    }
+    25% {
+      transform: translateX(5px);
+    }
+    50% {
+      transform: translateX(0px);
+    }
+    75% {
+      transform: translateX(-5px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
   }
 }
 </style>

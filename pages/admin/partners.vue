@@ -74,9 +74,9 @@
               :value="main?.clients?.website"
               class="mb-2"
             />
-            <base-button @clickedButton="upsertData('clients')"
-              >Save</base-button
-            >
+            <base-button @clickedButton="upsertData('clients')">
+              Save
+            </base-button>
           </form>
           <div class="admin-partners__block-row-wrapper">
             <base-uploaded-file
@@ -123,7 +123,7 @@
               >Save</base-button
             >
           </form>
-          <!-- <div class="admin-partners__block-row-wrapper">
+          <div class="admin-partners__block-row-wrapper">
             <base-uploaded-file
               class="admin-partners__block-image"
               v-for="item in datas.projects"
@@ -134,7 +134,7 @@
               @itemDelete="() => itemDelete(item)"
               adminCrash
             />
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -144,7 +144,7 @@
       :deletePupUp="deletePupUp"
       @no="deletePupUp = false"
       @confirm="confirm"
-    ></pop-up-delete>
+    />
   </div>
 </template>
 
@@ -155,7 +155,11 @@ export default {
   layout: "admin",
   data() {
     return {
-      datas: { dealership: [], clients: [], projects: [] },
+      datas: {
+        dealership: [],
+        clients: [],
+        projects: [],
+      },
       activePupUp: false,
       errorPupUp: false,
       paginationCount: 0,

@@ -6,8 +6,8 @@
           <th>N*</th>
           <th>Logo</th>
           <th>Company name</th>
-          <th>Date</th>
-          <th>Pablsih main page</th>
+          <th>Description</th>
+          <th>Priority</th>
           <th>Edit</th>
         </tr>
       </thead>
@@ -17,9 +17,9 @@
           <td>
             <img :src="`${imageURL}${item.cover}`" alt="" />
           </td>
-          <td>{{ item?.company }}</td>
-          <td>{{ item?.workDate }}</td>
-          <td></td>
+          <td>{{ item?.nameTm }}</td>
+          <td v-html="item.descriptionTm"></td>
+          <td>{{ item?.priority }}</td>
           <td>
             <div class="controller">
               <base-icon icon="adminCrash" @clicked="itemDelete(item)" />
@@ -33,7 +33,7 @@
       :deletePupUp="deletePupUp"
       @no="deletePupUp = false"
       @confirm="confirm"
-    ></pop-up-delete>
+    />
   </div>
 </template>
 

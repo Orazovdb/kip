@@ -1,25 +1,23 @@
 <template>
-  <div class="gallery">
+  <div class="gallery" ref="aos">
     <div class="gallery__row">
       <div class="gallery__title-wrapper">
         <h1 class="gallery__title">Gallery</h1>
       </div>
-      <div class="gallery__images">
-        <div class="gallery__image">
-          <img src="@/assets/img/gallery_1.jpg" alt="gallery" />
-        </div>
-        <div class="gallery__image">
-          <img src="@/assets/img/gallery_2.jpg" alt="gallery" />
-        </div>
-        <div class="gallery__image">
-          <img src="@/assets/img/gallery_3.jpg" alt="gallery" />
-        </div>
-        <div class="gallery__image">
-          <img src="@/assets/img/gallery_4.jpg" alt="gallery" />
+      <div class="gallery__images" ref="images">
+        <div
+          v-for="item in gallery"
+          :key="item.galleryId"
+          class="gallery__image"
+        >
+          <img :src="`${imageURL}${item?.image}`" alt="" />
         </div>
       </div>
       <div class="gallery__button-wrapper">
-        <button @click="$router.push('/gallery')" class="gallery__button">
+        <button
+          @click="$router.push(localeLocation('/gallery'))"
+          class="gallery__button"
+        >
           See all
         </button>
       </div>
@@ -28,7 +26,45 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters(["imageURL"]),
+  },
+  props: {
+    gallery: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      observer: null,
+    };
+  },
+  mounted() {
+    if (this.$refs.aos) {
+      const options =
+        {
+          rootMargin: "0px 0px 0px 0px",
+          threshold: 0.4,
+        } || {};
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry && entry.isIntersecting) {
+            this.$refs.images.classList.add("aos");
+            const elemAos = document.querySelectorAll(".aos");
+          }
+        });
+      }, options);
+    }
+    this.observer.observe(this.$refs.aos);
+  },
+  destroyed() {
+    this.observer.disconnect();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -41,8 +77,9 @@ export default {};
   &__title-wrapper {
     margin: 90px 0 40px 0;
     flex: 1 1 auto;
+
     @media (max-width: 767px) {
-      margin: 90px 0 40px;
+      margin: 70px 0 20px;
       flex: 0 0 0%;
     }
   }
@@ -57,6 +94,7 @@ export default {};
     line-height: 120%;
     letter-spacing: 0.33px;
     text-transform: capitalize;
+
     &::after {
       content: "";
       bottom: 0;
@@ -65,7 +103,18 @@ export default {};
       height: 1px;
       background-color: var(--red);
       position: absolute;
+      animation: titleAnimate 2s linear infinite;
+      @keyframes titleAnimate {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 120%;
+          opacity: 0;
+        }
+      }
     }
+
     @media (max-width: 767px) {
       font-size: 24px;
     }
@@ -84,6 +133,14 @@ export default {};
     grid-template-columns: 1fr 1fr 450px;
     gap: 20px;
     margin: 0 20px 40px;
+    transition: 1s all;
+    transform: translateY(120px);
+    opacity: 0;
+    &.aos {
+      opacity: 1;
+      transform: translateY(0px);
+      transition: 1s all;
+    }
     @media (max-width: 767px) {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -146,7 +203,7 @@ export default {};
     margin: 0 100px 0;
     width: calc(100% - 370px);
     @media (max-width: 767px) {
-      margin: 0 20px 15px;
+      margin: 0 20px 0;
       width: calc(100% - 20px);
     }
   }

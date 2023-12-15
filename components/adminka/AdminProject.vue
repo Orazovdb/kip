@@ -28,8 +28,8 @@
         <div class="text-editor-wrapper__calendar" style="width: 200px">
           <admin-input
             label="Calendar"
-            @updateValue="(val) => (main[`workDate`] = val)"
-            :value="main[`workDate`]"
+            @updateValue="(val) => (main.workDate = val)"
+            :value="main.workDate"
             type="date"
             appendIcon="calendar"
           />
@@ -97,7 +97,7 @@ export default {
       image: null,
       errorMessage: "Boş meydanlary dolduryň!",
       main: {
-        projectId: "",
+        projectId: null,
         nameTm: "",
         nameRu: "",
         nameEn: "",
@@ -109,7 +109,7 @@ export default {
         images: [],
         cover: "",
         priority: null,
-        authorId: null,
+        logo: "dd",
       },
     };
   },
@@ -148,7 +148,7 @@ export default {
       } else {
         try {
           const { success, data } = await request({
-            url: "news/upsert",
+            url: "projects/upsert",
             data: this.main,
           });
           if (!success) return;
@@ -181,7 +181,7 @@ export default {
       try {
         const { success, data } = await request({
           url: `projects/one/${id}`,
-          method: "GET",
+          method: "POST",
         });
         if (!success) return;
         for (let [key] of Object.entries(this.main)) {

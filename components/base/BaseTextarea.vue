@@ -77,6 +77,7 @@ export default {
     }
     @media (max-width: 479px) {
       font-size: 12px;
+   
     }
   }
 }

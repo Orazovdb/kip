@@ -74,12 +74,6 @@ export default {
           icon: "folder",
           name: "Gallery",
         },
-        {
-          id: 6,
-          url: "/contact",
-          icon: "folder",
-          name: "Contact",
-        },
       ],
     };
   },

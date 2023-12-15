@@ -17,5 +17,8 @@ export const ADD_ABOUT_CONTACT = ({ data }) =>
 export const GET_ABOUT_CONTACT = () =>
   request({ url: `/contact`, method: "get" });
 
+export const GET_PROJECTS_ALL = () =>
+  request({ url: `/projects/all`, method: "post" });
+
 export const DELETE_SLIDER = ({ data }) =>
   request({ url: `/admin/slider/delete`, data, method: "post" });

@@ -103,6 +103,9 @@ export default {
     top: 50%;
     transform: translateY(-50%);
     font-size: 16px;
+    @media (max-width: 479px) {
+      font-size: 12px;
+    }
   }
 
   &__icon {
