@@ -107,25 +107,25 @@ export default {
       observer: null,
       options: {
         slidesPerView: 6,
-        speed: 1100,
+        speed: 1000,
         spaceBetween: 40,
         loop: true,
-        //  autoplay: {
-        //    delay: 4,
-        //    disableOnInteraction: false,
-        //    speed: 1000
-        //  },
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+          speed: 1000,
+        },
         navigation: {
           nextEl: ".representative__swiper-next-navigation",
           prevEl: ".representative__swiper-prev-navigation",
         },
         breakpoints: {
           320: {
-            speed: 1500,
+            speed: 1000,
             slidesPerView: 2,
           },
           479: {
-            speed: 1500,
+            speed: 1000,
             slidesPerView: 2,
           },
           767: {

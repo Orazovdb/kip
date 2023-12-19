@@ -13,9 +13,10 @@
           <h1 class="about-page__title">
             {{ translateTitle(aboutUs) }}
           </h1>
-          <p class="about-page__description">
-            {{ translateContent(aboutUs) }}
-          </p>
+          <p
+            class="about-page__description"
+            v-html="translateContent(aboutUs)"
+          ></p>
         </div>
       </div>
     </div>
@@ -47,7 +48,6 @@ export default {
         entries.forEach((entry) => {
           if (entry && entry.isIntersecting) {
             this.$refs.images.classList.add("aos");
-            const elemAos = document.querySelectorAll(".aos");
           }
         });
       }, options);
@@ -79,6 +79,7 @@ export default {
   @media (max-width: 767px) {
     padding: 40px 0;
   }
+
   &__container {
   }
 

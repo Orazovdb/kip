@@ -56,8 +56,8 @@
         <img src="@/assets/img/kip-logo.svg" alt="logo" />
       </div>
       <div class="relative mobile-button-circle-white" ref="project">
-        <base-button-circle :url="url" v-if="url" primary>
-          Projects
+        <base-button-circle :url="`/1.pdf`" primary>
+          Download catalog
         </base-button-circle>
         <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
         <div class="button-arrow-title">
@@ -94,10 +94,6 @@
 import translate from "@/mixins/translate";
 export default {
   props: {
-    url: {
-      type: String,
-      default: () => "",
-    },
     intro: {
       type: Object,
       default: () => {},

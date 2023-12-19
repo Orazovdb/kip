@@ -6,6 +6,8 @@ export const GET_HOME = () => request({ url: `home`, method: "PATCH" });
 
 export const GET_NEWS = () => request({ url: `news`, method: "PATCH" });
 
+export const GET_ABOUT_LIMIT = () =>
+  request({ url: `projects/all`, method: "POST" });
 export const GET_PROJECTS = () => request({ url: `projects`, method: "PATCH" });
 export const GET_PROJECT_ONE = ({ data }) =>
   request({ url: `projects/one/${data.projectId}`, method: "POST" });

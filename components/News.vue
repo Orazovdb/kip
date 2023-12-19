@@ -3,52 +3,22 @@
     <div class="news__row" ref="row">
       <div class="news__left">
         <div class="news__left-items">
-          <div class="news__left-item">
+          <div
+            class="news__left-item"
+            v-for="item in news.news"
+            :key="item.newsId"
+          >
             <div class="news__left-item-image">
-              <img src="@/assets/img/news_1.png" alt="news" />
+              <img :src="`${imageURL}${item?.image}`" alt="" />
             </div>
             <div class="news__left-item-content">
               <h1 class="news__left-item-title">
-                A Contract With Ashgabat International Airport
+                {{ translateTitle(item) }}
               </h1>
-              <p class="news__left-item-description">
-                KIP Engineering signed a contract with Ashgabat International
-                Airport about IT system design work: correcting errors in AMOS
-                system
-              </p>
-              <p class="news__left-item-date">06.11.2023</p>
-            </div>
-          </div>
-          <div class="news__left-item">
-            <div class="news__left-item-image">
-              <img src="@/assets/img/news_2.png" alt="news" />
-            </div>
-            <div class="news__left-item-content">
-              <h1 class="news__left-item-title">A New Manufacturing Plant</h1>
-              <p class="news__left-item-description">
-                The plant located in Ashgabat is equipped with equipment from
-                the world famous Austrian company «Rieter». Сontinuous ﬁlament
-                yarns are used for a large number of applications, such as
-                big-bag sewing yarns, nets, ropes or belts.
-              </p>
-              <p class="news__left-item-date">06.11.2023</p>
-            </div>
-          </div>
-          <div class="news__left-item">
-            <div class="news__left-item-image">
-              <img src="@/assets/img/news_3.png" alt="news" />
-            </div>
-            <div class="news__left-item-content">
-              <h1 class="news__left-item-title">
-                Memorandum of Understanding Between “Kopugurly Injenerchilik
-                Payhaslary” Economic Society and Textima Export Import GmbH
-              </h1>
-              <p class="news__left-item-description">
-                This Memorandum of Understanding (MOU) sets for the terms and
-                understanding between the “Kopugurly Injenerchilik Payhaslary”
-                Economic Society and the Textima Export Import GmbH to
-                collaborate.
-              </p>
+              <p
+                class="news__left-item-description"
+                v-html="translateContent(item)"
+              ></p>
               <p class="news__left-item-date">06.11.2023</p>
             </div>
           </div>
@@ -62,9 +32,10 @@
           <h1 class="news__center-title">
             {{ translateTitle(news?.mainNews) }}
           </h1>
-          <p class="news__center-description">
-            {{ translateContent(news?.mainNews) }}
-          </p>
+          <p
+            class="news__center-description"
+            v-html="translateContent(news?.mainNews)"
+          ></p>
           <p class="news__center-date">06.11.2023</p>
         </div>
       </div>

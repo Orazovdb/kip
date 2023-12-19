@@ -11,7 +11,7 @@
       </div>
       <div class="projects__items" ref="images">
         <div
-          v-for="project in projects"
+          v-for="project in projects.rows"
           :key="project.projectId"
           class="projects-item"
           @click="
@@ -28,12 +28,18 @@
           </div>
         </div>
       </div>
+      <base-pagination
+        v-if="paginationCount > 1"
+        :modelValue="page"
+        @clickPage="(pagination) => updatePage(pagination)"
+        :pageCount="paginationCount"
+      ></base-pagination>
     </div>
   </div>
 </template>
 
 <script>
-import { GET_PROJECTS } from "@/api/home.api";
+import { request } from "@/api/generic.api";
 import translate from "@/mixins/translate";
 import { mapGetters } from "vuex";
 
@@ -45,9 +51,11 @@ export default {
   data() {
     return {
       observer: null,
+      page: 1,
+      limit: 10,
+      paginationCount: 0,
       projects: {
-        type: Array,
-        default: () => null,
+        rows: [],
       },
     };
   },
@@ -77,13 +85,23 @@ export default {
   methods: {
     async fetchProjects() {
       try {
-        const { data, statusCode } = await GET_PROJECTS();
-        if (statusCode) {
-          this.projects = data || [];
-        }
+        const { success, data } = await request({
+          url: "projects/fetch",
+          data: {
+            page: this.page,
+            limit: this.limit,
+          },
+        });
+        if (!success) return;
+        this.paginationCount = Math.ceil(data.count / this.limit);
+        this.projects = data || [];
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
+    },
+    async updatePage(p) {
+      this.page = p;
+      await this.fetchProjects();
     },
   },
 };

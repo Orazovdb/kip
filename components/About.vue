@@ -14,9 +14,7 @@
         <h1 class="about__title">
           {{ translateTitle(aboutUs) }}
         </h1>
-        <p class="about__description">
-          {{ translateContent(aboutUs) }}
-        </p>
+        <p class="about__description" v-html="translateContent(aboutUs)"></p>
         <div class="about__button-wrapper">
           <button
             @click="$router.push(localeLocation('/about'))"
@@ -78,7 +76,7 @@
                 </div>
                 <div class="information-button-dropdown__content">
                   <p class="information-button-dropdown__number">
-                    {{ aboutUs?.information?.info4.count }}
+                    {{ aboutUs?.information?.info4?.count }}
                   </p>
                   <h2 class="information-button-dropdown__title">
                     {{ translateTitle(aboutUs?.information?.info4) }}
@@ -139,7 +137,6 @@ export default {
           if (entry && entry.isIntersecting) {
             this.$refs.image.classList.add("aos");
             this.$refs.content.classList.add("aos");
-            const elemAos = document.querySelectorAll(".aos");
           }
         });
       }, options);
@@ -248,16 +245,6 @@ export default {
       padding: 10px 20px;
       background-color: #fff;
     }
-    // &.active {
-    //   .about__description {
-    //     overflow: auto;
-    //     text-overflow: ellipsis;
-    //     display: -webkit-box;
-    //     -webkit-line-clamp: auto;
-    //     line-clamp: auto;
-    //     -webkit-box-orient: vertical;
-    //   }
-    // }
   }
 
   &__title {

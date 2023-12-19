@@ -4,11 +4,25 @@
       <div class="gallery__title-wrapper">
         <h1 class="gallery__title">Gallery</h1>
       </div>
+      <div class="gallery-thumbs" v-if="isImage">
+        <div class="gallery-thumbs__swiper swiper" @click.stop>
+          <div class="gallery-thumbs__swiper-wrapper swiper-wrapper">
+            <div
+              class="gallery-thumbs__swiper-slide swiper-slide"
+              v-for="item in gallery"
+              :key="item.galleryId"
+            >
+              <img :src="`${imageURL}${item?.image}`" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="gallery__images" ref="images">
         <div
           v-for="item in gallery"
           :key="item.galleryId"
           class="gallery__image"
+          @click="isImage = !isImage"
         >
           <img :src="`${imageURL}${item?.image}`" alt="" />
         </div>
@@ -41,6 +55,7 @@ export default {
   data() {
     return {
       observer: null,
+      isImage: false,
     };
   },
   mounted() {
