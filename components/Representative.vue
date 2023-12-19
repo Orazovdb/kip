@@ -12,6 +12,7 @@
               v-for="item in main.dealership"
               :key="item.partnerId"
               :href="item.website"
+              target="_blank"
               class="representative__image swiper-slide"
             >
               <img :src="`${imageURL}${item?.fileUrl}`" alt="" />
@@ -39,6 +40,7 @@
               v-for="item in main.clients"
               :key="item.partnerId"
               :href="item.website"
+              target="_blank"
               class="representative__image swiper-slide"
             >
               <img :src="`${imageURL}${item?.fileUrl}`" alt="" />
@@ -66,6 +68,7 @@
               v-for="item in main.projects"
               :key="item.partnerId"
               :href="item.website"
+              target="_blank"
               class="representative__image swiper-slide"
             >
               <img :src="`${imageURL}${item?.fileUrl}`" alt="" />

@@ -7,6 +7,7 @@
             class="news__left-item"
             v-for="item in news.news"
             :key="item.newsId"
+            @click="$router.push(localeLocation(`/news/${item.newsId}`))"
           >
             <div class="news__left-item-image">
               <img :src="`${imageURL}${item?.image}`" alt="" />
@@ -207,6 +208,10 @@ export default {
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.06);
+    }
   }
 
   &__left-item-image {

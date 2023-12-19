@@ -2,8 +2,11 @@
   <header class="header">
     <div class="header__container">
       <div class="header__body">
-        <div :class="['burger-wrapper', { open: openLanguages }]">
-          <div class="burger" @click="toggleLanguages">
+        <div
+          :class="['burger-wrapper', { open: openLanguages }]"
+          @click="toggleLanguages"
+        >
+          <div class="burger">
             <span></span>
             <span></span>
             <span></span>
@@ -35,6 +38,7 @@
                 <a
                   :href="link.url"
                   :class="['menu__link', { active: link.id === link.url }]"
+                  @click.stop="localeLocation(link.url)"
                 >
                   {{ link.name }}
                 </a>
@@ -136,7 +140,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   position: fixed;
-  top: 20px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -151,7 +155,6 @@ export default {
   }
 
   &__container {
-    max-width: 967px;
     margin: 0 auto;
     border: 1px solid var(--primary);
     background: rgba(255, 255, 255, 0.2);
@@ -173,7 +176,17 @@ export default {
     position: relative;
     height: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
+    background-color: var(--primary);
+    min-width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    transition: 0.1s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
     &.open {
       .languages {
         transform: translate(0, 0);
@@ -187,17 +200,14 @@ export default {
 
   .burger {
     cursor: pointer;
-    min-width: 26px;
+    min-width: 23px;
     height: 16px;
     position: relative;
     z-index: 200;
     background-color: transparent;
     display: flex;
     justify-content: center;
-    transition: 0.1s;
-    &:hover {
-      transform: scale(1.1);
-    }
+
     span {
       background-color: #fff;
     }
@@ -215,7 +225,7 @@ export default {
       &:nth-child(2) {
         top: calc(50% - 1px);
         width: 100%;
-        left: -10px;
+        left: -6px;
         transition: 0.1s;
       }
       &:nth-child(3) {
@@ -255,7 +265,7 @@ export default {
 
   &__list {
     display: flex;
-    gap: 40px;
+    gap: 30px;
     justify-content: flex-end;
   }
 

@@ -4,25 +4,13 @@
       <div class="gallery__title-wrapper">
         <h1 class="gallery__title">Gallery</h1>
       </div>
-      <div class="gallery-thumbs" v-if="isImage">
-        <div class="gallery-thumbs__swiper swiper" @click.stop>
-          <div class="gallery-thumbs__swiper-wrapper swiper-wrapper">
-            <div
-              class="gallery-thumbs__swiper-slide swiper-slide"
-              v-for="item in gallery"
-              :key="item.galleryId"
-            >
-              <img :src="`${imageURL}${item?.image}`" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <gallery-popup v-if="isImage" :items="gallery" @clicked="closeGallery" />
       <div class="gallery__images" ref="images">
         <div
           v-for="item in gallery"
           :key="item.galleryId"
           class="gallery__image"
-          @click="isImage = !isImage"
+          @click="showGallery"
         >
           <img :src="`${imageURL}${item?.image}`" alt="" />
         </div>
@@ -78,6 +66,20 @@ export default {
   },
   destroyed() {
     this.observer.disconnect();
+  },
+  methods: {
+    showGallery() {
+      if (document.querySelector(".wrapper").classList.contains("_lock")) {
+        document.querySelector(".wrapper").classList.remove("_lock");
+      } else {
+        document.querySelector(".wrapper").classList.add("_lock");
+      }
+      this.isImage = !this.isImage;
+    },
+    closeGallery() {
+      document.querySelector(".wrapper").classList.remove("_lock");
+      this.isImage = false;
+    },
   },
 };
 </script>
@@ -166,6 +168,7 @@ export default {
 
   &__image {
     height: 180px;
+    cursor: pointer;
     &:first-child {
       height: 220px;
       grid-column: 1 / span 2;
@@ -216,7 +219,7 @@ export default {
     display: flex;
     justify-content: flex-end;
     margin: 0 100px 0;
-    width: calc(100% - 370px);
+    width: calc(100% - 300px);
     @media (max-width: 767px) {
       margin: 0 20px 0;
       width: calc(100% - 20px);

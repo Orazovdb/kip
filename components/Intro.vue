@@ -18,6 +18,7 @@
           <li class="contact-modal__item">
             <a
               :href="intro?.contact?.instagramLink"
+              target="”_blank”"
               class="flex flex-y-center gap-10"
             >
               <base-icon icon="insta" />
@@ -62,7 +63,7 @@
         <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
         <div class="button-arrow-title">
           <base-icon icon="workBlackArrow" class="black-arrow" />
-          <h2 class="button-arrow-title__text">see our projects</h2>
+          <h2 class="button-arrow-title__text">Catalog</h2>
           <base-icon icon="workBlackArrowMini" class="black-arrow-mini" />
         </div>
       </div>
@@ -181,7 +182,7 @@ export default {
     left: 10%;
   }
   @media (max-width: 479px) {
-    left: 14%;
+    left: 15%;
   }
 }
 .mobile-button-circle-white {
@@ -437,7 +438,7 @@ export default {
   gap: 12px;
   z-index: 1;
   @media (max-width: 767px) {
-    left: -150%;
+    left: -100%;
     bottom: -60px;
   }
   .black-arrow {
@@ -455,7 +456,7 @@ export default {
   &.left {
     right: 56%;
     @media (max-width: 767px) {
-      left: -80%;
+      left: -67%;
       right: auto;
       &:deep() {
         span {

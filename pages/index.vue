@@ -49,27 +49,32 @@ export default {
         },
         {
           id: 3,
+          name: "EHS",
+          url: "/ehs",
+        },
+        {
+          id: 4,
           name: "News",
           url: "#news",
         },
         {
-          id: 4,
+          id: 5,
           name: "Projects",
           url: "#projects",
         },
         {
-          id: 5,
+          id: 6,
           name: "Gallery",
           url: "#gallery",
         },
         {
-          id: 6,
+          id: 7,
           name: "Partner",
           url: "#partners",
         },
 
         {
-          id: 7,
+          id: 8,
           name: "Contact us",
           url: "#careers",
         },
