@@ -13,12 +13,11 @@
         <div class="ehs-top__wrapper swiper-wrapper">
           <div
             class="ehs-top__slide swiper-slide"
-            v-for="(item, index) in 10"
-            :key="index"
+            v-for="item in datas.images"
+            :key="item"
           >
             <div class="ehs-top__image">
-              <!-- <img :src="`${imageURL}${item.image}`" alt="" /> -->
-              <img src="@/assets/img/engineering_1.jpg" alt="" />
+              <img :src="`${imageURL}${item}`" alt="" />
             </div>
           </div>
         </div>
@@ -36,56 +35,45 @@
       >
         <div class="ehs-mini__wrapper swiper-wrapper">
           <div
-            v-for="(item, index) in 10"
-            :key="index"
+            v-for="item in datas.images"
+            :key="item"
             class="ehs-mini__slide swiper-slide"
           >
             <div class="ehs-mini__image">
-              <!-- <img :src="`${imageURL}${item.image}`" alt="" /> -->
-              <img src="@/assets/img/engineering_1.jpg" alt="" />
+              <img :src="`${imageURL}${item}`" alt="" />
             </div>
           </div>
         </div>
       </div>
-      <h2 class="ehs__box-title">New company</h2>
-      <p class="ehs__box-description">
-        KIP Engineering – молодая и амбициозная компания выполняющая полный
-        комплекс работ промышленного инжиниринга. KIP Engineering – молодая и
-        амбициозная компания выполняющая полный комплекс работ промышленного
-        инжиниринга. Основные деятельности KIP направлены на эффективное и
-        своевременное выполнение интересов заказчика, выполнение нестандартных и
-        трудных задач, использование самых современных и высокотехнологических
-        инженерных решений. Наш ключ к успеху — это профессионалы, преданные
-        своему делу.
-      </p>
+      <h2 class="ehs__box-title">
+        {{ translateTitle(datas) }}
+      </h2>
+      <p class="ehs__box-description" v-html="translateContent(datas)"></p>
     </div>
   </div>
 </template>
 
 <script>
+import { GET_EHS } from "@/api/home.api";
+import translate from "@/mixins/translate";
 import Swiper from "@/plugins/thumbs";
 import { mapGetters } from "vuex";
 export default {
+  mixins: [translate],
   computed: {
+    ...mapGetters(["imageURL"]),
     swiperSmall() {
       return this.$refs.mySwiperSmall.$swiper;
     },
   },
-  props: {
-    datas: {
-      type: Object,
-      default: () => {},
-    },
-    items: {
-      type: Array,
-      default: () => [],
-    },
-  },
   data() {
     return {
+      datas: {
+        images: [],
+      },
       swiperSmallOptions: null,
       swiperOptionThumbs: {
-        spaceBetween: 10,
+        spaceBetween: 20,
         slidesPerView: 5,
         speed: 1500,
         watchSlidesProgress: true,
@@ -107,10 +95,9 @@ export default {
       },
     };
   },
-  computed: {
-    ...mapGetters(["imageURL"]),
-  },
+
   mounted() {
+    this.fetchEhs();
     this.swiperMainMini();
     this.swiperMainBig();
   },
@@ -142,6 +129,17 @@ export default {
           swiper: this.swiperSmallOptions,
         },
       });
+    },
+
+    async fetchEhs() {
+      try {
+        const { data, statusCode } = await GET_EHS();
+        if (statusCode) {
+          this.datas = data || {};
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
@@ -295,7 +293,7 @@ export default {
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
     }
-    &.swiper-slide-thumb-active {
+    &.swiper-slide-active {
       &::before {
         display: none;
       }
@@ -303,6 +301,7 @@ export default {
   }
 
   &__image {
+    height: 100%;
     img {
       width: 100%;
       height: 100%;

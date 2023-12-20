@@ -9,6 +9,7 @@
     <base-icon
       class="base-uploaded-file__icon-left"
       v-if="imgUpload"
+      @clicked="$emit('itemEdit')"
       icon="imgUpload"
     />
     <base-icon
@@ -24,7 +25,7 @@
 import { mapGetters } from "vuex";
 
 export default {
-  emits: ["itemDelete"],
+  emits: ["itemDelete", "itemEdit"],
   props: {
     imgUpload: {
       type: Boolean,

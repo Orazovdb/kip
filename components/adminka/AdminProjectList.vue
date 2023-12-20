@@ -15,6 +15,7 @@
         <tr v-for="(item, index) in datas" :key="item.projectId">
           <td>{{ (page - 1) * limit + index + 1 }}</td>
           <td>
+            {{ item.cover }}
             <img :src="`${imageURL}${item.cover}`" alt="" />
           </td>
           <td>{{ item?.nameTm }}</td>

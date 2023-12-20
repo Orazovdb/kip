@@ -20,3 +20,5 @@ export const POST_MAIL = ({ data }) =>
 export const GET_GALLERY = () => request({ url: `gallary`, method: "PATCH" });
 
 export const GET_PARTNERS = () => request({ url: `partners`, method: "PATCH" });
+
+export const GET_EHS = () => request({ url: `ecology`, method: "PATCH" });

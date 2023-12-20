@@ -37,6 +37,7 @@
             <base-uploaded-file
               class="admin-partners__block-image"
               v-for="item in datas.dealership"
+              @itemEdit="partnerEdit(item, 'dealership')"
               :key="item.partnerId"
               imgUpload
               :image="item.fileUrl"
@@ -82,6 +83,7 @@
             <base-uploaded-file
               class="admin-partners__block-image"
               v-for="item in datas.clients"
+              @itemEdit="partnerEdit(item, 'clients')"
               :key="item.partnerId"
               imgUpload
               :image="item.fileUrl"
@@ -127,6 +129,7 @@
             <base-uploaded-file
               class="admin-partners__block-image"
               v-for="item in datas.projects"
+              @itemEdit="partnerEdit(item, 'projects')"
               :key="item.partnerId"
               imgUpload
               :image="item.fileUrl"
@@ -195,6 +198,13 @@ export default {
     await this.getGalleries();
   },
   methods: {
+    partnerEdit(data, str) {
+      console.log(this.main[str], data);
+      data["type"] = str;
+      Object.keys(this.main[str]).forEach(
+        (key) => (this.main[str][key] = data[key])
+      );
+    },
     async getGalleries() {
       try {
         const { success, data } = await request({
@@ -227,7 +237,7 @@ export default {
             data: this.main[str],
           });
           if (!success) return;
-          this.datas[str].unshift(data);
+          await this.getGalleries();
           Object.keys(this.main[str]).forEach(
             (key) => (this.main[str][key] = null)
           );

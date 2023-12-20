@@ -74,6 +74,12 @@ export default {
           icon: "folder",
           name: "Gallery",
         },
+        {
+          id: 7,
+          url: "/ehs",
+          icon: "folder",
+          name: "Ehs",
+        },
       ],
     };
   },

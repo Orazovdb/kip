@@ -22,3 +22,5 @@ export const GET_PROJECTS_ALL = () =>
 
 export const DELETE_SLIDER = ({ data }) =>
   request({ url: `/admin/slider/delete`, data, method: "post" });
+
+export const GET_EHS = () => request({ url: `/ecology`, method: "patch" });

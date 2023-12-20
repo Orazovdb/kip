@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     change(event) {
-      this.imgPath = URL.createObjectURL(event?.target?.files[0]);
+      // this.imgPath = URL.createObjectURL(event?.target?.files[0]);
       this.$emit("file", event.target.files[0]);
     },
   },
