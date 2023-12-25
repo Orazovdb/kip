@@ -13,10 +13,10 @@
           hasFirst ? paginationClasses.buttonDisable : ''
         }`"
       >
-        <!-- <span class="mdi"><img src="@/assets/img/chevron-left.svg" /></span> -->
-        <!-- <span class="mdi"
+        <span class="mdi"><img src="@/assets/img/chevron-left.svg" /></span>
+        <span class="mdi"
           ><img src="@/assets/img/chevron-left-white.svg"
-        /></span> -->
+        /></span>
       </button>
     </li>
     <li
@@ -56,10 +56,10 @@
           hasLast ? paginationClasses.buttonDisable : ''
         }`"
       >
-        <!-- <span class="mdi"><img src="@/assets/img/chevron-right.svg" /></span> -->
-        <!-- <span class="mdi"
+        <span class="mdi"><img src="@/assets/img/chevron-right.svg" /></span>
+        <span class="mdi"
           ><img src="@/assets/img/chevron-right-white.svg"
-        /></span> -->
+        /></span>
       </button>
     </li>
   </ul>
@@ -220,7 +220,7 @@ export default {
     font-style: normal;
     font-weight: 500;
     font-size: 17px;
-    color: var(--text);
+    color: var(--primary);
     line-height: 15px;
     background-color: transparent;
     display: flex;

@@ -4,7 +4,7 @@
     <main class="main">
       <Intro id="home" url="#projects" :intro="intro" />
       <About id="about" :aboutUs="aboutUs" />
-      <products-services id="products/services" :items="products" />
+      <product-service id="products-services" :items="products" />
       <News id="news" :news="news" />
       <Projects id="projects" :projects="projects" />
       <Gallery id="gallery" :gallery="gallery" />
@@ -53,7 +53,7 @@ export default {
         {
           id: 3,
           name: "Products/services",
-          url: "#products/services",
+          url: "#products-services",
         },
         {
           id: 3,

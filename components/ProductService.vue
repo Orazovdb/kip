@@ -1,16 +1,11 @@
 <template>
   <div class="services" ref="aos">
-    <h1
-      class="services__title"
-      @click="$router.push(localeLocation('/products-services'))"
-    >
-      Products/services
-    </h1>
+    <h1 class="services__title">Products/services</h1>
     <div class="services__row" ref="images">
       <div
         class="services__item"
-        v-for="item in items.services"
-        :key="item.id"
+        v-for="item in items?.services"
+        :key="item?.id"
         @click="$router.push(localeLocation(`/products-services/${item?.id}`))"
       >
         <div class="services__image">
@@ -26,6 +21,14 @@
         </div>
       </div>
     </div>
+    <div class="services__button-wrapper">
+      <button
+        class="services__button"
+        @click="$router.push(localeLocation('/products-services'))"
+      >
+        See all
+      </button>
+    </div>
   </div>
 </template>
 
@@ -37,14 +40,21 @@ export default {
   computed: {
     ...mapGetters(["imageURL"]),
   },
-  props: {},
+  props: {
+    items: {
+      products: {
+        type: Array,
+        default: () => null,
+      },
+      services: {
+        type: Array,
+        default: () => null,
+      },
+    },
+  },
   data() {
     return {
       observer: null,
-      items: {
-        products: [],
-        services: [],
-      },
     };
   },
   mounted() {
@@ -74,6 +84,9 @@ export default {
 <style lang="scss" scoped>
 .services {
   padding: 80px 100px 20px 100px;
+  @media (max-width: 767px) {
+    padding: 50px 20px 0;
+  }
   &__title {
     position: relative;
     padding-bottom: 7px;
@@ -85,7 +98,10 @@ export default {
     letter-spacing: 0.33px;
     text-transform: capitalize;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    @media (max-width: 767px) {
+      margin-bottom: 20px;
+    }
   }
   &__row {
     display: grid;
@@ -101,18 +117,25 @@ export default {
     }
     @media (max-width: 767px) {
       grid-template-columns: 1fr;
-      padding: 30px 20px 10px;
+      padding: 0;
     }
   }
 
   &__item {
     display: flex;
     gap: 10px;
+    cursor: pointer;
+    &:hover {
+      .services__image {
+        transform: scale(1.02);
+      }
+    }
   }
 
   &__image {
     height: 180px;
     box-shadow: 0.1px 0.1px 2px 2px rgba(0, 0, 0, 0.2);
+    transition: 0.2s all;
     img {
       width: 100%;
       height: 100%;
@@ -161,6 +184,29 @@ export default {
       width: 140px;
       height: 80px;
     }
+  }
+
+  &__button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    @media (max-width: 767px) {
+      margin-right: 10px;
+    }
+  }
+
+  &__button {
+    text-align: right;
+    padding: 10px;
+    border-radius: 6px;
+    color: var(--red);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background-color: transparent;
+    transition: 0.2s all;
+    cursor: pointer;
   }
 }
 </style>

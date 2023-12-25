@@ -215,7 +215,7 @@ export default {
   }
 
   &__left-item-image {
-    min-width: 158px;
+    width: 158px;
     height: 98px;
     background-color: #183a6079;
     border-radius: 5px;

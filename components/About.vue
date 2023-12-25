@@ -362,7 +362,7 @@ export default {
   @media (max-width: 767px) {
     bottom: auto;
     top: -40px;
-    right: -130%;
+    right: -100%;
     .arrow {
       display: none;
     }
@@ -388,7 +388,6 @@ export default {
   top: -130%;
   transition: 0.7s;
   transform: scale(-0.1);
-  opacity: 0;
   &.open {
     left: -250%;
     opacity: 1;

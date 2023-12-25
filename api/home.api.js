@@ -4,6 +4,8 @@ export const GET_ABOUT = () => request({ url: `about`, method: "PATCH" });
 
 export const GET_PRODUCTS = () =>
   request({ url: `products-services`, method: "PATCH" });
+export const GET_PRODUCTS_ONE = ({ data }) =>
+  request({ url: `services/find/${data.id}`, method: "POST" });
 
 export const GET_HOME = () => request({ url: `home`, method: "PATCH" });
 

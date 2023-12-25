@@ -1,22 +1,34 @@
-<!-- <template>
+<template>
   <div class="services" ref="aos">
-    <div class="services__row" ref="images">
-      <div
-        class="services__item"
-        v-for="item in items.services"
-        :key="item.id"
-        @click="$router.push(localeLocation(`/products-services/${item?.id}`))"
-      >
-        <div class="services__image">
-          <img :src="`${imageURL}${item?.images[0]}`" alt="" />
-        </div>
-        <div class="services__content">
-          <div class="services__content-logo">
-            <img :src="`${imageURL}${item?.logo}`" alt="" />
+    <div class="services__container">
+      <div class="services__top">
+        <base-icon
+          icon="arrowLeft"
+          class="projects__icon"
+          @clicked="$router.push(localeLocation('/'))"
+        />
+        <h1 class="projects__title">Projects</h1>
+      </div>
+      <div class="services__row" ref="images">
+        <div
+          class="services__item"
+          v-for="item in items.services"
+          :key="item.id"
+          @click="
+            $router.push(localeLocation(`/products-services/${item?.id}`))
+          "
+        >
+          <div class="services__image">
+            <img :src="`${imageURL}${item?.images[0]}`" alt="" />
           </div>
-          <p>Company: {{ translateName(item) }}</p>
+          <div class="services__content">
+            <div class="services__content-logo">
+              <img :src="`${imageURL}${item?.logo}`" alt="" />
+            </div>
+            <p>Company: {{ translateName(item) }}</p>
 
-          <p>Type: {{ item?.type }}</p>
+            <p>Type: {{ item?.type }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -24,6 +36,7 @@
 </template>
 
 <script>
+import { GET_PRODUCTS } from "@/api/home.api";
 import translate from "@/mixins/translate";
 import { mapGetters } from "vuex";
 export default {
@@ -31,18 +44,18 @@ export default {
   computed: {
     ...mapGetters(["imageURL"]),
   },
-  props: {
-    items: {
-      products: [],
-      services: [],
-    },
-  },
+
   data() {
     return {
       observer: null,
+      items: {
+        products: [],
+        services: [],
+      },
     };
   },
-  mounted() {
+  async mounted() {
+    await this.fetchProducts();
     if (this.$refs.aos) {
       const options =
         {
@@ -63,16 +76,45 @@ export default {
   destroyed() {
     this.observer.disconnect();
   },
+  methods: {
+    async fetchProducts() {
+      try {
+        const { data, statusCode } = await GET_PRODUCTS();
+        if (statusCode) {
+          this.items = data || {};
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .services {
+  &__container {
+    max-width: 1165px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+
+  &__top {
+    display: flex;
+    margin-top: 100px;
+    gap: 50px;
+    align-items: center;
+    margin-bottom: 50px;
+    @media (max-width: 767px) {
+      gap: 30px;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+  }
   &__row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    padding: 100px 100px 20px 100px;
     transition: 1s all;
     transform: translateY(120px);
     opacity: 0;
@@ -83,18 +125,26 @@ export default {
     }
     @media (max-width: 767px) {
       grid-template-columns: 1fr;
-      padding: 30px 20px 10px;
+      padding: 0;
+      gap: 24px;
     }
   }
 
   &__item {
     display: flex;
     gap: 10px;
+    cursor: pointer;
+    height: 200px;
+    &:hover {
+      .services__image {
+        transform: scale(1.03);
+      }
+    }
   }
 
   &__image {
-    height: 180px;
     box-shadow: 0.1px 0.1px 2px 2px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
     img {
       width: 100%;
       height: 100%;
@@ -145,4 +195,4 @@ export default {
     }
   }
 }
-</style> -->
+</style>
