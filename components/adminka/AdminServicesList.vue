@@ -6,19 +6,23 @@
           <th>N*</th>
           <th>Logo</th>
           <th>Company name</th>
-          <th>Description</th>
+          <th>Content</th>
+          <th>Type</th>
           <th>Priority</th>
           <th>Edit</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in datas" :key="item.projectId">
+        <tr v-for="(item, index) in datas" :key="item.id">
           <td>{{ (page - 1) * limit + index + 1 }}</td>
           <td>
-            <img :src="`${imageURL}${item.cover}`" alt="" />
+            <!-- {{ item.logo }} -->
+            <img :src="`${imageURL}${item.logo}`" alt="" />
           </td>
+
           <td>{{ item?.nameTm }}</td>
-          <td class="description" v-html="item.descriptionTm"></td>
+          <td v-html="item.contentTm"></td>
+          <td>{{ item?.type }}</td>
           <td>{{ item?.priority }}</td>
           <td>
             <div class="controller">
@@ -71,13 +75,13 @@ export default {
   },
   methods: {
     itemDelete(data) {
-      this.id = data.projectId;
+      this.id = data.id;
       this.deletePupUp = true;
     },
     async confirm() {
       try {
         const { success } = await request({
-          url: `projects/remove/${this.id}`,
+          url: `services/remove/${this.id}`,
         });
         if (!success) return;
         this.deletePupUp = false;

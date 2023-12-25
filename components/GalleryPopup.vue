@@ -53,11 +53,6 @@
 import Swiper from "@/plugins/thumbs";
 import { mapGetters } from "vuex";
 export default {
-  computed: {
-    swiperSmall() {
-      return this.$refs.mySwiperSmall.$swiper;
-    },
-  },
   props: {
     datas: {
       type: Object,
@@ -71,12 +66,6 @@ export default {
   data() {
     return {
       swiperSmallOptions: null,
-      // items: [
-      //   { id: 1, path: 'img_1.png' },
-      //   { id: 2, path: 'img_2.png' },
-      //   { id: 3, path: 'img_3.png' },
-      //   { id: 4, path: 'img_4.png' },
-      // ],
       swiperOptionThumbs: {
         spaceBetween: 20,
         slidesPerView: 5,
@@ -102,6 +91,9 @@ export default {
   },
   computed: {
     ...mapGetters(["imageURL"]),
+    swiperSmall() {
+      return this.$refs.mySwiperSmall.$swiper;
+    },
   },
   mounted() {
     this.swiperMainMini();

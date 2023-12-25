@@ -49,7 +49,11 @@
           label="Content #home"
           class="mb-2"
         />
-        <base-button @clickedButton="upsertData"> Save </base-button>
+        <div class="flex flex-x-end">
+          <base-button @clickedButton="upsertData" style="width: 150px">
+            Save
+          </base-button>
+        </div>
       </form>
     </div>
     <popup-error :errorPupUp="errorPupUp">{{ errorMessage }}</popup-error>

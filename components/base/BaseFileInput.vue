@@ -1,5 +1,8 @@
 <template>
   <div class="file-input">
+    <h1 v-if="label" class="file-input__label">
+      {{ label }}
+    </h1>
     <label>
       <input @change="change" type="file" />
       <div v-if="!imgPath" class="file-input__content">
@@ -20,6 +23,10 @@ export default {
       default: () => null,
     },
     image: {
+      type: String,
+      default: null,
+    },
+    label: {
       type: String,
       default: null,
     },
@@ -56,12 +63,19 @@ export default {
   width: 100%;
   min-height: 100%;
   border-radius: 2px;
-  background-color: var(--gray-700);
+
+  &__label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--primary);
+  }
 
   label {
     width: 100%;
     display: inline-block;
+    background-color: var(--gray-700);
     cursor: pointer;
+    height: 100%;
     img {
       position: absolute;
       top: 0;

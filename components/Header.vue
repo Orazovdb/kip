@@ -161,6 +161,7 @@ export default {
     border-radius: 10px;
     backdrop-filter: blur(31px);
     padding: 10px 20px 10px 30px;
+    max-width: 1300px;
     @media (max-width: 767px) {
       display: none;
     }

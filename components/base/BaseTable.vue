@@ -79,6 +79,22 @@ export default {};
               color: inherit !important;
             }
           }
+          &.description {
+            p {
+              display: none;
+
+              &:first-child {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* number of lines to show */
+                line-clamp: 2;
+                -webkit-box-orient: vertical;
+                height: 100%;
+              }
+            }
+          }
         }
       }
     }

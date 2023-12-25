@@ -4,6 +4,7 @@
     <main class="main">
       <Intro id="home" url="#projects" :intro="intro" />
       <About id="about" :aboutUs="aboutUs" />
+      <products-services id="products/services" :items="products" />
       <News id="news" :news="news" />
       <Projects id="projects" :projects="projects" />
       <Gallery id="gallery" :gallery="gallery" />
@@ -20,6 +21,7 @@ import {
   GET_HOME,
   GET_NEWS,
   GET_PARTNERS,
+  GET_PRODUCTS,
   GET_PROJECTS,
 } from "@/api/home.api";
 
@@ -27,6 +29,7 @@ export default {
   data() {
     return {
       aboutUs: {},
+      products: {},
       intro: {},
       news: {},
       projects: [],
@@ -46,6 +49,11 @@ export default {
           id: 2,
           name: "About us",
           url: "#about",
+        },
+        {
+          id: 3,
+          name: "Products/services",
+          url: "#products/services",
         },
         {
           id: 3,
@@ -84,6 +92,7 @@ export default {
 
   async mounted() {
     await this.fetchAbout();
+    await this.fetchProducts();
     await this.fetchIntro();
     await this.fetchNews();
     await this.fetchProjects();
@@ -108,6 +117,17 @@ export default {
         const { data, statusCode } = await GET_ABOUT();
         if (statusCode) {
           this.aboutUs = data || {};
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    async fetchProducts() {
+      try {
+        const { data, statusCode } = await GET_PRODUCTS();
+        if (statusCode) {
+          this.products = data || {};
         }
       } catch (error) {
         console.error(error);

@@ -147,9 +147,9 @@ export default {
 
   &__images {
     display: grid;
-    grid-template-columns: 1fr 1fr 450px;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    margin: 0 20px 40px;
+    margin: 0 100px 20px 100px;
     transition: 1s all;
     transform: translateY(120px);
     opacity: 0;
@@ -167,22 +167,22 @@ export default {
   }
 
   &__image {
-    height: 180px;
+    height: 220px;
     cursor: pointer;
-    &:first-child {
-      height: 220px;
-      grid-column: 1 / span 2;
-    }
-    &:nth-child(2) {
-      grid-row: span 2;
-      height: 100%;
-      img {
-        height: 100%;
-      }
-    }
-    &:nth-child(3) {
-      grid-column: 1 / span 1;
-    }
+    // &:first-child {
+    //   height: 220px;
+    //   grid-column: 1 / span 2;
+    // }
+    // &:nth-child(2) {
+    //   grid-row: span 2;
+    //   height: 100%;
+    //   img {
+    //     height: 100%;
+    //   }
+    // }
+    // &:nth-child(3) {
+    //   grid-column: 1 / span 1;
+    // }
     img {
       width: 100%;
       height: 100%;

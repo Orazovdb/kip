@@ -153,6 +153,9 @@ export default {
 .about {
   position: relative;
   height: 100vh;
+  @media (max-width: 767px) {
+    height: 100%;
+  }
 
   &__left {
     position: absolute;

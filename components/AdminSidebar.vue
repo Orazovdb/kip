@@ -80,6 +80,13 @@ export default {
           icon: "folder",
           name: "Ehs",
         },
+        {
+          id: 8,
+          url: "/products-services",
+          icon: "folder",
+          name: "Products/services",
+        },
+        
       ],
     };
   },

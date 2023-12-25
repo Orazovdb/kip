@@ -1,18 +1,25 @@
 <template>
-  <div class="admin-project-page">
+  <div class="services">
     <base-languages @selectLanguage="toggleLanguage" :activeLang="activeLang" />
     <form class="admin-form" @submit.prevent>
       <admin-input
         @updateValue="(val) => (main[`name${activeLang}`] = val)"
         :value="main[`name${activeLang}`]"
-        label="Project name"
+        label="Products/services name"
         placeholder="..."
       />
       <admin-input
-        @updateValue="(val) => (main[`company`] = val)"
-        :value="main[`company`]"
-        label="Company name"
+        @updateValue="(val) => (main[`content${activeLang}`] = val)"
+        :value="main[`content${activeLang}`]"
+        label="Products/services content"
         placeholder="..."
+      />
+
+      <admin-input
+        @updateValue="(val) => (main[`type`] = val)"
+        :value="main[`type`]"
+        label="service/product"
+        placeholder="service/product"
       />
 
       <div class="flex gap-10">
@@ -25,22 +32,8 @@
           style="width: 200px"
           appendIcon="starIcon"
         />
-        <div class="text-editor-wrapper__calendar" style="width: 200px">
-          <admin-input
-            label="Calendar"
-            @updateValue="(val) => (main.workDate = val)"
-            :value="main.workDate"
-            type="date"
-            appendIcon="calendar"
-          />
-        </div>
       </div>
       <div></div>
-      <admin-textarea
-        v-model="main[`description${activeLang}`]"
-        label="Description"
-        class="mb-2 admin-textarea"
-      />
       <div class="flex flex-x-end grid-column">
         <base-button
           @clickedButton="upsertData"
@@ -51,23 +44,21 @@
         </base-button>
       </div>
     </form>
-    <div class="admin-project-page__images-wrapper gap-20">
+    <div class="services__images-wrapper gap-20">
       <base-file-input
         imgUpload
-        :image="main.cover"
+        :image="main.logo"
         @file="uploadPhotoCover"
         style="height: 216px"
-        label="Cover"
       />
       <base-file-input
         imgUpload
         @file="uploadPhotoImages"
         :image="main.images[0]"
         style="height: 216px"
-        label="Images"
       />
     </div>
-    <div class="admin-project-page__images">
+    <div class="services__images">
       <base-uploaded-file
         v-for="item in main.images"
         :key="item"
@@ -99,25 +90,23 @@ export default {
       image: null,
       errorMessage: "Boş meydanlary dolduryň!",
       main: {
-        projectId: null,
+        id: null,
         nameTm: "",
         nameRu: "",
         nameEn: "",
-        descriptionTm: "",
-        descriptionRu: "",
-        descriptionEn: "",
-        company: "",
-        workDate: "",
+        contentTm: "",
+        contentRu: "",
+        contentEn: "",
+        type: "service",
         images: [],
-        cover: "",
+        logo: "",
         priority: null,
-        logo: "dd",
       },
     };
   },
   watch: {
     id: async function (val) {
-      await this.getOneProject(val);
+      await this.getOneProducts(val);
     },
   },
   methods: {
@@ -140,7 +129,7 @@ export default {
     async upsertData() {
       if (
         !this.main[`name${this.activeLang}`] ||
-        !this.main[`description${this.activeLang}`]
+        !this.main[`content${this.activeLang}`]
       ) {
         this.errorPupUp = true;
         this.errorMessage = "Boş meydanlary doldury";
@@ -150,23 +139,21 @@ export default {
       } else {
         try {
           const { success, data } = await request({
-            url: "projects/upsert",
+            url: "services/upsert",
             data: this.main,
           });
           if (!success) return;
-          this.main.projectId = null;
+          this.main.id = null;
           this.main.nameTm = "";
-          this.main.descriptionTm = "";
+          this.main.contentTm = "";
           this.main.nameRu = "";
-          this.main.descriptionRu = "";
+          this.main.contentRu = "";
           this.main.nameEn = "";
-          this.main.descriptionEn = "";
+          this.main.contentEn = "";
           this.main.images = [];
           this.main.priority = null;
-          this.main.company = null;
-          this.main.workDate = null;
-          this.main.cover = null;
-          this.main.authorId = null;
+          this.main.type = null;
+          this.main.logo = null;
         } catch (error) {
           console.log(error.response);
           if (error?.response?.data?.statusCode === 611) {
@@ -179,10 +166,10 @@ export default {
         }
       }
     },
-    async getOneProject(id) {
+    async getOneProducts(id) {
       try {
         const { success, data } = await request({
-          url: `projects/one/${id}`,
+          url: `services/find/${id}`,
           method: "POST",
         });
         if (!success) return;
@@ -209,7 +196,7 @@ export default {
           file: true,
         });
         if (!success) return;
-        this.main.cover = data.url;
+        this.main.logo = data.url;
       } catch (error) {
         console.log(error);
       }
@@ -237,7 +224,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.admin-project-page {
+.services {
   padding: 0 36px 30px;
 
   &__images-wrapper {

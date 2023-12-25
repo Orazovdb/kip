@@ -61,10 +61,12 @@ import { mapGetters } from "vuex";
 export default {
   mixins: [translate],
   computed: {
-    ...mapGetters(["imageURL"]),
     swiperSmall() {
       return this.$refs.mySwiperSmall.$swiper;
     },
+    // swiperTop() {
+    //   return this.$refs.swiperTop.$swiper;
+    // },
   },
   data() {
     return {
@@ -94,6 +96,10 @@ export default {
         },
       },
     };
+  },
+
+  computed: {
+    ...mapGetters(["imageURL"]),
   },
 
   mounted() {

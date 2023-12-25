@@ -2,6 +2,9 @@ import { request } from "./generic.api";
 
 export const GET_ABOUT = () => request({ url: `about`, method: "PATCH" });
 
+export const GET_PRODUCTS = () =>
+  request({ url: `products-services`, method: "PATCH" });
+
 export const GET_HOME = () => request({ url: `home`, method: "PATCH" });
 
 export const GET_NEWS = () => request({ url: `news`, method: "PATCH" });

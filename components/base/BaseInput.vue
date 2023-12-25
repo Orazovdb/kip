@@ -148,7 +148,7 @@ input[type="file"] {
   position: relative;
   &::placeholder {
     border-radius: 16px;
-    color: var(--border);
+    color: rgba(255, 255, 255, 0.6) !important;
     font-weight: 400;
   }
 
