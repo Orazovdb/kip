@@ -22,20 +22,23 @@
         placeholder="service/product"
       /> -->
       <div class="flex flex-y-center gap-40">
-        <base-input-radio
-          @updateValue="(val) => (main.type = val)"
-          :value="main.type"
+        <radio-input :options="radioOptions" v-model="selectedRadio" />
+        <p>Selected Value: {{ selectedRadio }}</p>
+
+        <!-- <base-input-radio
+          @updateValue="(val) => (main.type1['service'] = val)"
+          :value="main.type1['service']"
           type="radio"
           name="name"
         />
           <label for="services">Services</label>
         <base-input-radio
-          @updateValue="(val) => (main.type = val)"
-          :value="main.type"
+          @updateValue="(val) => (main.type2 = val)"
+          :value="main.type2"
           type="radio"
           name="name"
         />
-          <label for="products">Products</label>
+          <label for="products">Products</label> -->
       </div>
 
       <div class="flex gap-10">
@@ -105,6 +108,11 @@ export default {
       errorPupUp: false,
       image: null,
       errorMessage: "Boş meydanlary dolduryň!",
+      selectedRadio: null,
+      radioOptions: [
+        { label: "service", value: "service" },
+        { label: "product", value: "product" },
+      ],
       main: {
         id: null,
         nameTm: "",
@@ -113,7 +121,8 @@ export default {
         contentTm: "",
         contentRu: "",
         contentEn: "",
-        type: "product",
+        type1: "",
+        type2: "",
         images: [],
         logo: "",
         priority: null,
@@ -156,7 +165,9 @@ export default {
         try {
           const { success, data } = await request({
             url: "services/upsert",
-            data: this.main,
+            data: {
+              ...this.main,
+            },
           });
           if (!success) return;
           this.main.id = null;
@@ -168,7 +179,7 @@ export default {
           this.main.contentEn = "";
           this.main.images = [];
           this.main.priority = null;
-          this.main.type = null;
+          this.main.type1 = null;
           this.main.logo = null;
         } catch (error) {
           console.log(error.response);

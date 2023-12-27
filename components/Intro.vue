@@ -53,10 +53,8 @@
           <base-icon icon="contactWhiteArrow" />
         </div>
       </div>
-      <div class="intro__logo-wrapper">
-        <div class="intro__logo" ref="image">
-          <img src="@/assets/img/kip-logo.svg" alt="logo" />
-        </div>
+      <div class="intro__logo" ref="image">
+        <img src="@/assets/img/kip-logo.svg" alt="logo" />
       </div>
       <div class="relative mobile-button-circle-white" ref="project">
         <base-button-circle :url="`/1.pdf`" primary>
@@ -282,11 +280,6 @@ export default {
     }
   }
 
-  &__logo-wrapper {
-    width: 250px;
-    height: 250px;
-  }
-
   &__logo {
     width: 250px;
     height: 250px;
@@ -295,7 +288,7 @@ export default {
     transition: 1s all;
     transform: translateY(80px);
     opacity: 0;
-    animation: flip linear;
+    // animation: flip linear;
     animation-duration: 4s;
     animation-iteration-count: 2;
     -webkit-backface-visibility: visible;

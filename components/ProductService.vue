@@ -20,6 +20,24 @@
           <p>Type: {{ item?.type }}</p>
         </div>
       </div>
+      <div
+        class="services__item"
+        v-for="item in items?.products"
+        :key="item?.id"
+        @click="$router.push(localeLocation(`/products-services/${item?.id}`))"
+      >
+        <div class="services__image">
+          <img :src="`${imageURL}${item?.images[0]}`" alt="" />
+        </div>
+        <div class="services__content">
+          <div class="services__content-logo">
+            <img :src="`${imageURL}${item?.logo}`" alt="" />
+          </div>
+          <p>Company: {{ translateName(item) }}</p>
+
+          <p>Type: {{ item?.type }}</p>
+        </div>
+      </div>
     </div>
     <div class="services__button-wrapper">
       <button
