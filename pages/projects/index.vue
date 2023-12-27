@@ -52,7 +52,7 @@ export default {
     return {
       observer: null,
       page: 1,
-      limit: 10,
+      limit: 12,
       paginationCount: 0,
       projects: {
         rows: [],
@@ -210,26 +210,6 @@ export default {
       object-position: center;
       border-radius: 8px;
     }
-    &::before {
-      content: "";
-      width: 50px;
-      height: 50px;
-      border-radius: 0 0 10px 0;
-      background-color: #fff;
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
-    &::after {
-      content: "";
-      width: 80px;
-      height: 40px;
-      border-radius: 10px 0 0 0;
-      background-color: #fff;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-    }
   }
 
   &__bottom {
@@ -254,6 +234,7 @@ export default {
     font-weight: 700;
     line-height: normal;
     text-transform: capitalize;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 }
 </style>

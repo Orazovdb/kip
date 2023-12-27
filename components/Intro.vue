@@ -18,7 +18,7 @@
           <li class="contact-modal__item">
             <a
               :href="intro?.contact?.instagramLink"
-              target="”_blank”"
+              target="_blank"
               class="flex flex-y-center gap-10"
             >
               <base-icon icon="insta" />
@@ -36,13 +36,13 @@
           </li>
           <li class="contact-modal__item">
             <base-icon icon="location" />
-            <p>{{ translateAddress(intro?.contact) }}</p>
+            <p class="address">{{ translateAddress(intro?.contact) }}</p>
           </li>
         </div>
       </div>
     </div>
     <div class="intro__left-bg" />
-    <h1 class="intro__title">{{ translateTagline(intro) }}</h1>
+    <h1 class="intro__title" v-html="translateTagline(intro)"></h1>
     <div class="intro__center-items">
       <div class="relative mobile-button-circle-primary" ref="contact">
         <base-button-circle @clicked="openContact = !openContact">
@@ -138,7 +138,7 @@ export default {
 <style lang="scss" scoped>
 .representative {
   position: absolute;
-  bottom: 2.6%;
+  bottom: 1.5%;
   right: 2.8%;
   z-index: 1;
   transition: 1s all;
@@ -155,10 +155,11 @@ export default {
   &__title {
     color: #000;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 100%;
     text-transform: capitalize;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    text-align: right;
     @media (max-width: 479px) {
       font-size: 10px;
       max-width: 100px;
@@ -542,6 +543,10 @@ export default {
     display: flex;
     align-items: center;
     gap: 10px;
+    .address {
+      font-style: italic;
+      font-weight: 500;
+    }
 
     &:not(:last-child) {
       margin-bottom: 10px;
@@ -550,7 +555,7 @@ export default {
       color: #000;
     }
     p {
-      font-weight: 300;
+      font-weight: 500;
       font-size: 14px;
       &:first-child {
         margin-bottom: 2px;

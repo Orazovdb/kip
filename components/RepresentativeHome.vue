@@ -30,7 +30,7 @@ export default {
 .representative-items {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 14px;
   @media (max-width: 767px) {
     flex-direction: column;
     gap: 16px;
@@ -38,15 +38,20 @@ export default {
 
   &__item {
     cursor: pointer;
-    width: 112px;
-    height: 50px;
+    width: 100px;
+    height: 60px;
+    &:first-child {
+      img {
+        object-fit: contain;
+      }
+    }
     img {
-      max-width: 100%;
+      width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
     @media (max-width: 479px) {
-      max-width: 60px;
+      width: 60px;
     }
   }
 }

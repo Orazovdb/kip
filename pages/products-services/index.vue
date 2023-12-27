@@ -7,12 +7,12 @@
           class="projects__icon"
           @clicked="$router.push(localeLocation('/'))"
         />
-        <h1 class="projects__title">Projects</h1>
+        <h1 class="projects__title">Products/Services</h1>
       </div>
       <div class="services__row" ref="images">
         <div
           class="services__item"
-          v-for="item in items.services"
+          v-for="item in items"
           :key="item.id"
           @click="
             $router.push(localeLocation(`/products-services/${item?.id}`))
@@ -31,12 +31,18 @@
           </div>
         </div>
       </div>
+      <base-pagination
+        v-if="paginationCount > 1"
+        :modelValue="page"
+        @clickPage="(pagination) => updatePage(pagination)"
+        :pageCount="paginationCount"
+      ></base-pagination>
     </div>
   </div>
 </template>
 
 <script>
-import { GET_PRODUCTS } from "@/api/home.api";
+import { request } from "@/api/generic.api";
 import translate from "@/mixins/translate";
 import { mapGetters } from "vuex";
 export default {
@@ -47,11 +53,11 @@ export default {
 
   data() {
     return {
+      page: 1,
+      limit: 12,
+      paginationCount: 0,
       observer: null,
-      items: {
-        products: [],
-        services: [],
-      },
+      items: [],
     };
   },
   async mounted() {
@@ -79,13 +85,24 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const { data, statusCode } = await GET_PRODUCTS();
-        if (statusCode) {
-          this.items = data || {};
-        }
+        const { success, data } = await request({
+          url: "services",
+          method: "PATCH",
+          data: {
+            page: this.page,
+            limit: this.limit,
+          },
+        });
+        if (!success) return;
+        this.paginationCount = Math.ceil(data.count / this.limit);
+        this.items = data.rows || [];
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
+    },
+    async updatePage(p) {
+      this.page = p;
+      await this.fetchProducts();
     },
   },
 };
@@ -114,7 +131,7 @@ export default {
   &__row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    gap: 30px;
     transition: 1s all;
     transform: translateY(120px);
     opacity: 0;
@@ -134,7 +151,7 @@ export default {
     display: flex;
     gap: 10px;
     cursor: pointer;
-    height: 200px;
+    height: 180px;
     &:hover {
       .services__image {
         transform: scale(1.03);

@@ -7,6 +7,9 @@ export const GET_PRODUCTS = () =>
 export const GET_PRODUCTS_ONE = ({ data }) =>
   request({ url: `services/find/${data.id}`, method: "POST" });
 
+export const GET_PRODUCTS_LIMIT = () =>
+  request({ url: `services/`, method: "PATCH" });
+
 export const GET_HOME = () => request({ url: `home`, method: "PATCH" });
 
 export const GET_NEWS = () => request({ url: `news`, method: "PATCH" });

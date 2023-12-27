@@ -267,12 +267,15 @@ export default {
 
   &__center-image {
     width: 100%;
-    height: 100%;
+    height: 320px;
     img {
       width: 100%;
       height: 100%;
       object-position: center;
       object-fit: cover;
+    }
+    @media (max-width: 767px) {
+      height: 250px;
     }
   }
 

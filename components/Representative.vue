@@ -2,7 +2,7 @@
   <div class="representative" ref="aos">
     <div class="representative__columns" ref="images">
       <div class="representative__title-wrapper">
-        <h1 class="representative__title">Partners</h1>
+        <h1 class="representative__title">Achievements</h1>
       </div>
       <div class="representative__column">
         <div class="representative__subtitle">DEALERSHIP</div>
@@ -111,7 +111,6 @@ export default {
       options: {
         slidesPerView: 6,
         speed: 1000,
-        spaceBetween: 40,
         loop: true,
         autoplay: {
           delay: 4000,
@@ -303,7 +302,7 @@ export default {
 
   &__image {
     width: 100%;
-    height: 70px;
+    height: 90px;
     cursor: pointer;
     img {
       width: 100%;

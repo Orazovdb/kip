@@ -14,21 +14,12 @@
         </div>
         <div class="projects-id__project-content">
           <p class="projects-id__project-text">
-            <span>Location:</span>
-            <span>Industrial Area in north side of Ashgabat</span>
-          </p>
-          <p class="projects-id__project-text">
-            <span>Status:</span>
-            <span>{{ project?.priority }}</span>
-          </p>
-          <p class="projects-id__project-text">
             <span class="projects-id__project-span">Engineering Period:</span>
             <span>
               {{ new Date(project?.workDate).toLocaleDateString() }}
             </span>
           </p>
           <p class="projects-id__project-text">
-            <span class="projects-id__project-span">Product:</span>
             <span v-html="translateName(project)"></span>
           </p>
         </div>
