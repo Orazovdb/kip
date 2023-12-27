@@ -15,31 +15,16 @@
         placeholder="..."
       />
 
-      <!-- <admin-input
+      <admin-input
         @updateValue="(val) => (main[`type`] = val)"
         :value="main[`type`]"
         label="service/product"
         placeholder="service/product"
-      /> -->
-      <div class="flex flex-y-center gap-40">
+      />
+      <!-- <div class="flex flex-y-center gap-40">
         <radio-input :options="radioOptions" v-model="selectedRadio" />
         <p>Selected Value: {{ selectedRadio }}</p>
-
-        <!-- <base-input-radio
-          @updateValue="(val) => (main.type1['service'] = val)"
-          :value="main.type1['service']"
-          type="radio"
-          name="name"
-        />
-          <label for="services">Services</label>
-        <base-input-radio
-          @updateValue="(val) => (main.type2 = val)"
-          :value="main.type2"
-          type="radio"
-          name="name"
-        />
-          <label for="products">Products</label> -->
-      </div>
+      </div> -->
 
       <div class="flex gap-10">
         <admin-input
@@ -108,11 +93,11 @@ export default {
       errorPupUp: false,
       image: null,
       errorMessage: "Boş meydanlary dolduryň!",
-      selectedRadio: null,
-      radioOptions: [
-        { label: "service", value: "service" },
-        { label: "product", value: "product" },
-      ],
+      // selectedRadio: null,
+      // radioOptions: [
+      //   { label: "service", value: "service" },
+      //   { label: "product", value: "product" },
+      // ],
       main: {
         id: null,
         nameTm: "",
@@ -121,8 +106,7 @@ export default {
         contentTm: "",
         contentRu: "",
         contentEn: "",
-        type1: "",
-        type2: "",
+        type: "service",
         images: [],
         logo: "",
         priority: null,
@@ -165,9 +149,7 @@ export default {
         try {
           const { success, data } = await request({
             url: "services/upsert",
-            data: {
-              ...this.main,
-            },
+            data: this.main,
           });
           if (!success) return;
           this.main.id = null;
@@ -179,7 +161,7 @@ export default {
           this.main.contentEn = "";
           this.main.images = [];
           this.main.priority = null;
-          this.main.type1 = null;
+          this.main.type = null;
           this.main.logo = null;
         } catch (error) {
           console.log(error.response);
