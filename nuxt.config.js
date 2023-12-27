@@ -1,3 +1,5 @@
+import en from "./locales/en";
+import ru from "./locales/ru";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head() {
@@ -91,14 +93,6 @@ export default {
 
   i18n: {
     locales: [
-      {
-        // code: "tm",
-        // lang: "TM",
-        // name: "TKM",
-        // iso: "tm-TM",
-        // file: "tm",
-        // isCatchallLocale: true,
-      },
       { code: "en", lang: "EN", name: "ENG", iso: "en-EN", file: "en" },
       {
         code: "ru",
@@ -111,10 +105,10 @@ export default {
     ],
     defaultLocale: "ru",
     seo: true,
-    //  vueI18n: {
-    //    fallbackLocale: 'tm',
-    //    messages: { tm, ru, en }
-    //  }
+    vueI18n: {
+      fallbackLocale: "ru",
+      messages: { ru, en },
+    },
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

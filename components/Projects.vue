@@ -1,7 +1,7 @@
 <template>
   <div class="projects" ref="aos">
     <div class="projects__title-wrapper">
-      <h1 class="projects__title">Projects</h1>
+      <h1 class="projects__title">{{ $t("projects") }}</h1>
     </div>
     <div class="projects__row" ref="images">
       <div
@@ -23,7 +23,7 @@
         class="projects__button"
         @click="$router.push(localeLocation('/projects'))"
       >
-        See all
+        {{ $t("seeAll") }}
       </button>
     </div>
   </div>

@@ -143,13 +143,15 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-    transition: 1s all;
-    transform: translateY(120px);
-    opacity: 0;
-    &.aos {
-      opacity: 1;
-      transform: translateY(0px);
+    @media (min-width: 767px) {
       transition: 1s all;
+      transform: translateY(120px);
+      opacity: 0;
+      &.aos {
+        opacity: 1;
+        transform: translateY(0px);
+        transition: 1s all;
+      }
     }
     @media (max-width: 767px) {
       grid-template-columns: repeat(2, 1fr);

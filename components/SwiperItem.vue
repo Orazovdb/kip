@@ -1,7 +1,7 @@
 <template>
   <div class="swiper-block">
     <div v-swiper:mySwiper="options" class="swiper-block__swiper swiper">
-      <h1 class="swiper-block__title">Gallery</h1>
+      <h1 class="swiper-block__title">{{ $t("gallery") }}</h1>
       <div class="swiper-block__wrapper swiper-wrapper">
         <div
           class="swiper-block__slide swiper-slide"

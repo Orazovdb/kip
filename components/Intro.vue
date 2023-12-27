@@ -7,7 +7,7 @@
     >
       <div class="contact-modal__wrapper">
         <div class="contact-modal__box" @click.stop>
-          <h1 class="contact-modal__title">Contact us</h1>
+          <h1 class="contact-modal__title">{{ $t("contactUs") }}</h1>
           <li class="contact-modal__item">
             <base-icon icon="call" />
             <div class="contact-modal__content">
@@ -46,10 +46,10 @@
     <div class="intro__center-items">
       <div class="relative mobile-button-circle-primary" ref="contact">
         <base-button-circle @clicked="openContact = !openContact">
-          Contact
+          {{ $t("contacts") }}
         </base-button-circle>
         <div class="button-arrow-title left">
-          <h2 class="button-arrow-title__text white">Contact us</h2>
+          <h2 class="button-arrow-title__text white">{{ $t("contactUs") }}</h2>
           <base-icon icon="contactWhiteArrow" />
         </div>
       </div>
@@ -62,12 +62,12 @@
           :url="`'http://119.235.121.50:8090/kip/dshbrd/1.pdf'`"
           primary
         >
-          Download catalog
+          {{ $t("downloadCatalog") }}
         </base-button-circle>
         <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
         <div class="button-arrow-title">
           <base-icon icon="workBlackArrow" class="black-arrow" />
-          <h2 class="button-arrow-title__text">Catalog</h2>
+          <h2 class="button-arrow-title__text">{{ $t("catalog") }}</h2>
           <base-icon icon="workBlackArrowMini" class="black-arrow-mini" />
         </div>
       </div>
@@ -83,13 +83,15 @@
           alt=""
         />
         <h3 class="intro__title-block-name">
-          ES ‘’Kopugurly inzhenerchilik payhaslary”
+          {{ $t("introTitle") }}
         </h3>
       </div>
     </div>
 
     <div class="representative" ref="representative">
-      <h2 class="representative__title">DEALERSHIP</h2>
+      <h2 class="representative__title">
+        {{ $t("dealership") }}
+      </h2>
       <representative-home :representatives="intro?.dealership" />
     </div>
   </div>
@@ -512,7 +514,6 @@ export default {
     white-space: nowrap;
     font-size: 14px;
     font-weight: 500;
-    text-transform: capitalize;
     &.white {
       color: #fff;
     }

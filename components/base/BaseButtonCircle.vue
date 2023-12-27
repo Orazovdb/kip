@@ -38,8 +38,8 @@ export default {
 
 <style lang="scss" scoped>
 .animated-button {
-  width: 70px;
-  height: 70px;
+  min-width: 80px;
+  min-height: 80px;
   border-radius: 50%;
   background-color: #fff;
   display: flex;

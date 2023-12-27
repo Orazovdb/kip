@@ -2,10 +2,10 @@
   <div class="representative" ref="aos">
     <div class="representative__columns" ref="images">
       <div class="representative__title-wrapper">
-        <h1 class="representative__title">Achievements</h1>
+        <h1 class="representative__title">{{ $t("achievements") }}</h1>
       </div>
       <div class="representative__column">
-        <div class="representative__subtitle">DEALERSHIP</div>
+        <div class="representative__subtitle">{{ $t("dealership") }}</div>
         <div v-swiper:mySwiper="options" class="representative__swiper swiper">
           <div class="representative__images swiper-wrapper">
             <a
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="representative__column">
-        <div class="representative__subtitle">Our clients</div>
+        <div class="representative__subtitle">{{ $t("ourClients") }}</div>
         <div v-swiper:mySwiper4="options" class="representative__swiper swiper">
           <div class="representative__images swiper-wrapper">
             <a
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="representative__column">
-        <div class="representative__subtitle">Our projects</div>
+        <div class="representative__subtitle">{{ $t('ourProjects') }}</div>
         <div v-swiper:mySwiper1="options" class="representative__swiper swiper">
           <div class="representative__images swiper-wrapper">
             <a

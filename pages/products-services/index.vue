@@ -7,7 +7,7 @@
           class="projects__icon"
           @clicked="$router.push(localeLocation('/'))"
         />
-        <h1 class="projects__title">Products/Services</h1>
+        <h1 class="projects__title">{{ $t("productsServices") }}</h1>
       </div>
       <div class="services__row" ref="images">
         <div
@@ -25,9 +25,9 @@
             <div class="services__content-logo">
               <img :src="`${imageURL}${item?.logo}`" alt="" />
             </div>
-            <p>Company: {{ translateName(item) }}</p>
+            <p>{{ $t("company") }}: {{ translateName(item) }}</p>
 
-            <p>Type: {{ item?.type }}</p>
+            <p>{{ $t("type") }}: {{ item?.type }}</p>
           </div>
         </div>
       </div>

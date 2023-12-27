@@ -2,7 +2,7 @@
   <div class="gallery" ref="aos">
     <div class="gallery__row">
       <div class="gallery__title-wrapper">
-        <h1 class="gallery__title">Gallery</h1>
+        <h1 class="gallery__title">{{ $t("gallery") }}</h1>
       </div>
       <gallery-popup v-if="isImage" :items="gallery" @clicked="closeGallery" />
       <div class="gallery__images" ref="images">
@@ -20,7 +20,7 @@
           @click="$router.push(localeLocation('/gallery'))"
           class="gallery__button"
         >
-          See all
+          {{ $t("seeAll") }}
         </button>
       </div>
     </div>

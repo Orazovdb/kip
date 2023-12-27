@@ -41,10 +41,12 @@
         </div>
       </div>
       <div class="news__right">
-        <h1 class="news__right-title">News</h1>
-        <h2 class="news__right-subtitle">News of the company</h2>
+        <h1 class="news__right-title">{{ $t("news") }}</h1>
+        <h2 class="news__right-subtitle">{{ $t("newsCompany") }}</h2>
 
-        <!-- <button @click="$router.push('/news')" class="news__watch-button">See all</button> -->
+        <!-- <button @click="$router.push('/news')" class="news__watch-button">
+          {{ $t("seeAll") }}
+        </button> -->
       </div>
     </div>
   </div>

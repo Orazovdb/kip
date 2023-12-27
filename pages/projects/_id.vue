@@ -15,13 +15,15 @@
         </div>
         <div class="projects-id__project-content">
           <p class="projects-id__project-text">
-            <span class="projects-id__project-span">Company name:</span>
+            <span class="projects-id__project-span">{{ $t("company") }}</span>
             <span>
               {{ project?.company }}
             </span>
           </p>
           <p class="projects-id__project-text">
-            <span class="projects-id__project-span">Engineering Period:</span>
+            <span class="projects-id__project-span"
+              >{{ $t("engineeringPeriod") }}:</span
+            >
             <span>
               {{ new Date(project?.workDate).toLocaleDateString() }}
             </span>
@@ -32,14 +34,14 @@
         </div>
       </div>
       <div class="projects-id__description-wrapper">
-        <h1 class="projects-id__description-title">Description</h1>
+        <h1 class="projects-id__description-title">{{ $t("description") }}</h1>
         <p
           class="projects-id__description-description"
           v-html="translateDescription(project)"
         ></p>
       </div>
       <div class="projects-id__images-wrapper">
-        <h1 class="projects-id__images-title">Photo</h1>
+        <h1 class="projects-id__images-title">{{ $t("photo") }}</h1>
         <div class="projects-id__images-row" ref="images">
           <div
             class="projects-id__images-img"
@@ -285,13 +287,16 @@ export default {
     overflow-x: auto;
     max-width: 100%;
     padding-bottom: 10px;
-    transition: 1s all;
-    transform: translateY(120px);
-    opacity: 0;
-    &.aos {
-      opacity: 1;
-      transform: translateY(0px);
+
+    @media (min-width: 767px) {
       transition: 1s all;
+      transform: translateY(120px);
+      opacity: 0;
+      &.aos {
+        opacity: 1;
+        transform: translateY(0px);
+        transition: 1s all;
+      }
     }
     @media (max-width: 479px) {
       gap: 16px;

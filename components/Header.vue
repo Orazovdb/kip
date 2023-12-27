@@ -16,7 +16,7 @@
               <base-icon icon="closeIcon" @clicked="toggleLanguages" />
             </div>
             <div class="languages__block">
-              <h2 class="languages__title">Language</h2>
+              <h2 class="languages__title">{{ $t("lan") }}</h2>
               <div class="languages__link-wrapper">
                 <nuxt-link
                   v-for="locale in selectedLocale"
@@ -38,9 +38,8 @@
                 <a
                   :href="link.url"
                   :class="['menu__link', { active: link.id === link.url }]"
-                  @click.stop="localeLocation(link.url)"
                 >
-                  {{ link.name }}
+                  {{ $t(link.name) }}
                 </a>
               </li>
             </ul>
@@ -103,6 +102,9 @@ export default {
       openMobileMenu: false,
     };
   },
+  mounted() {
+    console.log(this.selectedLocale);
+  },
   computed: {
     selectedLocale() {
       return this.$i18n.locales;
@@ -160,7 +162,7 @@ export default {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     backdrop-filter: blur(31px);
-    padding: 10px 20px 10px 30px;
+    padding: 10px;
     max-width: 1300px;
     @media (max-width: 767px) {
       display: none;
@@ -169,7 +171,7 @@ export default {
 
   &__body {
     display: flex;
-    gap: 40px;
+    gap: 14px;
     align-items: center;
   }
 
@@ -266,7 +268,7 @@ export default {
 
   &__list {
     display: flex;
-    gap: 30px;
+    gap: 10px;
     justify-content: flex-end;
   }
 
@@ -277,11 +279,13 @@ export default {
     padding: 10px;
     border-radius: 99px;
     color: var(--text);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     display: block;
     white-space: nowrap;
     transition: 0.2s;
+    text-transform: capitalize;
+
     &:hover {
       background: rgba(255, 255, 255, 0.09);
     }
@@ -327,6 +331,7 @@ export default {
     color: #fff;
     font-size: 16px;
     font-weight: 500;
+    text-transform: capitalize;
   }
 
   &__link-wrapper {
@@ -342,9 +347,7 @@ export default {
     padding: 5px 10px;
     border-radius: 14px;
     transition: 0.2s;
-    &:first-child {
-      display: none;
-    }
+
     &:hover {
       background: rgba(255, 255, 255, 0.09);
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="services" ref="aos">
-    <h1 class="services__title">Products/services</h1>
+    <h1 class="services__title">{{ $t("productsServices") }}</h1>
     <div class="services__row" ref="images">
       <div
         class="services__item"
@@ -16,8 +16,6 @@
             <img :src="`${imageURL}${item?.logo}`" alt="" />
           </div>
           <p>{{ translateName(item) }}</p>
-
-          <p>Type: {{ item?.type }}</p>
         </div>
       </div>
       <div
@@ -33,9 +31,7 @@
           <div class="services__content-logo">
             <img :src="`${imageURL}${item?.logo}`" alt="" />
           </div>
-          <p>Company: {{ translateName(item) }}</p>
-
-          <p>Type: {{ item?.type }}</p>
+          <p>{{ translateName(item) }}</p>
         </div>
       </div>
     </div>
@@ -44,7 +40,7 @@
         class="services__button"
         @click="$router.push(localeLocation('/products-services'))"
       >
-        See all
+        {{ $t("seeAll") }}
       </button>
     </div>
     <div class="relative mobile-button-circle-white">
@@ -52,11 +48,11 @@
         :url="'http://119.235.121.50:8090/kip/dshbrd/2.pdf'"
         primary
       >
-        Download file
+        {{ $t("downloadFile") }}
       </BaseButtonProducts>
       <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
       <div class="button-arrow-title">
-        <h2 class="button-arrow-title__text">Pdf download file</h2>
+        <h2 class="button-arrow-title__text">{{ $t("pdfDownloadFile") }}</h2>
         <base-icon icon="workBlackArrowMini" class="black-arrow-mini" />
       </div>
     </div>

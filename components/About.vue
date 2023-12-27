@@ -20,7 +20,7 @@
             @click="$router.push(localeLocation('/about'))"
             class="about__button"
           >
-            Read more
+            {{ $t("readMore") }}
           </button>
         </div>
       </div>
@@ -86,14 +86,13 @@
             </div>
           </div>
           <base-button-circle primary @clicked="isVisible = !isVisible">
-            information
+            {{ $t("information") }}
           </base-button-circle>
           <div class="button-arrow-title">
             <base-icon icon="workBlackArrow" class="arrow" />
             <base-icon icon="arrowLeftMini" class="arrow-mobile" />
             <h2 class="button-arrow-title__text">
-              information <br />
-              about us
+              {{ $t("informationAboutUs") }}
             </h2>
           </div>
         </div>

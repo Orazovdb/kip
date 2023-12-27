@@ -88,6 +88,32 @@ export default {};
     transform: translateX(-10%) translateY(-10%);
   }
 }
+.item {
+  &:nth-child(4),
+  &:nth-child(7),
+  &:nth-child(8) {
+    .circle {
+      background-color: #214772 !important;
+    }
+  }
+}
+.item {
+  &:first-child {
+    display: none;
+    .circle {
+      background-color: #eeeeee !important;
+    }
+  }
+}
+.item {
+  &:nth-child(2),
+  &:nth-child(5),
+  &:nth-child(6) {
+    .circle {
+      background-color: #eeeeee !important;
+    }
+  }
+}
 .animation-example {
   position: fixed;
   top: 50%;

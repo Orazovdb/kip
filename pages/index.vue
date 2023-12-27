@@ -8,7 +8,7 @@
       <News id="news" :news="news" />
       <Projects id="projects" :projects="projects" />
       <Gallery id="gallery" :gallery="gallery" />
-      <Representative id="partners" :main="main" />
+      <Representative id="achievements" :main="main" />
       <Vacancy id="careers" />
     </main>
   </div>
@@ -42,12 +42,12 @@ export default {
       links: [
         {
           id: 1,
-          name: "Home",
+          name: "home",
           url: "/#home",
         },
         {
           id: 2,
-          name: "About us",
+          name: "aboutUs",
           url: "#about",
         },
         {
@@ -57,33 +57,33 @@ export default {
         },
         {
           id: 3,
-          name: "EHS",
+          name: "ehs",
           url: "/ehs",
         },
         {
           id: 4,
-          name: "News",
+          name: "news",
           url: "#news",
         },
         {
           id: 5,
-          name: "Projects",
+          name: "projects",
           url: "#projects",
         },
         {
           id: 6,
-          name: "Gallery",
+          name: "gallery",
           url: "#gallery",
         },
         {
           id: 7,
-          name: "Partner",
-          url: "#partners",
+          name: "achievements",
+          url: "#achievements",
         },
 
         {
           id: 8,
-          name: "Contact us",
+          name: "contactUs",
           url: "#careers",
         },
       ],

@@ -5,7 +5,7 @@
         <img src="@/assets/img/kip-logo.svg" alt="" />
       </div>
       <div class="vacancy__form-wrapper" ref="form">
-        <h1 class="vacancy__title">Contact us</h1>
+        <h1 class="vacancy__title">{{ $t("contactUs") }}</h1>
         <form @submit.prevent class="vacancy__form">
           <base-input
             @updateValue="(val) => (this.send.name = val)"
@@ -30,7 +30,7 @@
             placeholder="Enter Text"
           />
           <button @click="sendContact" class="vacancy__button">
-            <span class="vacancy__title-form">Send</span>
+            <span class="vacancy__title-form">{{ $t("send") }}</span>
           </button>
         </form>
       </div>

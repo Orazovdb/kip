@@ -7,7 +7,7 @@
           class="projects__icon"
           @clicked="$router.push(localeLocation('/'))"
         />
-        <h1 class="projects__title">Projects</h1>
+        <h1 class="projects__title">{{ $t("projects") }}</h1>
       </div>
       <div class="projects__items" ref="images">
         <div
