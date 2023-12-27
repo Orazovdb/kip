@@ -276,7 +276,7 @@ export default {
 
   &__center-image {
     width: 100%;
-    height: 340px;
+    height: 50vh;
     img {
       width: 100%;
       height: 100%;
