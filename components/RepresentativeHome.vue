@@ -39,7 +39,7 @@ export default {
   &__item {
     cursor: pointer;
     width: 100px;
-    height: 60px;
+    height: 80px;
     &:first-child {
       img {
         object-fit: contain;

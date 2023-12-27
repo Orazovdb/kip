@@ -302,13 +302,16 @@ export default {
 
   &__image {
     width: 100%;
-    height: 90px;
+    height: 160px;
     cursor: pointer;
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       transition: all 0.3s;
+    }
+    @media (max-width: 767px) {
+      height: 90px;
     }
   }
 }
