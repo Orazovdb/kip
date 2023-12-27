@@ -209,8 +209,9 @@ export default {
   }
 
   &__item-title {
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 10px;
+    font-weight: 500;
     @media (max-width: 767px) {
       font-size: 18px;
     }

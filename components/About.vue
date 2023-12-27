@@ -5,7 +5,7 @@
       <div class="about__logo">
         <img
           class="about__logo-image"
-          src="@/assets/img/kip-logo.svg"
+          src="@/assets/img/fb.svg"
           alt=""
           ref="image"
         />
@@ -253,7 +253,7 @@ export default {
   &__title {
     color: var(--text2);
     font-size: 30px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 120%;
     letter-spacing: 0.45px;
     text-transform: capitalize;
@@ -288,7 +288,7 @@ export default {
   &__description {
     color: var(--text3);
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: normal;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -92,17 +92,24 @@ export default {
   i18n: {
     locales: [
       {
-        code: "tm",
-        lang: "TM",
-        name: "TKM",
-        iso: "tm-TM",
-        file: "tm",
-        isCatchallLocale: true,
+        // code: "tm",
+        // lang: "TM",
+        // name: "TKM",
+        // iso: "tm-TM",
+        // file: "tm",
+        // isCatchallLocale: true,
       },
       { code: "en", lang: "EN", name: "ENG", iso: "en-EN", file: "en" },
-      { code: "ru", lang: "RU", name: "RUS", iso: "ru-RU", file: "ru" },
+      {
+        code: "ru",
+        lang: "RU",
+        name: "RUS",
+        iso: "ru-RU",
+        file: "ru",
+        isCatchallLocale: true,
+      },
     ],
-    defaultLocale: "tm",
+    defaultLocale: "ru",
     seo: true,
     //  vueI18n: {
     //    fallbackLocale: 'tm',

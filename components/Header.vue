@@ -331,7 +331,8 @@ export default {
 
   &__link-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
   }
 
   &__link {
@@ -341,6 +342,9 @@ export default {
     padding: 5px 10px;
     border-radius: 14px;
     transition: 0.2s;
+    &:first-child {
+      display: none;
+    }
     &:hover {
       background: rgba(255, 255, 255, 0.09);
     }

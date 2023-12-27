@@ -36,7 +36,7 @@
           </li>
           <li class="contact-modal__item">
             <base-icon icon="location" />
-            <p class="address">{{ translateAddress(intro?.contact) }}</p>
+            <p class="">{{ translateAddress(intro?.contact) }}</p>
           </li>
         </div>
       </div>
@@ -54,7 +54,8 @@
         </div>
       </div>
       <div class="intro__logo" ref="image">
-        <img src="@/assets/img/kip-logo.svg" alt="logo" />
+        <intro-logo></intro-logo>
+        <img src="@/assets/img/logo-last.png" alt="logo" />
       </div>
       <div class="relative mobile-button-circle-white" ref="project">
         <base-button-circle
@@ -296,6 +297,11 @@ export default {
     animation-iteration-count: 2;
     -webkit-backface-visibility: visible;
     backface-visibility: visible;
+    // background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
 
     @keyframes flip {
       0% {
@@ -338,40 +344,29 @@ export default {
       transform: translateY(0);
       transition: 1s all;
     }
-    &::before {
-      content: "";
-      width: 200px;
-      height: 200px;
-      background-color: #183a6079;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
     @media (max-width: 767px) {
       &.aos {
         transform: translate(-50%, -50%);
       }
-      &::before {
-        content: "";
-        width: 135px;
-        height: 135px;
-        background-color: #183a6079;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        z-index: -1;
-      }
+      // &::before {
+      //   content: "";
+      //   width: 100%;
+      //   height: 100%;
+      //   background-color: #183a6079;
+      //   position: absolute;
+      //   left: 50%;
+      //   top: 50%;
+      //   transform: translate(-50%, -50%);
+      //   border-radius: 50%;
+      //   z-index: -1;
+      // }
     }
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      position: relative;
+      z-index: 100;
     }
     @media (max-width: 767px) {
       margin: 0 auto;
@@ -478,7 +473,7 @@ export default {
 .button-arrow-title {
   position: absolute;
   bottom: -80px;
-  right: -190%;
+  right: -130%;
   display: flex;
   align-items: flex-end;
   gap: 12px;

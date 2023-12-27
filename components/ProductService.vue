@@ -15,7 +15,7 @@
           <div class="services__content-logo">
             <img :src="`${imageURL}${item?.logo}`" alt="" />
           </div>
-          <p>Company: {{ translateName(item) }}</p>
+          <p>{{ translateName(item) }}</p>
 
           <p>Type: {{ item?.type }}</p>
         </div>
@@ -165,7 +165,8 @@ export default {
   }
 
   &__image {
-    height: 180px;
+    min-width: 50%;
+    height: 160px;
     box-shadow: 0.1px 0.1px 2px 2px rgba(0, 0, 0, 0.2);
     transition: 0.2s all;
     img {
@@ -185,7 +186,7 @@ export default {
   &__content {
     p {
       color: #000;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 300;
       text-transform: capitalize;
       &:not(:last-child) {
@@ -198,19 +199,19 @@ export default {
   }
 
   &__content-logo {
-    width: 180px;
-    height: 100px;
+    width: 140px;
+    height: 90px;
     border-radius: 10px;
     border: 1px solid #bab8b8;
     background: #ebebeb;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     img {
       width: 80%;
       height: 80%;
-      object-fit: contain;
+      object-fit: cover;
     }
     @media (max-width: 479px) {
       width: 140px;
