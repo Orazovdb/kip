@@ -25,9 +25,7 @@
             <div class="services__content-logo">
               <img :src="`${imageURL}${item?.logo}`" alt="" />
             </div>
-            <p>{{ $t("company") }}: {{ translateName(item) }}</p>
-
-            <p>{{ $t("type") }}: {{ item?.type }}</p>
+            <p>{{ translateName(item) }}</p>
           </div>
         </div>
       </div>
