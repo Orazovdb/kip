@@ -15,16 +15,15 @@
         placeholder="..."
       />
 
-      <admin-input
+      <!-- <admin-input
         @updateValue="(val) => (main[`type`] = val)"
         :value="main[`type`]"
         label="service/product"
         placeholder="service/product"
-      />
-      <!-- <div class="flex flex-y-center gap-40">
+      /> -->
+      <div class="flex flex-y-center gap-40">
         <radio-input :options="radioOptions" v-model="selectedRadio" />
-        <p>Selected Value: {{ selectedRadio }}</p>
-      </div> -->
+      </div>
 
       <div class="flex gap-10">
         <admin-input
@@ -93,11 +92,11 @@ export default {
       errorPupUp: false,
       image: null,
       errorMessage: "Boş meydanlary dolduryň!",
-      // selectedRadio: null,
-      // radioOptions: [
-      //   { label: "service", value: "service" },
-      //   { label: "product", value: "product" },
-      // ],
+      selectedRadio: "service",
+      radioOptions: [
+        { label: "service", value: "service" },
+        { label: "product", value: "product" },
+      ],
       main: {
         id: null,
         nameTm: "",
@@ -106,7 +105,7 @@ export default {
         contentTm: "",
         contentRu: "",
         contentEn: "",
-        type: "service",
+        type: "",
         images: [],
         logo: "",
         priority: null,
@@ -149,7 +148,10 @@ export default {
         try {
           const { success, data } = await request({
             url: "services/upsert",
-            data: this.main,
+            data: {
+              ...this.main,
+              type: this.selectedRadio,
+            },
           });
           if (!success) return;
           this.main.id = null;

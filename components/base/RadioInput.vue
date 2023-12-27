@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="radio-button">
     <label v-for="option in options" :key="option.value">
       <input
         type="radio"
@@ -17,7 +17,7 @@ export default {
   props: {
     options: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     value: {
       type: [String, Number],
@@ -39,4 +39,20 @@ export default {
 
 <style scoped>
 /* Add your component styles here if needed */
+.radio-button {
+  display: flex;
+  gap: 20px;
+}
+label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+input {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
 </style>
