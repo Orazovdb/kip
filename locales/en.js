@@ -31,4 +31,6 @@ export default {
   engineeringPeriod: "Engineering Period",
   description: "Description",
   photo: "Photo",
+  yourName: 'Your name',
+  enterText: 'Enter text'
 };

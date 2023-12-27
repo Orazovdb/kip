@@ -1,7 +1,7 @@
 <template>
   <div :class="classes">
     <h4 class="base-input__label" v-if="label">
-      {{ label }}
+      {{ $t(label) }}
     </h4>
     <input
       :type="type"
@@ -79,8 +79,8 @@ export default {
 
   &__label {
     color: var(--primary);
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
     margin-bottom: 4px;

@@ -2,7 +2,7 @@
   <div class="vacancy" ref="aos">
     <div class="vacancy__row">
       <div class="vacancy__logo" ref="image">
-        <img src="@/assets/img/kip-logo.svg" alt="" />
+        <img src="@/assets/img/fb.svg" alt="" />
       </div>
       <div class="vacancy__form-wrapper" ref="form">
         <h1 class="vacancy__title">{{ $t("contactUs") }}</h1>
@@ -10,13 +10,15 @@
           <base-input
             @updateValue="(val) => (this.send.name = val)"
             :value="this.send.name"
-            placeholder="Your name"
+            label="yourName"
+            placeholder="..."
           />
           <base-input
             @updateValue="(val) => (this.send.email = val)"
             :value="this.send.email"
             :error="error && !checkValidate"
-            placeholder="Your email"
+            label="yourEmail"
+            placeholder="..."
           />
           <base-files-input
             type="file"
@@ -27,7 +29,8 @@
           <base-textarea
             @updateValue="(val) => (this.send.comment = val)"
             :value="this.send.comment"
-            placeholder="Enter Text"
+            label="enterText"
+            placeholder="-----"
           />
           <button @click="sendContact" class="vacancy__button">
             <span class="vacancy__title-form">{{ $t("send") }}</span>

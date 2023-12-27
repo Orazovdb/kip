@@ -31,5 +31,8 @@ export default {
   type: "Тип",
   engineeringPeriod: "Инженерный период",
   description: 'Описание',
-  photo: 'Фото'
+  photo: 'Фото',
+  yourName: 'Ваше имя',
+  yourEmail: 'Ваш email',
+  enterText: 'введите текст'
 };

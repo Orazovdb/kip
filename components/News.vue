@@ -217,8 +217,8 @@ export default {
   }
 
   &__left-item-image {
-    width: 158px;
-    height: 98px;
+    min-width: 130px;
+    height: 100px;
     background-color: #183a6079;
     border-radius: 5px;
 
@@ -250,6 +250,13 @@ export default {
     font-weight: 500;
     line-height: normal;
     margin-bottom: 2px;
+    line-height: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   &__left-item-date {
@@ -269,7 +276,7 @@ export default {
 
   &__center-image {
     width: 100%;
-    height: 320px;
+    height: 340px;
     img {
       width: 100%;
       height: 100%;
@@ -297,7 +304,7 @@ export default {
 
   &__center-description {
     color: var(--text3);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     line-height: normal;
     margin-bottom: 4px;

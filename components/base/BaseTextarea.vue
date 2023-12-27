@@ -1,6 +1,6 @@
 <template>
   <div class="base-textarea">
-    <h4 class="base-textarea__label">{{ label }}</h4>
+    <h4 class="base-textarea__label" v-if="label">{{ $t(label) }}</h4>
     <textarea
       type=""
       class="base-textarea__textarea"
@@ -41,11 +41,12 @@ export default {
   width: 100%;
 
   &__label {
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 14px;
     line-height: 120%;
     color: var(--text);
     margin-bottom: 10px;
+    text-transform: uppercase;
     @media (max-width: 767px) {
       margin-bottom: 6px;
       font-size: 14px;
@@ -77,7 +78,6 @@ export default {
     }
     @media (max-width: 479px) {
       font-size: 12px;
-   
     }
   }
 }
