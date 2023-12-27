@@ -62,7 +62,7 @@
           :url="`'http://119.235.121.50:8090/kip/dshbrd/1.pdf'`"
           primary
         >
-          {{ $t("downloadCatalog") }}
+          {{ $t("catalog") }}
         </base-button-circle>
         <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
         <div class="button-arrow-title">
