@@ -47,6 +47,19 @@
         See all
       </button>
     </div>
+    <div class="relative mobile-button-circle-white">
+      <BaseButtonProducts
+        :url="'http://119.235.121.50:8090/kip/dshbrd/2.pdf'"
+        primary
+      >
+        Download file
+      </BaseButtonProducts>
+      <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
+      <div class="button-arrow-title">
+        <h2 class="button-arrow-title__text">Pdf download file</h2>
+        <base-icon icon="workBlackArrowMini" class="black-arrow-mini" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -102,6 +115,7 @@ export default {
 <style lang="scss" scoped>
 .services {
   padding: 80px 100px 20px 100px;
+  position: relative;
   @media (max-width: 767px) {
     padding: 50px 20px 0;
   }
@@ -206,7 +220,7 @@ export default {
 
   &__button-wrapper {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     margin-top: 30px;
     @media (max-width: 767px) {
       margin-right: 10px;
@@ -226,5 +240,50 @@ export default {
     transition: 0.2s all;
     cursor: pointer;
   }
+}
+.mobile-button-circle-white {
+  position: absolute;
+  bottom: -5%;
+  right: 10%;
+}
+.button-arrow-title {
+  position: absolute;
+  bottom: -30px;
+  right: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+
+  &.left {
+    right: auto;
+    right: 56%;
+  }
+  .arrow-mobile {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    bottom: auto;
+    top: -40px;
+    right: -100%;
+    .arrow {
+      display: none;
+    }
+    .arrow-mobile {
+      display: block;
+    }
+  }
+  &__text {
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+    &.white {
+      color: #fff;
+    }
+    @media (max-width: 767px) {
+      font-size: 10px;
+    }
+  }
+}
+.black-arrow-mini {
 }
 </style>

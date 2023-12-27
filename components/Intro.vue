@@ -57,7 +57,10 @@
         <img src="@/assets/img/kip-logo.svg" alt="logo" />
       </div>
       <div class="relative mobile-button-circle-white" ref="project">
-        <base-button-circle :url="`/1.pdf`" primary>
+        <base-button-circle
+          :url="`'http://119.235.121.50:8090/kip/dshbrd/1.pdf'`"
+          primary
+        >
           Download catalog
         </base-button-circle>
         <!-- <base-icon icon="circleCursor" class="circle-cursor" /> -->
