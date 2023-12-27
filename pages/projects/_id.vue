@@ -10,9 +10,16 @@
       </div>
       <div class="projects-id__project">
         <div class="projects-id__project-image">
-          <img src="@/assets/img/mennan.svg" alt="" />
+          <!-- <img src="@/assets/img/mennan.svg" alt="" /> -->
+          <img :src="`${imageURL}${project.cover}`" alt="" />
         </div>
         <div class="projects-id__project-content">
+          <p class="projects-id__project-text">
+            <span class="projects-id__project-span">Company name:</span>
+            <span>
+              {{ project?.company }}
+            </span>
+          </p>
           <p class="projects-id__project-text">
             <span class="projects-id__project-span">Engineering Period:</span>
             <span>
@@ -155,15 +162,14 @@ export default {
   }
 
   &__project-image {
-    max-width: 180px;
-    height: 60px;
+    max-width: 150px;
+    height: 70px;
     img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
     }
-    display: none;
   }
 
   &__project-content {

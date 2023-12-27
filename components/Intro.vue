@@ -53,8 +53,10 @@
           <base-icon icon="contactWhiteArrow" />
         </div>
       </div>
-      <div class="intro__logo" ref="image">
-        <img src="@/assets/img/kip-logo.svg" alt="logo" />
+      <div class="intro__logo-wrapper">
+        <div class="intro__logo" ref="image">
+          <img src="@/assets/img/kip-logo.svg" alt="logo" />
+        </div>
       </div>
       <div class="relative mobile-button-circle-white" ref="project">
         <base-button-circle :url="`/1.pdf`" primary>
@@ -280,14 +282,61 @@ export default {
     }
   }
 
+  &__logo-wrapper {
+    width: 250px;
+    height: 250px;
+  }
+
   &__logo {
-    max-width: 250px;
-    max-height: 250px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     position: relative;
     transition: 1s all;
     transform: translateY(80px);
     opacity: 0;
+    animation: flip linear;
+    animation-duration: 4s;
+    animation-iteration-count: 2;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+
+    @keyframes flip {
+      0% {
+        -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, -360deg);
+        transform: perspective(1000px) rotate3d(0, 1, 0, -360deg);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+      }
+      40% {
+        -webkit-transform: perspective(1000px) translate3d(0, 0, 150px)
+          rotate3d(0, 1, 0, -190deg);
+        transform: perspective(1000px) translate3d(0, 0, 150px)
+          rotate3d(0, 1, 0, -190deg);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+      }
+      50% {
+        -webkit-transform: perspective(1000px) translate3d(0, 0, 150px)
+          rotate3d(0, 1, 0, -170deg);
+        transform: perspective(1000px) translate3d(0, 0, 150px)
+          rotate3d(0, 1, 0, -170deg);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+      }
+      80% {
+        -webkit-transform: perspective(1000px) scale3d(0.95, 0.95, 0.95);
+        transform: perspective(1000px) scale3d(0.95, 0.95, 0.95);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+      }
+      100% {
+        -webkit-transform: perspective(1000px);
+        transform: perspective(1000px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+      }
+    }
     &.aos {
       opacity: 1;
       transform: translateY(0);

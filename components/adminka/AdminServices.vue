@@ -15,12 +15,28 @@
         placeholder="..."
       />
 
-      <admin-input
+      <!-- <admin-input
         @updateValue="(val) => (main[`type`] = val)"
         :value="main[`type`]"
         label="service/product"
         placeholder="service/product"
-      />
+      /> -->
+      <div class="flex flex-y-center gap-40">
+        <base-input-radio
+          @updateValue="(val) => (main.type = val)"
+          :value="main.type"
+          type="radio"
+          name="name"
+        />
+          <label for="services">Services</label>
+        <base-input-radio
+          @updateValue="(val) => (main.type = val)"
+          :value="main.type"
+          type="radio"
+          name="name"
+        />
+          <label for="products">Products</label>
+      </div>
 
       <div class="flex gap-10">
         <admin-input
@@ -97,7 +113,7 @@ export default {
         contentTm: "",
         contentRu: "",
         contentEn: "",
-        type: "service",
+        type: "product",
         images: [],
         logo: "",
         priority: null,
