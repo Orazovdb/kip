@@ -4,7 +4,6 @@ export default {
   lan: "Язык",
   home: "Главная",
   aboutUs: "О нас",
-  aboutUs: "Продукты/Услуги",
   ehs: "БОСЗ",
   news: "Новости",
   projects: "Проекты",

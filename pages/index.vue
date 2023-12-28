@@ -52,7 +52,7 @@ export default {
         },
         {
           id: 3,
-          name: "Products/services",
+          name: "productsServices",
           url: "#products-services",
         },
         {

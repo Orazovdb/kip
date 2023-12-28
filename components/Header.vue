@@ -284,7 +284,6 @@ export default {
     display: block;
     white-space: nowrap;
     transition: 0.2s;
-    text-transform: capitalize;
 
     &:hover {
       background: rgba(255, 255, 255, 0.09);

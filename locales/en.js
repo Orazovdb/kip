@@ -2,7 +2,7 @@ export default {
   isEmpty: "Fill the empty boxes !",
   successSend: "Your message has been sent successfully !",
   lan: "Language",
-  home: "home",
+  home: "Home",
   aboutUs: "About us",
   ehs: "EHS",
   news: "News",
