@@ -346,7 +346,7 @@ export default {
 .button-arrow-title {
   position: absolute;
   bottom: -60px;
-  right: -180%;
+  right: -230%;
   display: flex;
   align-items: flex-end;
   gap: 12px;
@@ -364,6 +364,9 @@ export default {
     right: -100%;
     .arrow {
       display: none;
+    }
+    .icon {
+      display: none !important;
     }
     .arrow-mobile {
       display: block;
